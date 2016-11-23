@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2015",
+    "strictNullChecks": true,
+    "sourceMap": false,
+    "declaration": false,
+    "types": [
+      "google-maps",
+      "jquery",
+      "jqueryui",
+      "youtube"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "Addon",
+    "publish",
+    "webroot"
+  ]
+}
