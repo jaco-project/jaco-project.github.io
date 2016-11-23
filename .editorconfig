@@ -9,7 +9,7 @@ root = true
   trim_trailing_whitespace = true
   insert_final_newline = true
 
-[{*.html,*.jade,*.hbs,*.php,*.ctp,*.css,*.scss,*.sass,*.js,*.ts,*.jsx,*.tsx}]
+[{*.html,*.jade,*.hbs,*.php,*.ctp,*.css,*.scss,*.sass,*.ts,*.tsx}]
   indent_style = tab
   indent_size = 4
   tab_width = 4
