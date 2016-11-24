@@ -1,0 +1,34 @@
+@charset 'utf-8';
+
+@import '../../node_modules/normalize.css/normalize';
+@import 'mixins';
+
+$bgColor: #f3f1f0;
+$heightHeader: 55px;
+
+$baseFontColor: #000;
+$errorFontColor: #d61200;
+
+// facebook.app webView Footer
+$fbf: 108px;
+
+@import 'base';
+@import 'components/Preloader';
+@import 'components/Header';
+@import 'components/StartArea';
+@import 'components/FinishArea';
+@import 'components/Main';
+@import 'components/MetreButton';
+@import 'components/SubmitButton';
+@import 'components/TouchLayer';
+@import 'components/Ago';
+@import 'components/Background';
+@import 'components/Metre';
+@import 'components/Trivia';
+@import 'components/Time';
+@import 'components/DenyPC';
+@import 'components/Debuggers';
+
+@import 'components/Form';
+
+@import 'components/Attention';

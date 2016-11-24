@@ -5,17 +5,11 @@
     "strictNullChecks": true,
     "sourceMap": false,
     "declaration": false,
+    "jsx": "react",
     "types": [
-      "google-maps",
-      "jquery",
-      "jqueryui",
-      "youtube"
     ]
   },
   "exclude": [
-    "node_modules",
-    "Addon",
-    "publish",
-    "webroot"
+    "node_modules"
   ]
 }
