@@ -1,24 +1,22 @@
 "use strict";
 const React = require("react");
+const ReactRedux = require("react-redux");
+const ConverterInputArea_1 = require("./ConverterInputArea");
+const ConverterOptionList_1 = require("./ConverterOptionList");
+const ConverterOutputArea_1 = require("./ConverterOutputArea");
 class Converter extends React.Component {
-    constructor() {
-        super(...arguments);
-        this.state = {
-            text: '',
-        };
-    }
     render() {
         return React.createElement("div", { "data-component": "Converter" },
-            React.createElement("div", { className: "converter-inputarea" },
-                React.createElement("textarea", { onChange: this._onChange.bind(this) })),
-            React.createElement("div", { className: "converter-outputarea" },
-                React.createElement("textarea", { value: this.state.text, readOnly: true })));
-    }
-    _onChange(e) {
-        this.setState({
-            text: e.currentTarget.value,
-        });
+            React.createElement(ConverterInputArea_1.default, null),
+            React.createElement(ConverterOptionList_1.default, null),
+            React.createElement(ConverterOutputArea_1.default, { value: this.props.outputText }));
     }
 }
+function connecter(state) {
+    console.log('Component<Converter> connecter', state.action.inputText);
+    return {
+        outputText: state.action.inputText || '',
+    };
+}
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = Converter;
+exports.default = ReactRedux.connect(connecter)(Converter);

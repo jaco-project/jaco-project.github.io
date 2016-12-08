@@ -2,11 +2,13 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es2015",
+    "alwaysStrict": true,
     "strictNullChecks": true,
     "sourceMap": false,
     "declaration": false,
     "jsx": "react",
     "types": [
+      "react-redux"
     ]
   },
   "exclude": [
