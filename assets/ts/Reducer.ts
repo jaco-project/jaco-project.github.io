@@ -32,4 +32,3 @@ export function reduceAction (state: Action.IState = Action.initialState, action
 		}
 	}
 }
-

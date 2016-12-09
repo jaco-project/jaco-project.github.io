@@ -217,7 +217,7 @@ export const initialState: IState = {
 		toWideKatakana: false,
 		toWideSign: false,
 		toWideSymbolForJapanese: false,
-	}
+	},
 };
 
 export function convert (text: string): IAction {
