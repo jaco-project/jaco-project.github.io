@@ -5,19 +5,48 @@ const Action = require("./Action");
 const initialState = {
     inputText: '',
     outputText: '',
-    options: {},
+    options: [],
+    optionsState: {
+        addSemivoicedMarks: false,
+        addVoicedMarks: false,
+        combinateSoundMarks: false,
+        convertIterationMarks: false,
+        convertProlongedSoundMarks: false,
+        removeUnpairedSurrogate: false,
+        removeVoicedMarks: false,
+        trim: false,
+        toBasicLetter: false,
+        toHiragana: false,
+        toKatakana: false,
+        toNarrow: false,
+        toNarrowAlphanumeric: false,
+        toNarrowJapanese: false,
+        toNarrowKatakana: false,
+        toNarrowSign: false,
+        toNarrowSymbolForJapanese: false,
+        toNumeric: false,
+        toPhoeticKana: false,
+        toWide: false,
+        toWideAlphanumeric: false,
+        toWideJapanese: false,
+        toWideKatakana: false,
+        toWideSign: false,
+        toWideSymbolForJapanese: false,
+    }
 };
 function reduceAction(state = initialState, action) {
     switch (action.type) {
-        case Action.types.CONVERT:
-        case Action.types.CHANGE_OPTION:
+        case 0 /* CONVERT */:
+        case 1 /* CHANGE_OPTION */:
             const inputText = action.inputText || state.inputText;
             const options = action.options || state.options;
             let outputText = inputText;
-            if (options.hiragana) {
+            for (const method of options) {
+            }
+            if (options.toHiragana.enabled) {
                 outputText = toHiragana_1.default(outputText);
             }
-            if (options.katakana) {
+            if (options.toKatakana.enabled) {
                 outputText = toKatakana_1.default(outputText);
             }
             return {

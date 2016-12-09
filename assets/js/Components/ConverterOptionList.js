@@ -2,26 +2,34 @@
 const React = require("react");
 const ReactDOM = require("react-dom");
 const ReactRedux = require("react-redux");
-const Action = require("../Action");
 class ConverterOptionList extends React.Component {
     render() {
         return React.createElement("div", { "data-component": "ConverterOptionList", onChange: this._onChange.bind(this) },
             React.createElement("ul", null,
                 React.createElement("li", null,
                     React.createElement("label", null,
-                        React.createElement("input", { type: "checkbox", ref: "hiragana", checked: this.props.options.hiragana }),
-                        React.createElement("span", null, "h"))),
+                        React.createElement("input", { type: "checkbox", ref: "toHiragana", checked: this.props.options.toHiragana.enabled }),
+                        React.createElement("span", null, this.props.options.toHiragana.name))),
                 React.createElement("li", null,
                     React.createElement("label", null,
-                        React.createElement("input", { type: "checkbox", ref: "katakana", checked: this.props.options.katakana }),
-                        React.createElement("span", null, "k")))));
+                        React.createElement("input", { type: "checkbox", ref: "toKatakana", checked: this.props.options.toKatakana.enabled }),
+                        React.createElement("span", null, this.props.options.toKatakana.name)))));
     }
     _onChange(e) {
-        const hiragana = ReactDOM.findDOMNode(this.refs['hiragana']).checked;
-        const katakana = ReactDOM.findDOMNode(this.refs['katakana']).checked;
-        if (this.props.dispatch) {
-            this.props.dispatch(Action.changeOption({ hiragana, katakana }));
-        }
+        const toHiragana = ReactDOM.findDOMNode(this.refs['toHiragana']).checked;
+        const toKatakana = ReactDOM.findDOMNode(this.refs['toKatakana']).checked;
+        // if (this.props.dispatch) {
+        // 	this.props.dispatch(Action.changeOption({
+        // 		toHiragana: {
+        // 			name: 'ひらがな',
+        // 			enabled: toHiragana,
+        // 		},
+        // 		toKatakana: {
+        // 			name: 'カタカナ',
+        // 			enabled: toKatakana,
+        // 		}
+        // 	}));
+        // }
     }
 }
 function connecter(state) {

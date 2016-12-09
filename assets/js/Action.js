@@ -1,20 +1,116 @@
 "use strict";
-// tslint:disable-next-line:no-namespace no-mergeable-namespace
-var types;
-(function (types) {
-    types[types["CONVERT"] = 0] = "CONVERT";
-    types[types["CHANGE_OPTION"] = 1] = "CHANGE_OPTION";
-})(types = exports.types || (exports.types = {}));
+exports.options = {
+    addSemivoicedMarks: {
+        name: '',
+        description: '',
+    },
+    addVoicedMarks: {
+        name: '',
+        description: '',
+    },
+    combinateSoundMarks: {
+        name: '',
+        description: '',
+    },
+    convertIterationMarks: {
+        name: '',
+        description: '',
+    },
+    convertProlongedSoundMarks: {
+        name: '',
+        description: '',
+    },
+    removeUnpairedSurrogate: {
+        name: '',
+        description: '',
+    },
+    removeVoicedMarks: {
+        name: '',
+        description: '',
+    },
+    trim: {
+        name: '',
+        description: '',
+    },
+    toBasicLetter: {
+        name: '',
+        description: '',
+    },
+    toHiragana: {
+        name: '',
+        description: '',
+    },
+    toKatakana: {
+        name: '',
+        description: '',
+    },
+    toNarrow: {
+        name: '',
+        description: '',
+    },
+    toNarrowAlphanumeric: {
+        name: '',
+        description: '',
+    },
+    toNarrowJapanese: {
+        name: '',
+        description: '',
+    },
+    toNarrowKatakana: {
+        name: '',
+        description: '',
+    },
+    toNarrowSign: {
+        name: '',
+        description: '',
+    },
+    toNarrowSymbolForJapanese: {
+        name: '',
+        description: '',
+    },
+    toNumeric: {
+        name: '',
+        description: '',
+    },
+    toPhoeticKana: {
+        name: '',
+        description: '',
+    },
+    toWide: {
+        name: '',
+        description: '',
+    },
+    toWideAlphanumeric: {
+        name: '',
+        description: '',
+    },
+    toWideJapanese: {
+        name: '',
+        description: '',
+    },
+    toWideKatakana: {
+        name: '',
+        description: '',
+    },
+    toWideSign: {
+        name: '',
+        description: '',
+    },
+    toWideSymbolForJapanese: {
+        name: '',
+        description: '',
+    },
+};
 function convert(text) {
     return {
-        type: types.CONVERT,
+        type: 0 /* CONVERT */,
         inputText: text,
     };
 }
 exports.convert = convert;
 function changeOption(options) {
     return {
-        type: types.CHANGE_OPTION,
+        type: 1 /* CHANGE_OPTION */,
         options,
     };
 }

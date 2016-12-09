@@ -19,18 +19,27 @@ class ConverterOptionList extends React.Component<IConverterOptionListProp, ICon
 	public render (): JSX.Element {
 		return <div data-component="ConverterOptionList" onChange={this._onChange.bind(this)}>
 			<ul>
-				<li><label><input type="checkbox" ref="hiragana" checked={ this.props.options.hiragana } /><span>h</span></label></li>
-				<li><label><input type="checkbox" ref="katakana" checked={ this.props.options.katakana } /><span>k</span></label></li>
+				<li><label><input type="checkbox" ref="toHiragana" checked={ this.props.options.toHiragana!.enabled } /><span>{ this.props.options.toHiragana!.name }</span></label></li>
+				<li><label><input type="checkbox" ref="toKatakana" checked={ this.props.options.toKatakana!.enabled } /><span>{ this.props.options.toKatakana!.name }</span></label></li>
 			</ul>
 		</div>;
 	}
 
 	private _onChange (e: React.FormEvent<HTMLTextAreaElement>) {
-		const hiragana = (ReactDOM.findDOMNode(this.refs['hiragana']) as HTMLInputElement).checked;
-		const katakana = (ReactDOM.findDOMNode(this.refs['katakana']) as HTMLInputElement).checked;
-		if (this.props.dispatch) {
-			this.props.dispatch(Action.changeOption({ hiragana, katakana }));
-		}
+		const toHiragana = (ReactDOM.findDOMNode(this.refs['toHiragana']) as HTMLInputElement).checked;
+		const toKatakana = (ReactDOM.findDOMNode(this.refs['toKatakana']) as HTMLInputElement).checked;
+		// if (this.props.dispatch) {
+		// 	this.props.dispatch(Action.changeOption({
+		// 		toHiragana: {
+		// 			name: 'ひらがな',
+		// 			enabled: toHiragana,
+		// 		},
+		// 		toKatakana: {
+		// 			name: 'カタカナ',
+		// 			enabled: toKatakana,
+		// 		}
+		// 	}));
+		// }
 	}
 
 }

@@ -6,7 +6,34 @@ import * as Action from './Action';
 const initialState: Action.IState = {
 	inputText: '',
 	outputText: '',
-	options: {},
+	options: [],
+	optionsState: {
+		addSemivoicedMarks: false,
+		addVoicedMarks: false,
+		combinateSoundMarks: false,
+		convertIterationMarks: false,
+		convertProlongedSoundMarks: false,
+		removeUnpairedSurrogate: false,
+		removeVoicedMarks: false,
+		trim: false,
+		toBasicLetter: false,
+		toHiragana: false,
+		toKatakana: false,
+		toNarrow: false,
+		toNarrowAlphanumeric: false,
+		toNarrowJapanese: false,
+		toNarrowKatakana: false,
+		toNarrowSign: false,
+		toNarrowSymbolForJapanese: false,
+		toNumeric: false,
+		toPhoeticKana: false,
+		toWide: false,
+		toWideAlphanumeric: false,
+		toWideJapanese: false,
+		toWideKatakana: false,
+		toWideSign: false,
+		toWideSymbolForJapanese: false,
+	}
 };
 
 export interface IRecuderState {
@@ -20,10 +47,14 @@ export function reduceAction (state: Action.IState = initialState, action: Actio
 			const inputText = action.inputText || state.inputText;
 			const options = action.options || state.options;
 			let outputText = inputText;
-			if (options.hiragana) {
+			for (const method of options) {
+				state.optionsState[method] ;
+
+			}
+			if (options.toHiragana!.enabled) {
 				outputText = toHiragana(outputText);
 			}
-			if (options.katakana) {
+			if (options.toKatakana!.enabled) {
 				outputText = toKatakana(outputText);
 			}
 			return {

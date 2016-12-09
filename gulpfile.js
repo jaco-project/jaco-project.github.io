@@ -49,7 +49,7 @@ gulp.task('wp', () => {
     },
     plugins: [
       new webpack.optimize.AggressiveMergingPlugin(),
-      new webpack.optimize.UglifyJsPlugin(),
+      // new webpack.optimize.UglifyJsPlugin(),
       new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify('production') }}),
     ],
     module: {
@@ -57,10 +57,6 @@ gulp.task('wp', () => {
         {
           test: /\.js$/,
           loader: 'babel-loader',
-          query: {
-            comments: false,
-            compact: true,
-          },
         },
       ],
     },
