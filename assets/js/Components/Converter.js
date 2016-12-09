@@ -13,9 +13,8 @@ class Converter extends React.Component {
     }
 }
 function connecter(state) {
-    console.log('Component<Converter> connecter', state.action.inputText);
     return {
-        outputText: state.action.inputText || '',
+        outputText: state.action.outputText,
     };
 }
 Object.defineProperty(exports, "__esModule", { value: true });

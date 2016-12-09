@@ -1,6 +1,6 @@
 import { combineReducers, createStore } from 'redux';
 import * as Reducer from './Reducer';
 
-export default createStore(combineReducers({
-	action: Reducer.action,
+export default createStore(combineReducers<Reducer.IRecuderState>({
+	action: Reducer.reduceAction,
 }));

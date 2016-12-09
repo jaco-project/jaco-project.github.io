@@ -1,5 +1,4 @@
 "use strict";
-const jaco_1 = require("jaco");
 // tslint:disable-next-line:no-namespace no-mergeable-namespace
 var types;
 (function (types) {
@@ -9,13 +8,13 @@ var types;
 function convert(text) {
     return {
         type: types.CONVERT,
-        convertedText: new jaco_1.default(text).toKatakana().toString(),
+        inputText: text,
     };
 }
 exports.convert = convert;
 function changeOption(options) {
     return {
-        type: types.CONVERT,
+        type: types.CHANGE_OPTION,
         options,
     };
 }

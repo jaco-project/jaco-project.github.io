@@ -1,3 +1,5 @@
+'use strict';
+
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
 const runSequence = require('run-sequence');
@@ -7,14 +9,9 @@ const sass = require('gulp-sass');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 gulp.task('css', () => {
-  return gulp
+  gulp
   .src('assets/scss/style.scss')
-  .pipe(plumber({
-    errorHandler: function (err) {
-      console.log(err.messageFormatted);
-      this.emit('end');
-    },
-  }))
+  .pipe(plumber())
   .pipe(sass())
   .pipe(postcss([
     autoprefixer({browsers: [
@@ -29,7 +26,7 @@ const ts = require('gulp-typescript');
 const typescript = require('typescript');
 const project = ts.createProject('./tsconfig.json', { typescript });
 gulp.task('ts', () => {
-  return project
+  project
   .src()
   .pipe(plumber())
   .pipe(project())
@@ -41,7 +38,7 @@ const gulpWebpack = require('webpack-stream');
 const header = require('gulp-header');
 const pkg = require('./package.json');
 gulp.task('wp', () => {
-  return gulp
+  gulp
   .src([
     'assets/js/index.js',
   ])
@@ -52,18 +49,18 @@ gulp.task('wp', () => {
     },
     plugins: [
       new webpack.optimize.AggressiveMergingPlugin(),
-      new webpack.optimize.UglifyJsPlugin({ output: { comments: false }, compress: { conditionals: false } }),
+      new webpack.optimize.UglifyJsPlugin(),
       new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify('production') }}),
     ],
     module: {
       loaders: [
         {
-          test: /\.jsx?$/,
-          exclude: /node_modules/,
+          test: /\.js$/,
           loader: 'babel-loader',
           query: {
-            presets: ['es2015']
-          }
+            comments: false,
+            compact: true,
+          },
         },
       ],
     },

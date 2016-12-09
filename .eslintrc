@@ -1,9 +1,9 @@
 {
 	"extends": "eslint:recommended",
 	"env": {
-		"node": false,
+		"node": true,
 		"browser": true,
-		"es6": false
+		"es6": true
 	},
 	"ecmaFeatures" : {
 		"objectLiteralShorthandMethods": false
@@ -15,7 +15,7 @@
 	"rules": {
 		"strict": 2,
 		"semi": 2,
-		"indent": [2, "tab", {"SwitchCase": 1}],
+		"indent": ["error", 2, {"SwitchCase": 1}],
 		"quotes": [2, "single", "avoid-escape"],
 		"comma-style": [2, "last"],
 		"arrow-body-style": 2,

@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es2015",
+    "target": "es2016",
     "alwaysStrict": true,
     "strictNullChecks": true,
     "sourceMap": false,
     "declaration": false,
     "jsx": "react",
+    "lib": [
+      "dom",
+      "es2016"
+    ],
     "types": [
       "react-redux"
     ]

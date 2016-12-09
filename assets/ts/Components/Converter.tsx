@@ -26,10 +26,9 @@ class Converter extends React.Component<IConverterProp, IConverterState> {
 
 }
 
-function connecter (state: Reducer.IState): IConverterProp {
-	console.log('Component<Converter> connecter', state.action.inputText);
+function connecter (state: Reducer.IRecuderState): IConverterProp {
 	return {
-		outputText: state.action.inputText || '',
+		outputText: state.action.outputText,
 	};
 }
 

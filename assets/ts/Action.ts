@@ -1,8 +1,8 @@
-import Jaco from 'jaco';
 
 export interface IState {
-	inputText?: string;
-	options?: IOptions;
+	inputText: string;
+	outputText: string;
+	options: IOptions;
 }
 
 export interface IOptions {
@@ -12,7 +12,7 @@ export interface IOptions {
 
 export interface IAction {
 	type: types;
-	convertedText?: string;
+	inputText?: string;
 	options?: IOptions;
 }
 
@@ -25,13 +25,13 @@ export enum types {
 export function convert (text: string): IAction {
 	return {
 		type: types.CONVERT,
-		convertedText: new Jaco(text).toKatakana().toString(),
+		inputText: text,
 	};
 }
 
 export function changeOption (options: IOptions): IAction {
 	return {
-		type: types.CONVERT,
+		type: types.CHANGE_OPTION,
 		options,
 	};
 }

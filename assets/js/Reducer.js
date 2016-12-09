@@ -1,22 +1,33 @@
 "use strict";
+const toHiragana_1 = require("jaco/lib/fn/toHiragana");
+const toKatakana_1 = require("jaco/lib/fn/toKatakana");
 const Action = require("./Action");
 const initialState = {
     inputText: '',
+    outputText: '',
+    options: {},
 };
-function action(state = initialState, action) {
+function reduceAction(state = initialState, action) {
     switch (action.type) {
         case Action.types.CONVERT:
-            console.log(state.options);
-            return {
-                inputText: action.convertedText || '',
-            };
         case Action.types.CHANGE_OPTION:
+            const inputText = action.inputText || state.inputText;
+            const options = action.options || state.options;
+            let outputText = inputText;
+            if (options.hiragana) {
+                outputText = toHiragana_1.default(outputText);
+            }
+            if (options.katakana) {
+                outputText = toKatakana_1.default(outputText);
+            }
             return {
-                options: action.options || {},
+                inputText,
+                outputText,
+                options,
             };
         default: {
             return state;
         }
     }
 }
-exports.action = action;
+exports.reduceAction = reduceAction;
