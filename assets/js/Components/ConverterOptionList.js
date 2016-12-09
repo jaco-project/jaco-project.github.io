@@ -2,39 +2,33 @@
 const React = require("react");
 const ReactDOM = require("react-dom");
 const ReactRedux = require("react-redux");
+const Action = require("../Action");
+function createOptionItem(name, options, optionsState) {
+    return React.createElement("li", null,
+        React.createElement("label", null,
+            React.createElement("input", { type: "checkbox", ref: name, checked: optionsState[name] }),
+            React.createElement("span", null, options[name].name)));
+}
 class ConverterOptionList extends React.Component {
     render() {
         return React.createElement("div", { "data-component": "ConverterOptionList", onChange: this._onChange.bind(this) },
-            React.createElement("ul", null,
-                React.createElement("li", null,
-                    React.createElement("label", null,
-                        React.createElement("input", { type: "checkbox", ref: "toHiragana", checked: this.props.options.toHiragana.enabled }),
-                        React.createElement("span", null, this.props.options.toHiragana.name))),
-                React.createElement("li", null,
-                    React.createElement("label", null,
-                        React.createElement("input", { type: "checkbox", ref: "toKatakana", checked: this.props.options.toKatakana.enabled }),
-                        React.createElement("span", null, this.props.options.toKatakana.name)))));
+            React.createElement("ul", null, this.props.options.map(name => createOptionItem(name, Action.options, this.props.optionsState))));
     }
     _onChange(e) {
-        const toHiragana = ReactDOM.findDOMNode(this.refs['toHiragana']).checked;
-        const toKatakana = ReactDOM.findDOMNode(this.refs['toKatakana']).checked;
-        // if (this.props.dispatch) {
-        // 	this.props.dispatch(Action.changeOption({
-        // 		toHiragana: {
-        // 			name: 'ひらがな',
-        // 			enabled: toHiragana,
-        // 		},
-        // 		toKatakana: {
-        // 			name: 'カタカナ',
-        // 			enabled: toKatakana,
-        // 		}
-        // 	}));
-        // }
+        const checkedState = {};
+        for (const name of this.props.options) {
+            const ref = ReactDOM.findDOMNode(this.refs[name]);
+            checkedState[name] = ref.checked;
+        }
+        if (this.props.dispatch) {
+            this.props.dispatch(Action.changeOption(this.props.options, checkedState));
+        }
     }
 }
 function connecter(state) {
     return {
         options: state.action.options,
+        optionsState: state.action.optionsState,
     };
 }
 Object.defineProperty(exports, "__esModule", { value: true });

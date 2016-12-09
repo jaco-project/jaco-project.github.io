@@ -1,7 +1,7 @@
 export interface IState {
 	inputText: string;
 	outputText: string;
-	options: IOptionList;
+	options: IOptionNameList;
 	optionsState: IOptionsState;
 }
 
@@ -42,12 +42,15 @@ export interface IOptions {
 	toWideSymbolForJapanese: IOption;
 }
 
-export type IOptionList = (keyof IOptions)[];
+export type IOptionName = keyof IOptions;
+
+export type IOptionNameList = IOptionName[];
 
 export interface IAction {
 	type: types;
 	inputText?: string;
-	options?: IOptionList;
+	options?: IOptionNameList;
+	optionsState?: IOptionsState;
 }
 
 export const enum types {
@@ -93,11 +96,11 @@ export const options: IOptions = {
 		description: '',
 	},
 	toHiragana: {
-		name: '',
+		name: 'ひらがなに変換',
 		description: '',
 	},
 	toKatakana: {
-		name: '',
+		name: 'かたかなに変換',
 		description: '',
 	},
 	toNarrow: {
@@ -158,6 +161,65 @@ export const options: IOptions = {
 	},
 };
 
+export const initialState: IState = {
+	inputText: '',
+	outputText: '',
+	options: [
+		'addSemivoicedMarks',
+		'addVoicedMarks',
+		'combinateSoundMarks',
+		'convertIterationMarks',
+		'convertProlongedSoundMarks',
+		'removeUnpairedSurrogate',
+		'removeVoicedMarks',
+		'trim',
+		'toBasicLetter',
+		'toHiragana',
+		'toKatakana',
+		'toNarrow',
+		'toNarrowAlphanumeric',
+		'toNarrowJapanese',
+		'toNarrowKatakana',
+		'toNarrowSign',
+		'toNarrowSymbolForJapanese',
+		'toNumeric',
+		'toPhoeticKana',
+		'toWide',
+		'toWideAlphanumeric',
+		'toWideJapanese',
+		'toWideKatakana',
+		'toWideSign',
+		'toWideSymbolForJapanese',
+	],
+	optionsState: {
+		addSemivoicedMarks: false,
+		addVoicedMarks: false,
+		combinateSoundMarks: false,
+		convertIterationMarks: false,
+		convertProlongedSoundMarks: false,
+		removeUnpairedSurrogate: false,
+		removeVoicedMarks: false,
+		trim: false,
+		toBasicLetter: false,
+		toHiragana: false,
+		toKatakana: false,
+		toNarrow: false,
+		toNarrowAlphanumeric: false,
+		toNarrowJapanese: false,
+		toNarrowKatakana: false,
+		toNarrowSign: false,
+		toNarrowSymbolForJapanese: false,
+		toNumeric: false,
+		toPhoeticKana: false,
+		toWide: false,
+		toWideAlphanumeric: false,
+		toWideJapanese: false,
+		toWideKatakana: false,
+		toWideSign: false,
+		toWideSymbolForJapanese: false,
+	}
+};
+
 export function convert (text: string): IAction {
 	return {
 		type: types.CONVERT,
@@ -165,9 +227,10 @@ export function convert (text: string): IAction {
 	};
 }
 
-export function changeOption (options: IOptionList): IAction {
+export function changeOption (optionsList: IOptionNameList, optionsState: IOptionsState): IAction {
 	return {
 		type: types.CHANGE_OPTION,
-		options,
+		options: optionsList,
+		optionsState,
 	};
 }

@@ -65,7 +65,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 224);
+/******/ 	return __webpack_require__(__webpack_require__.s = 287);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -140,7 +140,7 @@ module.exports = invariant;
 
 'use strict';
 
-var emptyFunction = __webpack_require__(6);
+var emptyFunction = __webpack_require__(7);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -347,8 +347,8 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 var _prodInvariant = __webpack_require__(2);
 
-var DOMProperty = __webpack_require__(14);
-var ReactDOMComponentFlags = __webpack_require__(66);
+var DOMProperty = __webpack_require__(19);
+var ReactDOMComponentFlags = __webpack_require__(100);
 
 var invariant = __webpack_require__(0);
 
@@ -568,6 +568,39 @@ module.exports = ExecutionEnvironment;
 
 "use strict";
 "use strict";
+/**
+ * 文字列を配列化する
+ *
+ * サロゲートペア文字列を考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @return 配列化された文字列
+ */
+
+function default_1(str) {
+  return str.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[^\uD800-\uDFFF]/g) || [];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 文字列を配列化する
+ *
+ * サロゲートペア文字列を考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @return 配列化された文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
 
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -607,7 +640,42 @@ emptyFunction.thatReturnsArgument = function (arg) {
 module.exports = emptyFunction;
 
 /***/ },
-/* 7 */
+/* 8 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * キーがパターン・値が置換文字列のハッシュマップによって置換する
+ *
+ * @version 2.0.0
+ * @since 0.1.0
+ * @param str 対象の文字列
+ * @param convMap キーがパターン・値が置換文字列のハッシュマップ
+ */
+
+function default_1(str, convMap) {
+    for (var needle in convMap) {
+        if (convMap.hasOwnProperty(needle)) {
+            var replace = convMap[needle];
+            str = str.replace(new RegExp(needle, 'g'), replace);
+        }
+    }
+    return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * キーがパターン・値が置換文字列のハッシュマップによって置換する
+ *
+ * @version 2.0.0
+ * @since 0.1.0
+ * @param str 対象の文字列
+ * @param convMap キーがパターン・値が置換文字列のハッシュマップ
+ */
+exports.default = default_1;
+
+/***/ },
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -636,7 +704,7 @@ if (false) {
 module.exports = { debugTool: debugTool };
 
 /***/ },
-/* 8 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -655,11 +723,11 @@ module.exports = { debugTool: debugTool };
 var _prodInvariant = __webpack_require__(2),
     _assign = __webpack_require__(3);
 
-var CallbackQueue = __webpack_require__(64);
-var PooledClass = __webpack_require__(12);
-var ReactFeatureFlags = __webpack_require__(69);
-var ReactReconciler = __webpack_require__(15);
-var Transaction = __webpack_require__(26);
+var CallbackQueue = __webpack_require__(98);
+var PooledClass = __webpack_require__(15);
+var ReactFeatureFlags = __webpack_require__(103);
+var ReactReconciler = __webpack_require__(20);
+var Transaction = __webpack_require__(34);
 
 var invariant = __webpack_require__(0);
 
@@ -892,16 +960,16 @@ var ReactUpdates = {
 module.exports = ReactUpdates;
 
 /***/ },
-/* 9 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-module.exports = __webpack_require__(16);
+module.exports = __webpack_require__(21);
 
 /***/ },
-/* 10 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -919,9 +987,9 @@ module.exports = __webpack_require__(16);
 
 var _assign = __webpack_require__(3);
 
-var PooledClass = __webpack_require__(12);
+var PooledClass = __webpack_require__(15);
 
-var emptyFunction = __webpack_require__(6);
+var emptyFunction = __webpack_require__(7);
 var warning = __webpack_require__(1);
 
 var didWarnForAddedNewProperty = false;
@@ -1174,7 +1242,7 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 }
 
 /***/ },
-/* 11 */
+/* 13 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -1211,7 +1279,39 @@ var ReactCurrentOwner = {
 module.exports = ReactCurrentOwner;
 
 /***/ },
-/* 12 */
+/* 14 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * 文字列をパターンで置換する
+ *
+ * @version 2.0.0
+ * @since 0.2.0
+ * @param str  元の文字列
+ * @param pattern  対象のパターン
+ * @param replacement 置換する文字列
+ */
+
+function default_1(str, pattern, replacement) {
+  var reg = pattern instanceof RegExp ? pattern : new RegExp(pattern.toString());
+  return str.replace(reg, replacement.toString());
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 文字列をパターンで置換する
+ *
+ * @version 2.0.0
+ * @since 0.2.0
+ * @param str  元の文字列
+ * @param pattern  対象のパターン
+ * @param replacement 置換する文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1340,7 +1440,71 @@ var PooledClass = {
 module.exports = PooledClass;
 
 /***/ },
-/* 13 */
+/* 16 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * キャラクターリストを正規表現に変換する
+ *
+ * @version 0.1.0
+ * @since 0.1.0
+ * @param chars 文字の集合
+ * @return 正規表現化された文字セット
+ */
+
+function default_1(chars) {
+  return new RegExp("[" + chars + "]", 'g');
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * キャラクターリストを正規表現に変換する
+ *
+ * @version 0.1.0
+ * @since 0.1.0
+ * @param chars 文字の集合
+ * @return 正規表現化された文字セット
+ */
+exports.default = default_1;
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * 文字列中のそれぞれのひと文字に対してUnicode番号を指定の数値ずらす
+ *
+ * @version 2.0.0
+ * @since 0.1.0
+ * @param str 対象の文字列
+ * @param needle 対象のパターン
+ * @param shiftNum ずらす数値
+ * @return インスタンス自身
+ */
+
+function default_1(str, needle, shiftNum) {
+  return str.replace(needle, function (char) {
+    return String.fromCharCode(char.charCodeAt(0) + shiftNum);
+  });
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 文字列中のそれぞれのひと文字に対してUnicode番号を指定の数値ずらす
+ *
+ * @version 2.0.0
+ * @since 0.1.0
+ * @param str 対象の文字列
+ * @param needle 対象のパターン
+ * @param shiftNum ずらす数値
+ * @return インスタンス自身
+ */
+exports.default = default_1;
+
+/***/ },
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1356,11 +1520,11 @@ module.exports = PooledClass;
 
 'use strict';
 
-var DOMNamespaces = __webpack_require__(33);
-var setInnerHTML = __webpack_require__(28);
+var DOMNamespaces = __webpack_require__(49);
+var setInnerHTML = __webpack_require__(36);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(41);
-var setTextContent = __webpack_require__(81);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(57);
+var setTextContent = __webpack_require__(115);
 
 var ELEMENT_NODE_TYPE = 1;
 var DOCUMENT_FRAGMENT_NODE_TYPE = 11;
@@ -1463,7 +1627,7 @@ DOMLazyTree.queueText = queueText;
 module.exports = DOMLazyTree;
 
 /***/ },
-/* 14 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1678,7 +1842,7 @@ var DOMProperty = {
 module.exports = DOMProperty;
 
 /***/ },
-/* 15 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1694,8 +1858,8 @@ module.exports = DOMProperty;
 
 'use strict';
 
-var ReactRef = __webpack_require__(174);
-var ReactInstrumentation = __webpack_require__(7);
+var ReactRef = __webpack_require__(237);
+var ReactInstrumentation = __webpack_require__(9);
 
 var warning = __webpack_require__(1);
 
@@ -1851,7 +2015,7 @@ var ReactReconciler = {
 module.exports = ReactReconciler;
 
 /***/ },
-/* 16 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1869,16 +2033,16 @@ module.exports = ReactReconciler;
 
 var _assign = __webpack_require__(3);
 
-var ReactChildren = __webpack_require__(208);
-var ReactComponent = __webpack_require__(48);
-var ReactPureComponent = __webpack_require__(213);
-var ReactClass = __webpack_require__(209);
-var ReactDOMFactories = __webpack_require__(210);
-var ReactElement = __webpack_require__(17);
-var ReactPropTypes = __webpack_require__(211);
-var ReactVersion = __webpack_require__(214);
+var ReactChildren = __webpack_require__(271);
+var ReactComponent = __webpack_require__(64);
+var ReactPureComponent = __webpack_require__(276);
+var ReactClass = __webpack_require__(272);
+var ReactDOMFactories = __webpack_require__(273);
+var ReactElement = __webpack_require__(22);
+var ReactPropTypes = __webpack_require__(274);
+var ReactVersion = __webpack_require__(277);
 
-var onlyChild = __webpack_require__(215);
+var onlyChild = __webpack_require__(278);
 var warning = __webpack_require__(1);
 
 var createElement = ReactElement.createElement;
@@ -1945,7 +2109,7 @@ var React = {
 module.exports = React;
 
 /***/ },
-/* 17 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1965,13 +2129,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _assign = __webpack_require__(3);
 
-var ReactCurrentOwner = __webpack_require__(11);
+var ReactCurrentOwner = __webpack_require__(13);
 
 var warning = __webpack_require__(1);
-var canDefineProperty = __webpack_require__(88);
+var canDefineProperty = __webpack_require__(122);
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-var REACT_ELEMENT_TYPE = __webpack_require__(86);
+var REACT_ELEMENT_TYPE = __webpack_require__(120);
 
 var RESERVED_PROPS = {
   key: true,
@@ -2293,7 +2457,7 @@ ReactElement.isValidElement = function (object) {
 module.exports = ReactElement;
 
 /***/ },
-/* 18 */
+/* 23 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -2337,7 +2501,7 @@ function reactProdInvariant(code) {
 module.exports = reactProdInvariant;
 
 /***/ },
-/* 19 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2362,7 +2526,54 @@ if (false) {
 module.exports = emptyObject;
 
 /***/ },
-/* 20 */
+/* 25 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var arrayize_1 = __webpack_require__(6);
+/**
+ * 指定した位置から指定した数だけ文字列を抽出
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 0.2.0
+ * @param str 対象の文字列
+ * @param start 開始インデックス
+ * @param length 指定数
+ */
+function default_1(str, start, length) {
+    var array = arrayize_1.default(str);
+    var thisLength = array.length;
+    if (length == null || length < 0 || thisLength < length) {
+        length = thisLength;
+    }
+    if (start < 0) {
+        start = thisLength + start;
+    }
+    var end = Math.max(start + length, start);
+    start = Math.min(start + length, start);
+    var res = array.slice(start, end);
+    return res.join('');
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 指定した位置から指定した数だけ文字列を抽出
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 0.2.0
+ * @param str 対象の文字列
+ * @param start 開始インデックス
+ * @param length 指定数
+ */
+exports.default = default_1;
+
+/***/ },
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2382,12 +2593,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _prodInvariant = __webpack_require__(2);
 
-var EventPluginRegistry = __webpack_require__(34);
-var EventPluginUtils = __webpack_require__(35);
-var ReactErrorUtils = __webpack_require__(39);
+var EventPluginRegistry = __webpack_require__(50);
+var EventPluginUtils = __webpack_require__(51);
+var ReactErrorUtils = __webpack_require__(55);
 
-var accumulateInto = __webpack_require__(75);
-var forEachAccumulated = __webpack_require__(76);
+var accumulateInto = __webpack_require__(109);
+var forEachAccumulated = __webpack_require__(110);
 var invariant = __webpack_require__(0);
 
 /**
@@ -2647,7 +2858,7 @@ var EventPluginHub = {
 module.exports = EventPluginHub;
 
 /***/ },
-/* 21 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2663,11 +2874,11 @@ module.exports = EventPluginHub;
 
 'use strict';
 
-var EventPluginHub = __webpack_require__(20);
-var EventPluginUtils = __webpack_require__(35);
+var EventPluginHub = __webpack_require__(26);
+var EventPluginUtils = __webpack_require__(51);
 
-var accumulateInto = __webpack_require__(75);
-var forEachAccumulated = __webpack_require__(76);
+var accumulateInto = __webpack_require__(109);
+var forEachAccumulated = __webpack_require__(110);
 var warning = __webpack_require__(1);
 
 var getListener = EventPluginHub.getListener;
@@ -2786,7 +2997,7 @@ var EventPropagators = {
 module.exports = EventPropagators;
 
 /***/ },
-/* 22 */
+/* 28 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -2839,7 +3050,7 @@ var ReactInstanceMap = {
 module.exports = ReactInstanceMap;
 
 /***/ },
-/* 23 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2855,9 +3066,9 @@ module.exports = ReactInstanceMap;
 
 'use strict';
 
-var SyntheticEvent = __webpack_require__(10);
+var SyntheticEvent = __webpack_require__(12);
 
-var getEventTarget = __webpack_require__(44);
+var getEventTarget = __webpack_require__(60);
 
 /**
  * @interface UIEvent
@@ -2903,7 +3114,87 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 module.exports = SyntheticUIEvent;
 
 /***/ },
-/* 24 */
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var replace_1 = __webpack_require__(14);
+/**
+ * 文字列を取り除く
+ *
+ * @version 2.0.0
+ * @since 0.2.0
+ * @param str  元の文字列
+ * @param pattern  取り除く文字列
+ */
+function default_1(str, pattern) {
+  return replace_1.default(str, pattern, '');
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 文字列を取り除く
+ *
+ * @version 2.0.0
+ * @since 0.2.0
+ * @param str  元の文字列
+ * @param pattern  取り除く文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 31 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var replaceFromMap_1 = __webpack_require__(8);
+/**
+ * 全角カタカナに変換する
+ *
+ * @version 0.2.0
+ * @since 0.1.0
+ * @param str 対象の文字列
+ */
+function default_1(str) {
+    // カタカナ・濁点・半濁点の変換
+    return replaceFromMap_1.default(str, {
+        'ｶﾞ': 'ガ', 'ｷﾞ': 'ギ', 'ｸﾞ': 'グ', 'ｹﾞ': 'ゲ', 'ｺﾞ': 'ゴ',
+        'ｻﾞ': 'ザ', 'ｼﾞ': 'ジ', 'ｽﾞ': 'ズ', 'ｾﾞ': 'ゼ', 'ｿﾞ': 'ゾ',
+        'ﾀﾞ': 'ダ', 'ﾁﾞ': 'ヂ', 'ﾂﾞ': 'ヅ', 'ﾃﾞ': 'デ', 'ﾄﾞ': 'ド',
+        'ﾊﾞ': 'バ', 'ﾋﾞ': 'ビ', 'ﾌﾞ': 'ブ', 'ﾍﾞ': 'ベ', 'ﾎﾞ': 'ボ',
+        'ﾊﾟ': 'パ', 'ﾋﾟ': 'ピ', 'ﾌﾟ': 'プ', 'ﾍﾟ': 'ペ', 'ﾎﾟ': 'ポ',
+        'ﾜﾞ': 'ヷ', 'ｲﾞ': 'ヸ', 'ｳﾞ': 'ヴ', 'ｴﾞ': 'ヹ', 'ｦﾞ': 'ヺ',
+        'ﾞ': '゛', 'ﾟ': '゜',
+        'ｧ': 'ァ', 'ｨ': 'ィ', 'ｩ': 'ゥ', 'ｪ': 'ェ', 'ｫ': 'ォ',
+        'ｬ': 'ャ', 'ｭ': 'ュ', 'ｮ': 'ョ',
+        'ｯ': 'ッ', 'ｰ': 'ー',
+        'ｱ': 'ア', 'ｲ': 'イ', 'ｳ': 'ウ', 'ｴ': 'エ', 'ｵ': 'オ',
+        'ｶ': 'カ', 'ｷ': 'キ', 'ｸ': 'ク', 'ｹ': 'ケ', 'ｺ': 'コ',
+        'ｻ': 'サ', 'ｼ': 'シ', 'ｽ': 'ス', 'ｾ': 'セ', 'ｿ': 'ソ',
+        'ﾀ': 'タ', 'ﾁ': 'チ', 'ﾂ': 'ツ', 'ﾃ': 'テ', 'ﾄ': 'ト',
+        'ﾅ': 'ナ', 'ﾆ': 'ニ', 'ﾇ': 'ヌ', 'ﾈ': 'ネ', 'ﾉ': 'ノ',
+        'ﾊ': 'ハ', 'ﾋ': 'ヒ', 'ﾌ': 'フ', 'ﾍ': 'ヘ', 'ﾎ': 'ホ',
+        'ﾏ': 'マ', 'ﾐ': 'ミ', 'ﾑ': 'ム', 'ﾒ': 'メ', 'ﾓ': 'モ',
+        'ﾔ': 'ヤ', 'ﾕ': 'ユ', 'ﾖ': 'ヨ',
+        'ﾗ': 'ラ', 'ﾘ': 'リ', 'ﾙ': 'ル', 'ﾚ': 'レ', 'ﾛ': 'ロ',
+        'ﾜ': 'ワ', 'ｦ': 'ヲ', 'ﾝ': 'ン'
+    });
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 全角カタカナに変換する
+ *
+ * @version 0.2.0
+ * @since 0.1.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2921,12 +3212,12 @@ module.exports = SyntheticUIEvent;
 
 var _assign = __webpack_require__(3);
 
-var EventPluginRegistry = __webpack_require__(34);
-var ReactEventEmitterMixin = __webpack_require__(166);
-var ViewportMetrics = __webpack_require__(74);
+var EventPluginRegistry = __webpack_require__(50);
+var ReactEventEmitterMixin = __webpack_require__(229);
+var ViewportMetrics = __webpack_require__(108);
 
-var getVendorPrefixedEventName = __webpack_require__(199);
-var isEventSupported = __webpack_require__(45);
+var getVendorPrefixedEventName = __webpack_require__(262);
+var isEventSupported = __webpack_require__(61);
 
 /**
  * Summary of `ReactBrowserEventEmitter` event handling:
@@ -3236,7 +3527,7 @@ var ReactBrowserEventEmitter = _assign({}, ReactEventEmitterMixin, {
 module.exports = ReactBrowserEventEmitter;
 
 /***/ },
-/* 25 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3252,10 +3543,10 @@ module.exports = ReactBrowserEventEmitter;
 
 'use strict';
 
-var SyntheticUIEvent = __webpack_require__(23);
-var ViewportMetrics = __webpack_require__(74);
+var SyntheticUIEvent = __webpack_require__(29);
+var ViewportMetrics = __webpack_require__(108);
 
-var getEventModifierState = __webpack_require__(43);
+var getEventModifierState = __webpack_require__(59);
 
 /**
  * @interface MouseEvent
@@ -3313,7 +3604,7 @@ SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 module.exports = SyntheticMouseEvent;
 
 /***/ },
-/* 26 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3543,7 +3834,7 @@ var TransactionImpl = {
 module.exports = TransactionImpl;
 
 /***/ },
-/* 27 */
+/* 35 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -3671,7 +3962,7 @@ function escapeTextContentForBrowser(text) {
 module.exports = escapeTextContentForBrowser;
 
 /***/ },
-/* 28 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3688,12 +3979,12 @@ module.exports = escapeTextContentForBrowser;
 'use strict';
 
 var ExecutionEnvironment = __webpack_require__(5);
-var DOMNamespaces = __webpack_require__(33);
+var DOMNamespaces = __webpack_require__(49);
 
 var WHITESPACE_TEST = /^[ \r\n\t\f]/;
 var NONVISIBLE_TEST = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/;
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(41);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(57);
 
 // SVG temp container for IE lacking innerHTML
 var reusableSVGContainer;
@@ -3774,7 +4065,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setInnerHTML;
 
 /***/ },
-/* 29 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3783,11 +4074,11 @@ module.exports = setInnerHTML;
 exports.__esModule = true;
 exports.connect = exports.Provider = undefined;
 
-var _Provider = __webpack_require__(202);
+var _Provider = __webpack_require__(265);
 
 var _Provider2 = _interopRequireDefault(_Provider);
 
-var _connect = __webpack_require__(203);
+var _connect = __webpack_require__(266);
 
 var _connect2 = _interopRequireDefault(_connect);
 
@@ -3799,7 +4090,164 @@ exports.Provider = _Provider2["default"];
 exports.connect = _connect2["default"];
 
 /***/ },
-/* 30 */
+/* 38 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+
+exports.options = {
+    addSemivoicedMarks: {
+        name: '',
+        description: ''
+    },
+    addVoicedMarks: {
+        name: '',
+        description: ''
+    },
+    combinateSoundMarks: {
+        name: '',
+        description: ''
+    },
+    convertIterationMarks: {
+        name: '',
+        description: ''
+    },
+    convertProlongedSoundMarks: {
+        name: '',
+        description: ''
+    },
+    removeUnpairedSurrogate: {
+        name: '',
+        description: ''
+    },
+    removeVoicedMarks: {
+        name: '',
+        description: ''
+    },
+    trim: {
+        name: '',
+        description: ''
+    },
+    toBasicLetter: {
+        name: '',
+        description: ''
+    },
+    toHiragana: {
+        name: 'ひらがなに変換',
+        description: ''
+    },
+    toKatakana: {
+        name: 'かたかなに変換',
+        description: ''
+    },
+    toNarrow: {
+        name: '',
+        description: ''
+    },
+    toNarrowAlphanumeric: {
+        name: '',
+        description: ''
+    },
+    toNarrowJapanese: {
+        name: '',
+        description: ''
+    },
+    toNarrowKatakana: {
+        name: '',
+        description: ''
+    },
+    toNarrowSign: {
+        name: '',
+        description: ''
+    },
+    toNarrowSymbolForJapanese: {
+        name: '',
+        description: ''
+    },
+    toNumeric: {
+        name: '',
+        description: ''
+    },
+    toPhoeticKana: {
+        name: '',
+        description: ''
+    },
+    toWide: {
+        name: '',
+        description: ''
+    },
+    toWideAlphanumeric: {
+        name: '',
+        description: ''
+    },
+    toWideJapanese: {
+        name: '',
+        description: ''
+    },
+    toWideKatakana: {
+        name: '',
+        description: ''
+    },
+    toWideSign: {
+        name: '',
+        description: ''
+    },
+    toWideSymbolForJapanese: {
+        name: '',
+        description: ''
+    }
+};
+exports.initialState = {
+    inputText: '',
+    outputText: '',
+    options: ['addSemivoicedMarks', 'addVoicedMarks', 'combinateSoundMarks', 'convertIterationMarks', 'convertProlongedSoundMarks', 'removeUnpairedSurrogate', 'removeVoicedMarks', 'trim', 'toBasicLetter', 'toHiragana', 'toKatakana', 'toNarrow', 'toNarrowAlphanumeric', 'toNarrowJapanese', 'toNarrowKatakana', 'toNarrowSign', 'toNarrowSymbolForJapanese', 'toNumeric', 'toPhoeticKana', 'toWide', 'toWideAlphanumeric', 'toWideJapanese', 'toWideKatakana', 'toWideSign', 'toWideSymbolForJapanese'],
+    optionsState: {
+        addSemivoicedMarks: false,
+        addVoicedMarks: false,
+        combinateSoundMarks: false,
+        convertIterationMarks: false,
+        convertProlongedSoundMarks: false,
+        removeUnpairedSurrogate: false,
+        removeVoicedMarks: false,
+        trim: false,
+        toBasicLetter: false,
+        toHiragana: false,
+        toKatakana: false,
+        toNarrow: false,
+        toNarrowAlphanumeric: false,
+        toNarrowJapanese: false,
+        toNarrowKatakana: false,
+        toNarrowSign: false,
+        toNarrowSymbolForJapanese: false,
+        toNumeric: false,
+        toPhoeticKana: false,
+        toWide: false,
+        toWideAlphanumeric: false,
+        toWideJapanese: false,
+        toWideKatakana: false,
+        toWideSign: false,
+        toWideSymbolForJapanese: false
+    }
+};
+function convert(text) {
+    return {
+        type: 0 /* CONVERT */
+        , inputText: text
+    };
+}
+exports.convert = convert;
+function changeOption(optionsList, optionsState) {
+    return {
+        type: 1 /* CHANGE_OPTION */
+        , options: optionsList,
+        optionsState: optionsState
+    };
+}
+exports.changeOption = changeOption;
+
+/***/ },
+/* 39 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -3874,42 +4322,299 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ },
-/* 31 */
+/* 40 */
 /***/ function(module, exports) {
 
 "use strict";
 "use strict";
 /**
- * キーがパターン・値が置換文字列のハッシュマップによって置換する
+ * ひらがな
  *
- * @version 2.0.0
- * @since 0.1.0
- * @param str 対象の文字列
- * @param convMap キーがパターン・値が置換文字列のハッシュマップ
+ * [ぁ-ゖゝ-ゟ]
+ *
  */
 
-function default_1(str, convMap) {
-    for (var needle in convMap) {
-        if (convMap.hasOwnProperty(needle)) {
-            var replace = convMap[needle];
-            str = str.replace(new RegExp(needle, 'g'), replace);
-        }
+exports.HIRAGANA_CHARS = "\u3041-\u3096\u309D-\u309F";
+
+/***/ },
+/* 41 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * カタカナ
+ *
+ * [ァ-ヺヽ-ヿ]
+ *
+ */
+
+exports.KATAKANA_CHARS = "\u30A1-\u30FA\u30FD\u30FF";
+
+/***/ },
+/* 42 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var replaceFromMap_1 = __webpack_require__(8);
+/**
+ * 濁点・半濁点とひらがな・かたかなを結合させる
+ *
+ * @version 2.0.0
+ * @since 1.2.0
+ * @param str 対象の文字列
+ * @param convertOnly ひらがな・かたかなと結合させずに、文字だけ結合文字に変換
+ */
+function combinateSoundMarks(str) {
+    var convertOnly = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+    if (!convertOnly) {
+        // 結合文字に変換
+        str = combinateSoundMarks(str, true);
+        // 濁点・半濁点を結合する
+        str = replaceFromMap_1.default(str, {
+            // 濁点
+            "\u304B\u3099": 'が', "\u304D\u3099": 'ぎ', "\u304F\u3099": 'ぐ', "\u3051\u3099": 'げ', "\u3053\u3099": 'ご',
+            "\u3055\u3099": 'ざ', "\u3057\u3099": 'じ', "\u3059\u3099": 'ず', "\u305B\u3099": 'ぜ', "\u305D\u3099": 'ぞ',
+            "\u305F\u3099": 'だ', "\u3061\u3099": 'ぢ', "\u3064\u3099": 'づ', "\u3066\u3099": 'で', "\u3068\u3099": 'ど',
+            "\u306F\u3099": 'ば', "\u3072\u3099": 'び', "\u3075\u3099": 'ぶ', "\u3078\u3099": 'べ', "\u307B\u3099": 'ぼ',
+            "\u30AB\u3099": 'ガ', "\u30AD\u3099": 'ギ', "\u30AF\u3099": 'グ', "\u30B1\u3099": 'ゲ', "\u30B3\u3099": 'ゴ',
+            "\u30B5\u3099": 'ザ', "\u30B7\u3099": 'ジ', "\u30B9\u3099": 'ズ', "\u30BB\u3099": 'ゼ', "\u30BD\u3099": 'ゾ',
+            "\u30BF\u3099": 'ダ', "\u30C1\u3099": 'ヂ', "\u30C4\u3099": 'ヅ', "\u30C6\u3099": 'デ', "\u30C8\u3099": 'ド',
+            "\u30CF\u3099": 'バ', "\u30D2\u3099": 'ビ', "\u30D5\u3099": 'ブ', "\u30D8\u3099": 'ベ', "\u30DB\u3099": 'ボ',
+            "\u30EF\u3099": 'ヷ', "\u30A4\u3099": 'ヸ', "\u30A6\u3099": 'ヴ', "\u30A8\u3099": 'ヹ', "\u30FA\u3099": 'ヲ',
+            "\u309D\u3099": 'ゞ', "\u30FD\u3099": 'ヾ',
+            // 半濁点
+            "\u306F\u309A": 'ぱ', "\u3072\u309A": 'ぴ', "\u3075\u309A": 'ぷ', "\u3078\u309A": 'ぺ', "\u307B\u309A": 'ぽ',
+            "\u30CF\u309A": 'パ', "\u30D2\u309A": 'ピ', "\u30D5\u309A": 'プ', "\u30D8\u309A": 'ペ', "\u30DB\u309A": 'ポ'
+        });
+    } else {
+        // ひらがな・かたかなと結合させずに、文字だけ結合文字に変換
+        str = replaceFromMap_1.default(str, {
+            // 濁点
+            "\u309B": "\u3099",
+            "\uFF9E": "\u3099",
+            // 半濁点
+            "\u309C": "\u309A",
+            "\uFF9F": "\u309A"
+        });
     }
     return str;
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * キーがパターン・値が置換文字列のハッシュマップによって置換する
+ * 濁点・半濁点とひらがな・かたかなを結合させる
  *
  * @version 2.0.0
- * @since 0.1.0
+ * @since 1.2.0
  * @param str 対象の文字列
- * @param convMap キーがパターン・値が置換文字列のハッシュマップ
+ * @param convertOnly ひらがな・かたかなと結合させずに、文字だけ結合文字に変換
+ */
+exports.default = combinateSoundMarks;
+
+/***/ },
+/* 43 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * 完全マッチ
+ *
+ * @version 0.2.0
+ * @since 0.2.0
+ * @param str 比較する文字列
+ * @param target 比較する文字列
+ */
+
+function default_1(str, target) {
+  return str === target.toString();
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 完全マッチ
+ *
+ * @version 0.2.0
+ * @since 0.2.0
+ * @param str 比較する文字列
+ * @param target 比較する文字列
  */
 exports.default = default_1;
 
 /***/ },
-/* 32 */
+/* 44 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * 該当の文字だけで構成されているかどうか
+ *
+ * @version 2.0.0
+ * @since 0.2.0
+ * @param str 対象の文字列
+ * @param characters 文字セット
+ */
+
+function default_1(str, characters) {
+  var chars = characters.toString().replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)').replace(/\[/g, '\\[').replace(/\]/g, '\\]');
+  return new RegExp('^[' + chars + ']+$', 'gm').test(str);
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 該当の文字だけで構成されているかどうか
+ *
+ * @version 2.0.0
+ * @since 0.2.0
+ * @param str 対象の文字列
+ * @param characters 文字セット
+ */
+exports.default = default_1;
+
+/***/ },
+/* 45 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * 文字列の配列に分割する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param separator 区切り文字
+ * @param limit 配列の数を指定
+ */
+
+function default_1(str, separator, limit) {
+  var reg = separator instanceof RegExp ? separator : new RegExp(separator.toString());
+  return str.split(reg, limit);
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 文字列の配列に分割する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param separator 区切り文字
+ * @param limit 配列の数を指定
+ */
+exports.default = default_1;
+
+/***/ },
+/* 46 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var KATAKANA_CHARS_1 = __webpack_require__(41);
+var combinateSoundMarks_1 = __webpack_require__(42);
+var replaceFromMap_1 = __webpack_require__(8);
+var toWideKatakana_1 = __webpack_require__(31);
+var patternize_1 = __webpack_require__(16);
+var shift_1 = __webpack_require__(17);
+/**
+ * ひらがなに変換する
+ *
+ * 第一引数に true を渡した場合、濁点・半濁点は基本的に結合される
+ * ヷヸヹヺは文字が存在しないため ひらがな + 結合文字でない濁点・半濁点 となる
+ *
+ * @version 0.2.0
+ * @since 0.1.0
+ * @param str 対象の文字列
+ * @param isCombinate 濁点・半濁点を結合文字にするかどうか
+ */
+function default_1(str) {
+    var isCombinate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+    // 半角カタカナを全角カタカナへ
+    str = toWideKatakana_1.default(str);
+    // ヷヸヹヺの変換
+    str = replaceFromMap_1.default(str, {
+        'ヷ': 'わ゛',
+        'ヸ': 'ゐ゛',
+        'ヹ': 'ゑ゛',
+        'ヺ': 'を゛'
+    });
+    // カタカナをひらがなへ(Unicodeの番号をずらす)
+    str = shift_1.default(str, patternize_1.default(KATAKANA_CHARS_1.KATAKANA_CHARS), -96);
+    // 濁点・半濁点を結合文字に変換
+    if (isCombinate) {
+        str = combinateSoundMarks_1.default(str);
+    }
+    return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * ひらがなに変換する
+ *
+ * 第一引数に true を渡した場合、濁点・半濁点は基本的に結合される
+ * ヷヸヹヺは文字が存在しないため ひらがな + 結合文字でない濁点・半濁点 となる
+ *
+ * @version 0.2.0
+ * @since 0.1.0
+ * @param str 対象の文字列
+ * @param isCombinate 濁点・半濁点を結合文字にするかどうか
+ */
+exports.default = default_1;
+
+/***/ },
+/* 47 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var HIRAGANA_CHARS_1 = __webpack_require__(40);
+var replace_1 = __webpack_require__(14);
+var toWideKatakana_1 = __webpack_require__(31);
+var patternize_1 = __webpack_require__(16);
+var shift_1 = __webpack_require__(17);
+/**
+ * カタカナに変換する
+ *
+ * @version 0.2.0
+ * @since 0.1.0
+ * @param str 対象の文字列
+ * @param toWide 半角カタカナを全角カタカナへ変換するかどうか
+ */
+function default_1(str) {
+  var toWide = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+  // 半角カタカナを全角カタカナへ
+  if (toWide) {
+    str = toWideKatakana_1.default(str);
+  }
+  // わ゛=> ヷ (濁点3種類対応 ※全角濁点・全角結合文字濁点・半角濁点)
+  str = replace_1.default(str, /わ(?:\u309B|\u3099|\uFF9E)/g, 'ヷ');
+  // ゐ゛=> ヸ (濁点3種類対応)
+  str = replace_1.default(str, /ゐ(?:\u309B|\u3099|\uFF9E)/g, 'ヸ');
+  // ゑ゛=> ヹ (濁点3種類対応)
+  str = replace_1.default(str, /ゑ(?:\u309B|\u3099|\uFF9E)/g, 'ヹ');
+  // を゛=> ヺ (濁点3種類対応)
+  str = replace_1.default(str, /を(?:\u309B|\u3099|\uFF9E)/g, 'ヺ');
+  // ひらがなをカタカナへ(Unicodeの番号をずらす)
+  str = shift_1.default(str, patternize_1.default(HIRAGANA_CHARS_1.HIRAGANA_CHARS), 96);
+  return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * カタカナに変換する
+ *
+ * @version 0.2.0
+ * @since 0.1.0
+ * @param str 対象の文字列
+ * @param toWide 半角カタカナを全角カタカナへ変換するかどうか
+ */
+exports.default = default_1;
+
+/***/ },
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3925,14 +4630,14 @@ exports.default = default_1;
 
 'use strict';
 
-var DOMLazyTree = __webpack_require__(13);
-var Danger = __webpack_require__(143);
+var DOMLazyTree = __webpack_require__(18);
+var Danger = __webpack_require__(206);
 var ReactDOMComponentTree = __webpack_require__(4);
-var ReactInstrumentation = __webpack_require__(7);
+var ReactInstrumentation = __webpack_require__(9);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(41);
-var setInnerHTML = __webpack_require__(28);
-var setTextContent = __webpack_require__(81);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(57);
+var setInnerHTML = __webpack_require__(36);
+var setTextContent = __webpack_require__(115);
 
 function getNodeAfter(parentNode, node) {
   // Special case for text components, which return [open, close] comments
@@ -4139,7 +4844,7 @@ var DOMChildrenOperations = {
 module.exports = DOMChildrenOperations;
 
 /***/ },
-/* 33 */
+/* 49 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -4164,7 +4869,7 @@ var DOMNamespaces = {
 module.exports = DOMNamespaces;
 
 /***/ },
-/* 34 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4424,7 +5129,7 @@ var EventPluginRegistry = {
 module.exports = EventPluginRegistry;
 
 /***/ },
-/* 35 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4442,7 +5147,7 @@ module.exports = EventPluginRegistry;
 
 var _prodInvariant = __webpack_require__(2);
 
-var ReactErrorUtils = __webpack_require__(39);
+var ReactErrorUtils = __webpack_require__(55);
 
 var invariant = __webpack_require__(0);
 var warning = __webpack_require__(1);
@@ -4655,7 +5360,7 @@ var EventPluginUtils = {
 module.exports = EventPluginUtils;
 
 /***/ },
-/* 36 */
+/* 52 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -4719,7 +5424,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ },
-/* 37 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4737,8 +5442,8 @@ module.exports = KeyEscapeUtils;
 
 var _prodInvariant = __webpack_require__(2);
 
-var React = __webpack_require__(16);
-var ReactPropTypesSecret = __webpack_require__(172);
+var React = __webpack_require__(21);
+var ReactPropTypesSecret = __webpack_require__(235);
 
 var invariant = __webpack_require__(0);
 var warning = __webpack_require__(1);
@@ -4859,7 +5564,7 @@ var LinkedValueUtils = {
 module.exports = LinkedValueUtils;
 
 /***/ },
-/* 38 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4910,7 +5615,7 @@ var ReactComponentEnvironment = {
 module.exports = ReactComponentEnvironment;
 
 /***/ },
-/* 39 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4992,7 +5697,7 @@ if (false) {
 module.exports = ReactErrorUtils;
 
 /***/ },
-/* 40 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5012,10 +5717,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _prodInvariant = __webpack_require__(2);
 
-var ReactCurrentOwner = __webpack_require__(11);
-var ReactInstanceMap = __webpack_require__(22);
-var ReactInstrumentation = __webpack_require__(7);
-var ReactUpdates = __webpack_require__(8);
+var ReactCurrentOwner = __webpack_require__(13);
+var ReactInstanceMap = __webpack_require__(28);
+var ReactInstrumentation = __webpack_require__(9);
+var ReactUpdates = __webpack_require__(10);
 
 var invariant = __webpack_require__(0);
 var warning = __webpack_require__(1);
@@ -5225,7 +5930,7 @@ var ReactUpdateQueue = {
 module.exports = ReactUpdateQueue;
 
 /***/ },
-/* 41 */
+/* 57 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -5262,7 +5967,7 @@ var createMicrosoftUnsafeLocalFunction = function createMicrosoftUnsafeLocalFunc
 module.exports = createMicrosoftUnsafeLocalFunction;
 
 /***/ },
-/* 42 */
+/* 58 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -5317,7 +6022,7 @@ function getEventCharCode(nativeEvent) {
 module.exports = getEventCharCode;
 
 /***/ },
-/* 43 */
+/* 59 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -5365,7 +6070,7 @@ function getEventModifierState(nativeEvent) {
 module.exports = getEventModifierState;
 
 /***/ },
-/* 44 */
+/* 60 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -5405,7 +6110,7 @@ function getEventTarget(nativeEvent) {
 module.exports = getEventTarget;
 
 /***/ },
-/* 45 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5470,7 +6175,7 @@ function isEventSupported(eventNameSuffix, capture) {
 module.exports = isEventSupported;
 
 /***/ },
-/* 46 */
+/* 62 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -5519,7 +6224,7 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 module.exports = shouldUpdateReactComponent;
 
 /***/ },
-/* 47 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5537,7 +6242,7 @@ module.exports = shouldUpdateReactComponent;
 
 var _assign = __webpack_require__(3);
 
-var emptyFunction = __webpack_require__(6);
+var emptyFunction = __webpack_require__(7);
 var warning = __webpack_require__(1);
 
 var validateDOMNesting = emptyFunction;
@@ -5906,7 +6611,7 @@ if (false) {
 module.exports = validateDOMNesting;
 
 /***/ },
-/* 48 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5924,12 +6629,12 @@ module.exports = validateDOMNesting;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _prodInvariant = __webpack_require__(18);
+var _prodInvariant = __webpack_require__(23);
 
-var ReactNoopUpdateQueue = __webpack_require__(49);
+var ReactNoopUpdateQueue = __webpack_require__(65);
 
-var canDefineProperty = __webpack_require__(88);
-var emptyObject = __webpack_require__(19);
+var canDefineProperty = __webpack_require__(122);
+var emptyObject = __webpack_require__(24);
 var invariant = __webpack_require__(0);
 var warning = __webpack_require__(1);
 
@@ -6031,7 +6736,7 @@ if (false) {
 module.exports = ReactComponent;
 
 /***/ },
-/* 49 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6132,7 +6837,7 @@ var ReactNoopUpdateQueue = {
 module.exports = ReactNoopUpdateQueue;
 
 /***/ },
-/* 50 */
+/* 66 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -6162,140 +6867,16 @@ try {
 module.exports = g;
 
 /***/ },
-/* 51 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-module.exports = __webpack_require__(151);
+module.exports = __webpack_require__(214);
 
 /***/ },
-/* 52 */
-/***/ function(module, exports) {
-
-"use strict";
-"use strict";
-
-exports.options = {
-    addSemivoicedMarks: {
-        name: '',
-        description: ''
-    },
-    addVoicedMarks: {
-        name: '',
-        description: ''
-    },
-    combinateSoundMarks: {
-        name: '',
-        description: ''
-    },
-    convertIterationMarks: {
-        name: '',
-        description: ''
-    },
-    convertProlongedSoundMarks: {
-        name: '',
-        description: ''
-    },
-    removeUnpairedSurrogate: {
-        name: '',
-        description: ''
-    },
-    removeVoicedMarks: {
-        name: '',
-        description: ''
-    },
-    trim: {
-        name: '',
-        description: ''
-    },
-    toBasicLetter: {
-        name: '',
-        description: ''
-    },
-    toHiragana: {
-        name: '',
-        description: ''
-    },
-    toKatakana: {
-        name: '',
-        description: ''
-    },
-    toNarrow: {
-        name: '',
-        description: ''
-    },
-    toNarrowAlphanumeric: {
-        name: '',
-        description: ''
-    },
-    toNarrowJapanese: {
-        name: '',
-        description: ''
-    },
-    toNarrowKatakana: {
-        name: '',
-        description: ''
-    },
-    toNarrowSign: {
-        name: '',
-        description: ''
-    },
-    toNarrowSymbolForJapanese: {
-        name: '',
-        description: ''
-    },
-    toNumeric: {
-        name: '',
-        description: ''
-    },
-    toPhoeticKana: {
-        name: '',
-        description: ''
-    },
-    toWide: {
-        name: '',
-        description: ''
-    },
-    toWideAlphanumeric: {
-        name: '',
-        description: ''
-    },
-    toWideJapanese: {
-        name: '',
-        description: ''
-    },
-    toWideKatakana: {
-        name: '',
-        description: ''
-    },
-    toWideSign: {
-        name: '',
-        description: ''
-    },
-    toWideSymbolForJapanese: {
-        name: '',
-        description: ''
-    }
-};
-function convert(text) {
-    return {
-        type: 0 /* CONVERT */
-        , inputText: text
-    };
-}
-exports.convert = convert;
-function changeOption(options) {
-    return {
-        type: 1 /* CHANGE_OPTION */
-        , options: options
-    };
-}
-exports.changeOption = changeOption;
-
-/***/ },
-/* 53 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6319,7 +6900,7 @@ exports.changeOption = changeOption;
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(6);
+var emptyFunction = __webpack_require__(7);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -6384,7 +6965,7 @@ var EventListener = {
 module.exports = EventListener;
 
 /***/ },
-/* 54 */
+/* 69 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -6416,7 +6997,7 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ },
-/* 55 */
+/* 70 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -6457,121 +7038,1024 @@ function getActiveElement() /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ },
-/* 56 */
+/* 71 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * 濁点／半濁点(結合文字含む)・長音符
+ *
+ * [゛゜ー]
+ *
+ */
+
+exports.KANA_COMMON_CAHRS = "\u3099-\u309C\u30FC";
+
+/***/ },
+/* 72 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * タブ [HT]
+ *
+ */
+
+var CHARACTER_TABULATION = '\t';
+/**
+ * 垂直タブ [VT]
+ */
+var LINE_TABULATION = '\x0B';
+/**
+ * フォームフィード [FF]
+ */
+var FORM_FEED = '\f';
+/**
+ * 空白文字
+ */
+var SPACE = ' ';
+/**
+ * Next line [NEL]
+ */
+var NEXT_LINE = '\x85';
+/**
+ * ノーブレークスペース [NBSP]
+ */
+var NO_BREAK_SPACE = '\xA0';
+/**
+ * n幅 クワタ
+ */
+var EN_QUAD = '\u2000';
+/**
+ * m幅 クワタ
+ */
+var EM_QUAD = '\u2001';
+/**
+ * n幅 空白
+ */
+var EN_SPACE = '\u2002';
+/**
+ * m幅 空白
+ */
+var EM_SPACE = '\u2003';
+/**
+ * 1/3 m幅 空白
+ */
+var THREE_PER_EM_SPACE = '\u2004';
+/**
+ * 1/4 m幅 空白
+ */
+var FOUR_PER_EM_SPACE = '\u2005';
+/**
+ * 1/6 m幅 空白
+ */
+var SIX_PER_EM_SPACE = '\u2006';
+/**
+ * Figure space
+ *
+ * > In fonts with monospaced digits, equal to the width of one digit. HTML/XML named entity: &numsp;
+ */
+var FIGURE_SPACE = '\u2007';
+/**
+ * Punctuation space
+ *
+ * > As wide as the narrow punctuation in a font, i.e. the advance width of the period or comma. HTML/XML named entity: &puncsp;
+ */
+var PUNCTUATION_SPACE = '\u2008';
+/**
+ * 細い空白
+ */
+var THIN_SPACE = '\u2009';
+/**
+ * Mongolian vowel separator
+ *
+ * > MVS. A narrow space character, used in Mongolian to cause the final two characters of a word to take on different shapes.
+ * > It is no longer classified as space character (i.e. in Zs category) in Unicode 6.3.0, even though it was in previous versions of the standard.
+ */
+var MONGOLIAN_VOWEL_SEPARATOR = '\u180E';
+/**
+ * より細い空白
+ *
+ */
+var HAIR_SPACE = '\u200A';
+/**
+ * ゼロ幅空白
+ */
+var ZERO_WIDTH_SPACE = '\u200B';
+/**
+ * ゼロ幅非接合子 [ZWNJ]
+ *
+ * > 合字を使用する文字体系のコンピュータ化で用いられる制御文字である。
+ * > 本来ならば合字として連結される2つの文字の間にZWNJが置かれると、その2つの文字はそれぞれ末尾形および頭字形で表示される。
+ * > スペースを間に置くことでも同じ効果は得られるが、スペースよりも両者の文字を近づけたい、または単語と形態素を連結したい場合にZWNJが用いられる。
+ */
+var ZERO_WIDTH_NON_JOINER = '\u200C';
+/**
+ * ゼロ幅接合子 [ZWJ]
+ *
+ * > アラビア文字やブラーフミー系文字のような複雑な表記体系のコンピュータによる組版において使われる制御文字である。
+ * > 本来ならば接合しない形で表示される文字の後ろにゼロ幅接合子が置かれると、接合する形で表示される。
+ * > 2つの絵文字の間にZWJが置かれると、新しい形が表示されることもある。
+ * > たとえば、2人の大人の絵文字と1人または2人の子供の絵文字をZWJでつなぐと家族の絵文字が表示される。
+ */
+var ZERO_WIDTH_JOINER = '\u200D';
+/**
+ * 単語結合子
+ *
+ * > 日本語などのわかち書きをしない言語においては、改行は文章の途中の任意の位置で行われるが、単語の途中など改行してほしくない箇所に単語結合子を入れることで、その場所では改行されなくなる。
+ * > このコードはUnicode バージョン3.2（2002年発行）でU+2060 word joiner (HTML: &#8288;)として定義された。
+ * > それ以前より、Unicodeには同じ働きをするゼロ幅ノーブレークスペース(ZWNBSP: zero width no-break space)が存在していた。
+ * > しかし、そのコードポイント U+FEFF はファイルの先頭のバイトオーダーマークとしても使用されている。
+ * > この曖昧さを避けるために、ゼロ幅ノーブレークスペースと完全に同じ意味と使用法を持つ単語結合子がUnicode 3.2で追加され、「単語結合の意味では新しい文字だけを使うことを強く推奨する」としている。
+ */
+var WORD_JOINER = '\u2060';
+/**
+ * Line separator
+ */
+var LINE_SEPARATOR = '\u2028';
+/**
+ * Paragraph separator
+ */
+var PARAGRAPH_SEPARATOR = '\u2028';
+/**
+ * 狭いノーブレークスペース
+ */
+var NARROW_NO_BREAK_SPACE = '\u202F';
+/**
+ * Medium mathematical space
+ *
+ * > MMSP. Used in mathematical formulae.
+ * > Four-eighteenths of an em.
+ * > In mathematical typography, the widths of spaces are usually given in integral multiples of an eighteenth of an em, and 4/18 em may be used in several situations,
+ * > for example between the a and the + and between the + and the b in the expression a + b.
+ * >  HTML/XML named entity: &MediumSpace;
+ */
+var MEDIUM_MATHMETICAL_SPACE = '\u205F';
+/**
+ * 全角空白
+ */
+var IDEOGRAPHIC_SPACE = '\u3000';
+/**
+ * ゼロ幅ノーブレークスペース
+ */
+var ZERO_WIDTH_NO_BREAK_SPACE = '\uFEFF';
+/**
+ * ホワイトスペース（空白文字）類
+ *
+ * 改行（`\r|\n|\r\n`）は含まない
+ *
+ */
+exports.SPACE_CHARS = [CHARACTER_TABULATION, LINE_TABULATION, FORM_FEED, SPACE, NEXT_LINE, NO_BREAK_SPACE, EN_QUAD, EM_QUAD, EN_SPACE, EM_SPACE, THREE_PER_EM_SPACE, FOUR_PER_EM_SPACE, SIX_PER_EM_SPACE, FIGURE_SPACE, PUNCTUATION_SPACE, THIN_SPACE, MONGOLIAN_VOWEL_SEPARATOR, HAIR_SPACE, ZERO_WIDTH_SPACE, ZERO_WIDTH_NON_JOINER, ZERO_WIDTH_JOINER, WORD_JOINER, LINE_SEPARATOR, PARAGRAPH_SEPARATOR, NARROW_NO_BREAK_SPACE, MEDIUM_MATHMETICAL_SPACE, IDEOGRAPHIC_SPACE, ZERO_WIDTH_NO_BREAK_SPACE].join('');
+
+/***/ },
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 "use strict";
 
-var replaceFromMap_1 = __webpack_require__(31);
+var remove_1 = __webpack_require__(30);
+var replaceFromMap_1 = __webpack_require__(8);
 /**
- * 全角カタカナに変換する
+ * 濁点を追加する
  *
- * @version 0.2.0
- * @since 0.1.0
+ * @version 1.1.0
+ * @since 1.1.0
  * @param str 対象の文字列
  */
 function default_1(str) {
-    // カタカナ・濁点・半濁点の変換
-    return replaceFromMap_1.default(str, {
-        'ｶﾞ': 'ガ', 'ｷﾞ': 'ギ', 'ｸﾞ': 'グ', 'ｹﾞ': 'ゲ', 'ｺﾞ': 'ゴ',
-        'ｻﾞ': 'ザ', 'ｼﾞ': 'ジ', 'ｽﾞ': 'ズ', 'ｾﾞ': 'ゼ', 'ｿﾞ': 'ゾ',
-        'ﾀﾞ': 'ダ', 'ﾁﾞ': 'ヂ', 'ﾂﾞ': 'ヅ', 'ﾃﾞ': 'デ', 'ﾄﾞ': 'ド',
-        'ﾊﾞ': 'バ', 'ﾋﾞ': 'ビ', 'ﾌﾞ': 'ブ', 'ﾍﾞ': 'ベ', 'ﾎﾞ': 'ボ',
-        'ﾊﾟ': 'パ', 'ﾋﾟ': 'ピ', 'ﾌﾟ': 'プ', 'ﾍﾟ': 'ペ', 'ﾎﾟ': 'ポ',
-        'ﾜﾞ': 'ヷ', 'ｲﾞ': 'ヸ', 'ｳﾞ': 'ヴ', 'ｴﾞ': 'ヹ', 'ｦﾞ': 'ヺ',
-        'ﾞ': '゛', 'ﾟ': '゜',
-        'ｧ': 'ァ', 'ｨ': 'ィ', 'ｩ': 'ゥ', 'ｪ': 'ェ', 'ｫ': 'ォ',
-        'ｬ': 'ャ', 'ｭ': 'ュ', 'ｮ': 'ョ',
-        'ｯ': 'ッ', 'ｰ': 'ー',
-        'ｱ': 'ア', 'ｲ': 'イ', 'ｳ': 'ウ', 'ｴ': 'エ', 'ｵ': 'オ',
-        'ｶ': 'カ', 'ｷ': 'キ', 'ｸ': 'ク', 'ｹ': 'ケ', 'ｺ': 'コ',
-        'ｻ': 'サ', 'ｼ': 'シ', 'ｽ': 'ス', 'ｾ': 'セ', 'ｿ': 'ソ',
-        'ﾀ': 'タ', 'ﾁ': 'チ', 'ﾂ': 'ツ', 'ﾃ': 'テ', 'ﾄ': 'ト',
-        'ﾅ': 'ナ', 'ﾆ': 'ニ', 'ﾇ': 'ヌ', 'ﾈ': 'ネ', 'ﾉ': 'ノ',
-        'ﾊ': 'ハ', 'ﾋ': 'ヒ', 'ﾌ': 'フ', 'ﾍ': 'ヘ', 'ﾎ': 'ホ',
-        'ﾏ': 'マ', 'ﾐ': 'ミ', 'ﾑ': 'ム', 'ﾒ': 'メ', 'ﾓ': 'モ',
-        'ﾔ': 'ヤ', 'ﾕ': 'ユ', 'ﾖ': 'ヨ',
-        'ﾗ': 'ラ', 'ﾘ': 'リ', 'ﾙ': 'ル', 'ﾚ': 'レ', 'ﾛ': 'ロ',
-        'ﾜ': 'ワ', 'ｦ': 'ヲ', 'ﾝ': 'ン'
+    // 濁点・半濁点単体の除去
+    str = remove_1.default(str, /\u309B|\u3099|\uFF9E/g);
+    str = remove_1.default(str, /\u309C|\u309A|\uFF9F/g);
+    str = replaceFromMap_1.default(str, {
+        'か': 'が', 'き': 'ぎ', 'く': 'ぐ', 'け': 'げ', 'こ': 'ご',
+        'さ': 'ざ', 'し': 'じ', 'す': 'ず', 'せ': 'ぜ', 'そ': 'ぞ',
+        'た': 'だ', 'ち': 'ぢ', 'つ': 'づ', 'て': 'で', 'と': 'ど',
+        'は': 'ば', 'ひ': 'び', 'ふ': 'ぶ', 'へ': 'べ', 'ほ': 'ぼ',
+        'カ': 'ガ', 'キ': 'ギ', 'ク': 'グ', 'ケ': 'ゲ', 'コ': 'ゴ',
+        'サ': 'ザ', 'シ': 'ジ', 'ス': 'ズ', 'セ': 'ゼ', 'ソ': 'ゾ',
+        'タ': 'ダ', 'チ': 'ヂ', 'ツ': 'ヅ', 'テ': 'デ', 'ト': 'ド',
+        'ハ': 'バ', 'ヒ': 'ビ', 'フ': 'ブ', 'ヘ': 'ベ', 'ホ': 'ボ',
+        'ワ': 'ヷ', 'イ': 'ヸ', 'ウ': 'ヴ', 'エ': 'ヹ', 'ヺ': 'ヲ',
+        'ゝ': 'ゞ', 'ヽ': 'ヾ'
     });
+    return str;
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * 全角カタカナに変換する
+ * 濁点を追加する
  *
- * @version 0.2.0
- * @since 0.1.0
+ * @version 1.1.0
+ * @since 1.1.0
  * @param str 対象の文字列
  */
 exports.default = default_1;
 
 /***/ },
-/* 57 */
-/***/ function(module, exports) {
+/* 74 */
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 "use strict";
+
+var arrayize_1 = __webpack_require__(6);
 /**
- * キャラクターリストを正規表現に変換する
+ * 文字列から指定位置の文字を返す
  *
- * @version 0.1.0
- * @since 0.1.0
- * @param chars 文字の集合
- * @return 正規表現化された文字セット
- */
-
-function default_1(chars) {
-  return new RegExp("[" + chars + "]", 'g');
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * キャラクターリストを正規表現に変換する
- *
- * @version 0.1.0
- * @since 0.1.0
- * @param chars 文字の集合
- * @return 正規表現化された文字セット
- */
-exports.default = default_1;
-
-/***/ },
-/* 58 */
-/***/ function(module, exports) {
-
-"use strict";
-"use strict";
-/**
- * 文字列中のそれぞれのひと文字に対してUnicode番号を指定の数値ずらす
+ * - サロゲートペアを考慮する
  *
  * @version 2.0.0
- * @since 0.1.0
+ * @since 2.0.0
  * @param str 対象の文字列
- * @param needle 対象のパターン
- * @param shiftNum ずらす数値
- * @return インスタンス自身
+ * @param index 指定位置
  */
+function default_1(str) {
+  var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
-function default_1(str, needle, shiftNum) {
-  return str.replace(needle, function (char) {
-    return String.fromCharCode(char.charCodeAt(0) + shiftNum);
+  return arrayize_1.default(str)[index] || '';
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 文字列から指定位置の文字を返す
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param index 指定位置
+ */
+exports.default = default_1;
+
+/***/ },
+/* 75 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var HIRAGANA_CHARS_IGNORE_ITERATION_MARKS_1 = __webpack_require__(154);
+var KATAKANA_CHARS_IGNORE_ITERATION_MARKS_1 = __webpack_require__(155);
+var addVoicedMarks_1 = __webpack_require__(73);
+var removeVoicedMarks_1 = __webpack_require__(78);
+var toHiragana_1 = __webpack_require__(46);
+var toKatakana_1 = __webpack_require__(47);
+var KANA_WITH_ITERATION_MARKS_REGEXP = new RegExp("([" + HIRAGANA_CHARS_IGNORE_ITERATION_MARKS_1.HIRAGANA_CHARS_IGNORE_ITERATION_MARKS + KATAKANA_CHARS_IGNORE_ITERATION_MARKS_1.KATAKANA_CHARS_IGNORE_ITERATION_MARKS + "])([\u309D\u309E\u30FD\u30FE])");
+/**
+ * 繰り返し記号をかなに置き換える
+ *
+ * @version 2.0.0
+ * @since 1.1.0
+ * @param str 対象の文字列
+ */
+function default_1(str) {
+    while (KANA_WITH_ITERATION_MARKS_REGEXP.test(str)) {
+        str = converter(str);
+    }
+    return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 繰り返し記号をかなに置き換える
+ *
+ * @version 2.0.0
+ * @since 1.1.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+/**
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @return 置き換えた文字列
+ */
+function converter(str) {
+    return str.replace(KANA_WITH_ITERATION_MARKS_REGEXP, replacer);
+}
+/**
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param matchAll
+ * @param beforeString
+ * @param iterationMark
+ * @return 置き換えた文字列
+ */
+function replacer(matchAll, beforeString, iterationMark) {
+    var str = removeVoicedMarks_1.default(beforeString);
+    switch (iterationMark) {
+        case 'ゝ':
+            {
+                str = toHiragana_1.default(str);
+            }
+            break;
+        case 'ヽ':
+            {
+                str = toKatakana_1.default(str);
+            }
+            break;
+        case 'ゞ':
+            {
+                str = toHiragana_1.default(str);
+                str = addVoicedMarks_1.default(str);
+            }
+            break;
+        case 'ヾ':
+            {
+                str = toKatakana_1.default(str);
+                str = addVoicedMarks_1.default(str);
+            }
+            break;
+        default:
+            {}
+    }
+    return beforeString + str;
+}
+
+/***/ },
+/* 76 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var HIRAGANA_CHARS_1 = __webpack_require__(40);
+var KATAKANA_CHARS_1 = __webpack_require__(41);
+var KANA_WITH_PROLONGED_SOUND_MARKS_PATTERN_REGEXP = new RegExp('[' + HIRAGANA_CHARS_1.HIRAGANA_CHARS + KATAKANA_CHARS_1.KATAKANA_CHARS + ']ー');
+/**
+ * 長音符をかなに置き換える
+ *
+ * @version 2.0.0
+ * @since 1.1.0
+ * @param str 対象の文字列
+ */
+function default_1(str) {
+    while (KANA_WITH_PROLONGED_SOUND_MARKS_PATTERN_REGEXP.test(str)) {
+        str = converter(str);
+    }
+    return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 長音符をかなに置き換える
+ *
+ * @version 2.0.0
+ * @since 1.1.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+function converter(str) {
+    return str.replace(/([あぁかゕがさざただなはばぱまやゃらわゎ])ー/g, '$1あ').replace(/([いぃきぎしじちぢにひびぴみりゐ])ー/g, '$1い').replace(/([うぅゔくぐすずつづぬふぶぷむゆゅる])ー/g, '$1う').replace(/([えぇけゖげせぜてでねへべぺめれゑ])ー/g, '$1え').replace(/([おぉこごそぞとどのほぼぽもよょろを])ー/g, '$1お').replace(/んー/g, 'んん').replace(/っー/g, 'っっ').replace(/([アァカヵガサザタダナハバパマヤャラワヮヷ])ー/g, '$1ア').replace(/([イィキギシジチヂニヒビピミリヰヸ])ー/g, '$1イ').replace(/([ウゥヴクグスズツヅヌフブプムユュル])ー/g, '$1ウ').replace(/([エェケヶゲセゼテデネヘベペメレヱヹ])ー/g, '$1エ').replace(/([オォコゴソゾトドノホボポモヨョロヲヺ])ー/g, '$1オ').replace(/ンー/g, 'ンン').replace(/ッー/g, 'ッッ');
+}
+
+/***/ },
+/* 77 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var is_1 = __webpack_require__(43);
+var slice_1 = __webpack_require__(79);
+var split_1 = __webpack_require__(45);
+var arrayize_1 = __webpack_require__(6);
+/**
+ * 指定された文字列が最初に現れるインデックスを返す
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param search 検索文字列
+ * @param fromIndex 検索位置
+ */
+function default_1(str, search) {
+    var fromIndex = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+
+    var sliced = slice_1.default(str, fromIndex);
+    var splited = split_1.default(sliced, search)[0];
+    if (is_1.default(str, splited)) {
+        return -1;
+    } else {
+        return arrayize_1.default(splited).length + fromIndex;
+    }
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 指定された文字列が最初に現れるインデックスを返す
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param search 検索文字列
+ * @param fromIndex 検索位置
+ */
+exports.default = default_1;
+
+/***/ },
+/* 78 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var remove_1 = __webpack_require__(30);
+var replaceFromMap_1 = __webpack_require__(8);
+/**
+ * 濁点・半濁点を取り除く
+ *
+ * @version 1.1.0
+ * @since 1.1.0
+ * @param str 対象の文字列
+ * @param ignoreSingleMark 単体の濁点・半濁点を除去するかどうか
+ */
+function default_1(str) {
+    var ignoreSingleMark = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+    if (!ignoreSingleMark) {
+        // 濁点・半濁点単体の除去
+        str = remove_1.default(str, /\u309B|\u3099|\uFF9E/g);
+        str = remove_1.default(str, /\u309C|\u309A|\uFF9F/g);
+    }
+    str = replaceFromMap_1.default(str, {
+        'が': 'か', 'ぎ': 'き', 'ぐ': 'く', 'げ': 'け', 'ご': 'こ',
+        'ざ': 'さ', 'じ': 'し', 'ず': 'す', 'ぜ': 'せ', 'ぞ': 'そ',
+        'だ': 'た', 'ぢ': 'ち', 'づ': 'つ', 'で': 'て', 'ど': 'と',
+        'ば': 'は', 'び': 'ひ', 'ぶ': 'ふ', 'べ': 'へ', 'ぼ': 'ほ',
+        'ぱ': 'は', 'ぴ': 'ひ', 'ぷ': 'ふ', 'ぺ': 'へ', 'ぽ': 'ほ',
+        'ガ': 'カ', 'ギ': 'キ', 'グ': 'ク', 'ゲ': 'ケ', 'ゴ': 'コ',
+        'ザ': 'サ', 'ジ': 'シ', 'ズ': 'ス', 'ゼ': 'セ', 'ゾ': 'ソ',
+        'ダ': 'タ', 'ヂ': 'チ', 'ヅ': 'ツ', 'デ': 'テ', 'ド': 'ト',
+        'バ': 'ハ', 'ビ': 'ヒ', 'ブ': 'フ', 'ベ': 'ヘ', 'ボ': 'ホ',
+        'パ': 'ハ', 'ピ': 'ヒ', 'プ': 'フ', 'ペ': 'ヘ', 'ポ': 'ホ',
+        'ヷ': 'ワ', 'ヸ': 'イ', 'ヴ': 'ウ', 'ヹ': 'エ', 'ヺ': 'ヲ',
+        'ゞ': 'ゝ', 'ヾ': 'ヽ'
+    });
+    return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 濁点・半濁点を取り除く
+ *
+ * @version 1.1.0
+ * @since 1.1.0
+ * @param str 対象の文字列
+ * @param ignoreSingleMark 単体の濁点・半濁点を除去するかどうか
+ */
+exports.default = default_1;
+
+/***/ },
+/* 79 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var arrayize_1 = __webpack_require__(6);
+/**
+ * 文字位置による抽出
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 0.2.0
+ * @param str 対象の文字列
+ * @param start 開始インデックス
+ * @param end 終了インデックス 省略すると最後まで
+ */
+function default_1(str, start, end) {
+  var array = arrayize_1.default(str);
+  var res = array.slice(start, end);
+  return res.join('');
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 文字位置による抽出
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 0.2.0
+ * @param str 対象の文字列
+ * @param start 開始インデックス
+ * @param end 終了インデックス 省略すると最後まで
+ */
+exports.default = default_1;
+
+/***/ },
+/* 80 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var substr_1 = __webpack_require__(25);
+var arrayize_1 = __webpack_require__(6);
+/**
+ * 指定した位置の間の文字列を抽出
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 0.2.0
+ * @param str 対象の文字列
+ * @param indexA インデックス
+ * @param indexB インデックス
+ */
+function default_1(str, indexA, indexB) {
+  var start = Math.max(Math.min(indexA, indexB), 0);
+  var end = Math.min(Math.max(indexA, indexB), arrayize_1.default(str).length);
+  var length = end - start;
+  return substr_1.default(str, start, length);
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 指定した位置の間の文字列を抽出
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 0.2.0
+ * @param str 対象の文字列
+ * @param indexA インデックス
+ * @param indexB インデックス
+ */
+exports.default = default_1;
+
+/***/ },
+/* 81 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var combinateSoundMarks_1 = __webpack_require__(42);
+var replaceFromMap_1 = __webpack_require__(8);
+/**
+ * 小書き文字を基底文字に変換する
+ *
+ * TODO: test
+ *
+ * @version 1.1.0
+ * @since 1.1.0
+ * @param str 対象の文字列
+ */
+function default_1(str) {
+  str = combinateSoundMarks_1.default(str);
+  str = replaceFromMap_1.default(str, {
+    'ぁ': 'あ', 'ぃ': 'い', 'ぅ': 'う', 'ぇ': 'え', 'ぉ': 'お',
+    'っ': 'つ',
+    'ゃ': 'や', 'ゅ': 'ゆ', 'ょ': 'よ',
+    'ゎ': 'わ',
+    'ァ': 'ア', 'ィ': 'イ', 'ゥ': 'ウ', 'ェ': 'エ', 'ォ': 'オ',
+    'ヵ': 'カ', 'ㇰ': 'ク', 'ヶ': 'ケ',
+    'ㇱ': 'シ', 'ㇲ': 'ス',
+    'ッ': 'ツ', 'ㇳ': 'ト',
+    'ㇴ': 'ヌ', 'ㇵ': 'ハ',
+    'ㇶ': 'ヒ', 'ㇷ': 'フ', 'ㇸ': 'ヘ', 'ㇹ': 'ホ',
+    'ㇺ': 'ム',
+    'ャ': 'ヤ', 'ュ': 'ユ', 'ョ': 'ヨ',
+    'ㇻ': 'ラ', 'ㇼ': 'リ', 'ㇽ': 'ル', 'ㇾ': 'レ', 'ㇿ': 'ロ',
+    'ヮ': 'ワ'
   });
+  return str;
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * 文字列中のそれぞれのひと文字に対してUnicode番号を指定の数値ずらす
+ * 小書き文字を基底文字に変換する
  *
- * @version 2.0.0
- * @since 0.1.0
+ * TODO: test
+ *
+ * @version 1.1.0
+ * @since 1.1.0
  * @param str 対象の文字列
- * @param needle 対象のパターン
- * @param shiftNum ずらす数値
- * @return インスタンス自身
  */
 exports.default = default_1;
 
 /***/ },
-/* 59 */
+/* 82 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var toNarrowAlphanumeric_1 = __webpack_require__(83);
+var toNarrowJapanese_1 = __webpack_require__(84);
+var toNarrowSign_1 = __webpack_require__(86);
+/**
+ * 半角に変換
+ *
+ * @version 2.0.0
+ * @since 0.4.0
+ * @param str 対象の文字列
+ * @param convertJapaneseChars 日本語のカタカナなどを変換するかどうか
+ */
+function default_1(str) {
+  var convertJapaneseChars = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  // 英数字の変換
+  str = toNarrowAlphanumeric_1.default(str);
+  // スペース・記号の変換
+  str = toNarrowSign_1.default(str);
+  if (convertJapaneseChars) {
+    // 日本語カタカナ記号の変換
+    str = toNarrowJapanese_1.default(str);
+  }
+  return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 半角に変換
+ *
+ * @version 2.0.0
+ * @since 0.4.0
+ * @param str 対象の文字列
+ * @param convertJapaneseChars 日本語のカタカナなどを変換するかどうか
+ */
+exports.default = default_1;
+
+/***/ },
+/* 83 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var FULLWIDTH_ALPHA_CHARS_1 = __webpack_require__(151);
+var FULLWIDTH_DIGIT_CHARS_1 = __webpack_require__(152);
+var patternize_1 = __webpack_require__(16);
+var shift_1 = __webpack_require__(17);
+/**
+ * 英数字を半角に変換
+ *
+ * @version 2.0.0
+ * @since 1.3.0
+ * @param str 対象の文字列
+ */
+function default_1(str) {
+  return shift_1.default(str, patternize_1.default(FULLWIDTH_ALPHA_CHARS_1.FULLWIDTH_ALPHA_CHARS + FULLWIDTH_DIGIT_CHARS_1.FULLWIDTH_DIGIT_CHARS), -65248);
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 英数字を半角に変換
+ *
+ * @version 2.0.0
+ * @since 1.3.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 84 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var toNarrowKatakana_1 = __webpack_require__(85);
+var toNarrowSymbolForJapanese_1 = __webpack_require__(87);
+/**
+ * カタカナと日本語で使われる記号を半角に変換
+ *
+ * @version 0.4.0
+ * @since 0.4.0
+ * @param str 対象の文字列
+ */
+function default_1(str) {
+  // 半角カタカナへ
+  str = toNarrowKatakana_1.default(str);
+  // 半角記号へ
+  str = toNarrowSymbolForJapanese_1.default(str);
+  return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * カタカナと日本語で使われる記号を半角に変換
+ *
+ * @version 0.4.0
+ * @since 0.4.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 85 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var replace_1 = __webpack_require__(14);
+var replaceFromMap_1 = __webpack_require__(8);
+var toKatakana_1 = __webpack_require__(47);
+/**
+ * 半角カタカナに変換する
+ *
+ * @version 0.6.0
+ * @since 0.1.0
+ * @param str 対象の文字列
+ * @param fromHiragana ひらがなも変換する
+ */
+function default_1(str) {
+    var fromHiragana = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+    // ひらがなを一旦全角カタカナに変換する
+    if (fromHiragana) {
+        str = toKatakana_1.default(str);
+    }
+    // 濁点の変換 (全角濁点2種類対応)
+    str = replace_1.default(str, /\u309B|\u3099/g, "\uFF9E");
+    // 半濁点の変換 (全角半濁点2種類対応)
+    str = replace_1.default(str, /\u309C|\u309A/g, "\uFF9F");
+    // カタカナの変換
+    str = replaceFromMap_1.default(str, {
+        'ァ': 'ｧ', 'ィ': 'ｨ', 'ゥ': 'ｩ', 'ェ': 'ｪ', 'ォ': 'ｫ', 'ャ': 'ｬ',
+        'ュ': 'ｭ', 'ョ': 'ｮ', 'ッ': 'ｯ',
+        'ヵ': 'ｶ', 'ヶ': 'ｹ',
+        'ヮ': 'ﾜ',
+        'ー': 'ｰ',
+        'ア': 'ｱ', 'イ': 'ｲ', 'ウ': 'ｳ', 'エ': 'ｴ', 'オ': 'ｵ',
+        'カ': 'ｶ', 'キ': 'ｷ', 'ク': 'ｸ', 'ケ': 'ｹ', 'コ': 'ｺ',
+        'サ': 'ｻ', 'シ': 'ｼ', 'ス': 'ｽ', 'セ': 'ｾ', 'ソ': 'ｿ',
+        'タ': 'ﾀ', 'チ': 'ﾁ', 'ツ': 'ﾂ', 'テ': 'ﾃ', 'ト': 'ﾄ',
+        'ナ': 'ﾅ', 'ニ': 'ﾆ', 'ヌ': 'ﾇ', 'ネ': 'ﾈ', 'ノ': 'ﾉ',
+        'ハ': 'ﾊ', 'ヒ': 'ﾋ', 'フ': 'ﾌ', 'ヘ': 'ﾍ', 'ホ': 'ﾎ',
+        'マ': 'ﾏ', 'ミ': 'ﾐ', 'ム': 'ﾑ', 'メ': 'ﾒ', 'モ': 'ﾓ',
+        'ヤ': 'ﾔ', 'ユ': 'ﾕ', 'ヨ': 'ﾖ',
+        'ラ': 'ﾗ', 'リ': 'ﾘ', 'ル': 'ﾙ', 'レ': 'ﾚ', 'ロ': 'ﾛ',
+        'ワ': 'ﾜ', 'ン': 'ﾝ', 'ヰ': 'ｲ', 'ヱ': 'ｴ', 'ヲ': 'ｦ',
+        'ガ': 'ｶﾞ', 'ギ': 'ｷﾞ', 'グ': 'ｸﾞ', 'ゲ': 'ｹﾞ', 'ゴ': 'ｺﾞ',
+        'ザ': 'ｻﾞ', 'ジ': 'ｼﾞ', 'ズ': 'ｽﾞ', 'ゼ': 'ｾﾞ', 'ゾ': 'ｿﾞ',
+        'ダ': 'ﾀﾞ', 'ヂ': 'ﾁﾞ', 'ヅ': 'ﾂﾞ', 'デ': 'ﾃﾞ', 'ド': 'ﾄﾞ',
+        'バ': 'ﾊﾞ', 'ビ': 'ﾋﾞ', 'ブ': 'ﾌﾞ', 'ベ': 'ﾍﾞ', 'ボ': 'ﾎﾞ',
+        'パ': 'ﾊﾟ', 'ピ': 'ﾋﾟ', 'プ': 'ﾌﾟ', 'ペ': 'ﾍﾟ', 'ポ': 'ﾎﾟ',
+        'ヷ': 'ﾜﾞ', 'ヸ': 'ｲﾞ', 'ヴ': 'ｳﾞ', 'ヹ': 'ｴﾞ', 'ヺ': 'ｦﾞ'
+    });
+    return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 半角カタカナに変換する
+ *
+ * @version 0.6.0
+ * @since 0.1.0
+ * @param str 対象の文字列
+ * @param fromHiragana ひらがなも変換する
+ */
+exports.default = default_1;
+
+/***/ },
+/* 86 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var FULLWIDTH_SIGN_CHARS_1 = __webpack_require__(153);
+var SPACE_CHARS_1 = __webpack_require__(72);
+var replace_1 = __webpack_require__(14);
+var patternize_1 = __webpack_require__(16);
+var shift_1 = __webpack_require__(17);
+/**
+ * 記号を半角に変換
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ */
+function default_1(str) {
+  str = replace_1.default(str, patternize_1.default(SPACE_CHARS_1.SPACE_CHARS), ' ');
+  str = shift_1.default(str, patternize_1.default(FULLWIDTH_SIGN_CHARS_1.FULLWIDTH_SIGN_CHARS), -65248);
+  return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 記号を半角に変換
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 87 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var replaceFromMap_1 = __webpack_require__(8);
+/**
+ * 日本語で使われる記号を半角に変換
+ *
+ * @version 2.0.0
+ * @since 0.4.0
+ * @param str 対象の文字列
+ */
+function default_1(str) {
+  str = replaceFromMap_1.default(str, {
+    '。': '｡',
+    '「': '｢',
+    '」': '｣',
+    '、': '､',
+    '・': '･'
+  });
+  return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 日本語で使われる記号を半角に変換
+ *
+ * @version 2.0.0
+ * @since 0.4.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 88 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var ALPHA_CHARS_1 = __webpack_require__(149);
+var DIGIT_CHARS_1 = __webpack_require__(150);
+var patternize_1 = __webpack_require__(16);
+var shift_1 = __webpack_require__(17);
+/**
+ * 英数字を全角に変換
+ *
+ * @version 2.0.0
+ * @since 1.3.0
+ * @param str 対象の文字列
+ */
+function default_1(str) {
+  str = shift_1.default(str, patternize_1.default(ALPHA_CHARS_1.ALPHA_CHARS + DIGIT_CHARS_1.DIGIT_CHARS), 65248);
+  return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 英数字を全角に変換
+ *
+ * @version 2.0.0
+ * @since 1.3.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 89 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var toWideKatakana_1 = __webpack_require__(31);
+var toWideSymbolForJapanese_1 = __webpack_require__(91);
+/**
+ * カタカナと日本語で使われる記号を全角に変換
+ *
+ * @version 0.4.0
+ * @since 0.4.0
+ * @param str 対象の文字列
+ */
+function default_1(str) {
+  // 全角カタカナへ
+  str = toWideKatakana_1.default(str);
+  // 全角記号へ
+  str = toWideSymbolForJapanese_1.default(str);
+  return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * カタカナと日本語で使われる記号を全角に変換
+ *
+ * @version 0.4.0
+ * @since 0.4.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 90 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var SIGN_CHARS_1 = __webpack_require__(156);
+var SPACE_CHARS_1 = __webpack_require__(72);
+var replace_1 = __webpack_require__(14);
+var patternize_1 = __webpack_require__(16);
+var shift_1 = __webpack_require__(17);
+/**
+ * 記号を全角に変換
+ *
+ * @version 2.0.0
+ * @since 1.3.0
+ * @param str 対象の文字列
+ */
+function default_1(str) {
+  str = replace_1.default(str, patternize_1.default(SPACE_CHARS_1.SPACE_CHARS), '　');
+  str = shift_1.default(str, patternize_1.default(SIGN_CHARS_1.SIGN_CHARS), 65248);
+  return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 記号を全角に変換
+ *
+ * @version 2.0.0
+ * @since 1.3.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 91 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var replaceFromMap_1 = __webpack_require__(8);
+/**
+ * 日本語で使われる記号を全角に変換
+ *
+ * @version 2.0.0
+ * @since 0.4.0
+ * @param str 対象の文字列
+ */
+function default_1(str) {
+  str = replaceFromMap_1.default(str, {
+    '｡': '。',
+    '｢': '「',
+    '｣': '」',
+    '､': '、',
+    '･': '・'
+  });
+  return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 日本語で使われる記号を全角に変換
+ *
+ * @version 2.0.0
+ * @since 0.4.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 92 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var arrayize_1 = __webpack_require__(6);
+/**
+ * 指定数の文字列長になるように繰り返して埋める
+ *
+ * - サロゲートペアを考慮
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param length 指定の文字列長
+ * @return 埋められた文字列
+ */
+function default_1(str, length) {
+  var pad = [];
+  var padStringArray = arrayize_1.default(str);
+  var padLength = padStringArray.length;
+  for (var i = 0; i < length; i++) {
+    var char = padStringArray[i % padLength];
+    pad.push(char);
+  }
+  return pad.join('');
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 指定数の文字列長になるように繰り返して埋める
+ *
+ * - サロゲートペアを考慮
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param length 指定の文字列長
+ * @return 埋められた文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6581,7 +8065,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _root = __webpack_require__(127);
+var _root = __webpack_require__(190);
 
 var _root2 = _interopRequireDefault(_root);
 
@@ -6593,7 +8077,7 @@ var _Symbol = _root2.default.Symbol;
 exports.default = _Symbol;
 
 /***/ },
-/* 60 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6603,15 +8087,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _baseGetTag = __webpack_require__(121);
+var _baseGetTag = __webpack_require__(184);
 
 var _baseGetTag2 = _interopRequireDefault(_baseGetTag);
 
-var _getPrototype = __webpack_require__(123);
+var _getPrototype = __webpack_require__(186);
 
 var _getPrototype2 = _interopRequireDefault(_getPrototype);
 
-var _isObjectLike = __webpack_require__(128);
+var _isObjectLike = __webpack_require__(191);
 
 var _isObjectLike2 = _interopRequireDefault(_isObjectLike);
 
@@ -6676,13 +8160,13 @@ function isPlainObject(value) {
 exports.default = isPlainObject;
 
 /***/ },
-/* 61 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-var root = __webpack_require__(135);
+var root = __webpack_require__(198);
 
 /** Built-in value references. */
 var _Symbol = root.Symbol;
@@ -6690,7 +8174,7 @@ var _Symbol = root.Symbol;
 module.exports = _Symbol;
 
 /***/ },
-/* 62 */
+/* 96 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -6877,7 +8361,7 @@ process.umask = function () {
 };
 
 /***/ },
-/* 63 */
+/* 97 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -7030,7 +8514,7 @@ var CSSProperty = {
 module.exports = CSSProperty;
 
 /***/ },
-/* 64 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7055,7 +8539,7 @@ function _classCallCheck(instance, Constructor) {
   }
 }
 
-var PooledClass = __webpack_require__(12);
+var PooledClass = __webpack_require__(15);
 
 var invariant = __webpack_require__(0);
 
@@ -7154,7 +8638,7 @@ var CallbackQueue = function () {
 module.exports = PooledClass.addPoolingTo(CallbackQueue);
 
 /***/ },
-/* 65 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7170,11 +8654,11 @@ module.exports = PooledClass.addPoolingTo(CallbackQueue);
 
 'use strict';
 
-var DOMProperty = __webpack_require__(14);
+var DOMProperty = __webpack_require__(19);
 var ReactDOMComponentTree = __webpack_require__(4);
-var ReactInstrumentation = __webpack_require__(7);
+var ReactInstrumentation = __webpack_require__(9);
 
-var quoteAttributeValueForBrowser = __webpack_require__(200);
+var quoteAttributeValueForBrowser = __webpack_require__(263);
 var warning = __webpack_require__(1);
 
 var VALID_ATTRIBUTE_NAME_REGEX = new RegExp('^[' + DOMProperty.ATTRIBUTE_NAME_START_CHAR + '][' + DOMProperty.ATTRIBUTE_NAME_CHAR + ']*$');
@@ -7396,7 +8880,7 @@ var DOMPropertyOperations = {
 module.exports = DOMPropertyOperations;
 
 /***/ },
-/* 66 */
+/* 100 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -7419,7 +8903,7 @@ var ReactDOMComponentFlags = {
 module.exports = ReactDOMComponentFlags;
 
 /***/ },
-/* 67 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7437,9 +8921,9 @@ module.exports = ReactDOMComponentFlags;
 
 var _assign = __webpack_require__(3);
 
-var LinkedValueUtils = __webpack_require__(37);
+var LinkedValueUtils = __webpack_require__(53);
 var ReactDOMComponentTree = __webpack_require__(4);
-var ReactUpdates = __webpack_require__(8);
+var ReactUpdates = __webpack_require__(10);
 
 var warning = __webpack_require__(1);
 
@@ -7624,7 +9108,7 @@ function _handleChange(event) {
 module.exports = ReactDOMSelect;
 
 /***/ },
-/* 68 */
+/* 102 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -7659,7 +9143,7 @@ ReactEmptyComponent.injection = ReactEmptyComponentInjection;
 module.exports = ReactEmptyComponent;
 
 /***/ },
-/* 69 */
+/* 103 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -7686,7 +9170,7 @@ var ReactFeatureFlags = {
 module.exports = ReactFeatureFlags;
 
 /***/ },
-/* 70 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7767,7 +9251,7 @@ var ReactHostComponent = {
 module.exports = ReactHostComponent;
 
 /***/ },
-/* 71 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7783,11 +9267,11 @@ module.exports = ReactHostComponent;
 
 'use strict';
 
-var ReactDOMSelection = __webpack_require__(159);
+var ReactDOMSelection = __webpack_require__(222);
 
-var containsNode = __webpack_require__(103);
-var focusNode = __webpack_require__(54);
-var getActiveElement = __webpack_require__(55);
+var containsNode = __webpack_require__(137);
+var focusNode = __webpack_require__(69);
+var getActiveElement = __webpack_require__(70);
 
 function isInDocument(node) {
   return containsNode(document.documentElement, node);
@@ -7896,7 +9380,7 @@ var ReactInputSelection = {
 module.exports = ReactInputSelection;
 
 /***/ },
-/* 72 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7914,27 +9398,27 @@ module.exports = ReactInputSelection;
 
 var _prodInvariant = __webpack_require__(2);
 
-var DOMLazyTree = __webpack_require__(13);
-var DOMProperty = __webpack_require__(14);
-var React = __webpack_require__(16);
-var ReactBrowserEventEmitter = __webpack_require__(24);
-var ReactCurrentOwner = __webpack_require__(11);
+var DOMLazyTree = __webpack_require__(18);
+var DOMProperty = __webpack_require__(19);
+var React = __webpack_require__(21);
+var ReactBrowserEventEmitter = __webpack_require__(32);
+var ReactCurrentOwner = __webpack_require__(13);
 var ReactDOMComponentTree = __webpack_require__(4);
-var ReactDOMContainerInfo = __webpack_require__(153);
-var ReactDOMFeatureFlags = __webpack_require__(155);
-var ReactFeatureFlags = __webpack_require__(69);
-var ReactInstanceMap = __webpack_require__(22);
-var ReactInstrumentation = __webpack_require__(7);
-var ReactMarkupChecksum = __webpack_require__(169);
-var ReactReconciler = __webpack_require__(15);
-var ReactUpdateQueue = __webpack_require__(40);
-var ReactUpdates = __webpack_require__(8);
+var ReactDOMContainerInfo = __webpack_require__(216);
+var ReactDOMFeatureFlags = __webpack_require__(218);
+var ReactFeatureFlags = __webpack_require__(103);
+var ReactInstanceMap = __webpack_require__(28);
+var ReactInstrumentation = __webpack_require__(9);
+var ReactMarkupChecksum = __webpack_require__(232);
+var ReactReconciler = __webpack_require__(20);
+var ReactUpdateQueue = __webpack_require__(56);
+var ReactUpdates = __webpack_require__(10);
 
-var emptyObject = __webpack_require__(19);
-var instantiateReactComponent = __webpack_require__(79);
+var emptyObject = __webpack_require__(24);
+var instantiateReactComponent = __webpack_require__(113);
 var invariant = __webpack_require__(0);
-var setInnerHTML = __webpack_require__(28);
-var shouldUpdateReactComponent = __webpack_require__(46);
+var setInnerHTML = __webpack_require__(36);
+var shouldUpdateReactComponent = __webpack_require__(62);
 var warning = __webpack_require__(1);
 
 var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
@@ -8439,7 +9923,7 @@ var ReactMount = {
 module.exports = ReactMount;
 
 /***/ },
-/* 73 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8458,7 +9942,7 @@ module.exports = ReactMount;
 
 var _prodInvariant = __webpack_require__(2);
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(21);
 
 var invariant = __webpack_require__(0);
 
@@ -8484,7 +9968,7 @@ var ReactNodeTypes = {
 module.exports = ReactNodeTypes;
 
 /***/ },
-/* 74 */
+/* 108 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -8516,7 +10000,7 @@ var ViewportMetrics = {
 module.exports = ViewportMetrics;
 
 /***/ },
-/* 75 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8579,7 +10063,7 @@ function accumulateInto(current, next) {
 module.exports = accumulateInto;
 
 /***/ },
-/* 76 */
+/* 110 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -8615,7 +10099,7 @@ function forEachAccumulated(arr, cb, scope) {
 module.exports = forEachAccumulated;
 
 /***/ },
-/* 77 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8631,7 +10115,7 @@ module.exports = forEachAccumulated;
 
 'use strict';
 
-var ReactNodeTypes = __webpack_require__(73);
+var ReactNodeTypes = __webpack_require__(107);
 
 function getHostComponentFromComposite(inst) {
   var type;
@@ -8650,7 +10134,7 @@ function getHostComponentFromComposite(inst) {
 module.exports = getHostComponentFromComposite;
 
 /***/ },
-/* 78 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8688,7 +10172,7 @@ function getTextContentAccessor() {
 module.exports = getTextContentAccessor;
 
 /***/ },
-/* 79 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8709,11 +10193,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var _prodInvariant = __webpack_require__(2),
     _assign = __webpack_require__(3);
 
-var ReactCompositeComponent = __webpack_require__(150);
-var ReactEmptyComponent = __webpack_require__(68);
-var ReactHostComponent = __webpack_require__(70);
+var ReactCompositeComponent = __webpack_require__(213);
+var ReactEmptyComponent = __webpack_require__(102);
+var ReactHostComponent = __webpack_require__(104);
 
-var getNextDebugID = __webpack_require__(197);
+var getNextDebugID = __webpack_require__(260);
 var invariant = __webpack_require__(0);
 var warning = __webpack_require__(1);
 
@@ -8813,7 +10297,7 @@ function instantiateReactComponent(node, shouldHaveDebugID) {
 module.exports = instantiateReactComponent;
 
 /***/ },
-/* 80 */
+/* 114 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -8869,7 +10353,7 @@ function isTextInputElement(elem) {
 module.exports = isTextInputElement;
 
 /***/ },
-/* 81 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8886,8 +10370,8 @@ module.exports = isTextInputElement;
 'use strict';
 
 var ExecutionEnvironment = __webpack_require__(5);
-var escapeTextContentForBrowser = __webpack_require__(27);
-var setInnerHTML = __webpack_require__(28);
+var escapeTextContentForBrowser = __webpack_require__(35);
+var setInnerHTML = __webpack_require__(36);
 
 /**
  * Set the textContent property of a node, ensuring that whitespace is preserved
@@ -8926,7 +10410,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setTextContent;
 
 /***/ },
-/* 82 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8946,12 +10430,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _prodInvariant = __webpack_require__(2);
 
-var ReactCurrentOwner = __webpack_require__(11);
-var REACT_ELEMENT_TYPE = __webpack_require__(165);
+var ReactCurrentOwner = __webpack_require__(13);
+var REACT_ELEMENT_TYPE = __webpack_require__(228);
 
-var getIteratorFn = __webpack_require__(196);
+var getIteratorFn = __webpack_require__(259);
 var invariant = __webpack_require__(0);
-var KeyEscapeUtils = __webpack_require__(36);
+var KeyEscapeUtils = __webpack_require__(52);
 var warning = __webpack_require__(1);
 
 var SEPARATOR = '.';
@@ -9109,7 +10593,7 @@ function traverseAllChildren(children, callback, traverseContext) {
 module.exports = traverseAllChildren;
 
 /***/ },
-/* 83 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9117,7 +10601,7 @@ module.exports = traverseAllChildren;
 
 exports.__esModule = true;
 
-var _react = __webpack_require__(9);
+var _react = __webpack_require__(11);
 
 exports["default"] = _react.PropTypes.shape({
   subscribe: _react.PropTypes.func.isRequired,
@@ -9126,7 +10610,7 @@ exports["default"] = _react.PropTypes.shape({
 });
 
 /***/ },
-/* 84 */
+/* 118 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -9157,7 +10641,7 @@ function warning(message) {
 }
 
 /***/ },
-/* 85 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9176,9 +10660,9 @@ function warning(message) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _prodInvariant = __webpack_require__(18);
+var _prodInvariant = __webpack_require__(23);
 
-var ReactCurrentOwner = __webpack_require__(11);
+var ReactCurrentOwner = __webpack_require__(13);
 
 var invariant = __webpack_require__(0);
 var warning = __webpack_require__(1);
@@ -9497,7 +10981,7 @@ var ReactComponentTreeHook = {
 module.exports = ReactComponentTreeHook;
 
 /***/ },
-/* 86 */
+/* 120 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -9522,7 +11006,7 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ },
-/* 87 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9552,7 +11036,7 @@ if (false) {
 module.exports = ReactPropTypeLocationNames;
 
 /***/ },
-/* 88 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9583,7 +11067,7 @@ if (false) {
 module.exports = canDefineProperty;
 
 /***/ },
-/* 89 */
+/* 123 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -9629,7 +11113,7 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ },
-/* 90 */
+/* 124 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -9675,7 +11159,7 @@ function compose() {
 }
 
 /***/ },
-/* 91 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9690,11 +11174,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 exports.default = createStore;
 
-var _isPlainObject = __webpack_require__(60);
+var _isPlainObject = __webpack_require__(94);
 
 var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
-var _symbolObservable = __webpack_require__(220);
+var _symbolObservable = __webpack_require__(283);
 
 var _symbolObservable2 = _interopRequireDefault(_symbolObservable);
 
@@ -9947,7 +11431,7 @@ function createStore(reducer, preloadedState, enhancer) {
 }
 
 /***/ },
-/* 92 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9958,27 +11442,27 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.compose = exports.applyMiddleware = exports.bindActionCreators = exports.combineReducers = exports.createStore = undefined;
 
-var _createStore = __webpack_require__(91);
+var _createStore = __webpack_require__(125);
 
 var _createStore2 = _interopRequireDefault(_createStore);
 
-var _combineReducers = __webpack_require__(219);
+var _combineReducers = __webpack_require__(282);
 
 var _combineReducers2 = _interopRequireDefault(_combineReducers);
 
-var _bindActionCreators = __webpack_require__(218);
+var _bindActionCreators = __webpack_require__(281);
 
 var _bindActionCreators2 = _interopRequireDefault(_bindActionCreators);
 
-var _applyMiddleware = __webpack_require__(217);
+var _applyMiddleware = __webpack_require__(280);
 
 var _applyMiddleware2 = _interopRequireDefault(_applyMiddleware);
 
-var _compose = __webpack_require__(90);
+var _compose = __webpack_require__(124);
 
 var _compose2 = _interopRequireDefault(_compose);
 
-var _warning = __webpack_require__(93);
+var _warning = __webpack_require__(127);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -10001,7 +11485,7 @@ exports.applyMiddleware = _applyMiddleware2.default;
 exports.compose = _compose2.default;
 
 /***/ },
-/* 93 */
+/* 127 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -10034,7 +11518,7 @@ function warning(message) {
 }
 
 /***/ },
-/* 94 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10048,10 +11532,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var React = __webpack_require__(9);
-var ReactRedux = __webpack_require__(29);
-var Converter_1 = __webpack_require__(95);
-var Store_1 = __webpack_require__(100);
+var React = __webpack_require__(11);
+var ReactRedux = __webpack_require__(37);
+var Converter_1 = __webpack_require__(129);
+var Store_1 = __webpack_require__(134);
 
 var App = function (_React$Component) {
     _inherits(App, _React$Component);
@@ -10076,7 +11560,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = App;
 
 /***/ },
-/* 95 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10090,11 +11574,11 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var React = __webpack_require__(9);
-var ReactRedux = __webpack_require__(29);
-var ConverterInputArea_1 = __webpack_require__(96);
-var ConverterOptionList_1 = __webpack_require__(97);
-var ConverterOutputArea_1 = __webpack_require__(98);
+var React = __webpack_require__(11);
+var ReactRedux = __webpack_require__(37);
+var ConverterInputArea_1 = __webpack_require__(130);
+var ConverterOptionList_1 = __webpack_require__(131);
+var ConverterOutputArea_1 = __webpack_require__(132);
 
 var Converter = function (_React$Component) {
     _inherits(Converter, _React$Component);
@@ -10124,7 +11608,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = ReactRedux.connect(connecter)(Converter);
 
 /***/ },
-/* 96 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10138,9 +11622,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var React = __webpack_require__(9);
-var ReactRedux = __webpack_require__(29);
-var Action = __webpack_require__(52);
+var React = __webpack_require__(11);
+var ReactRedux = __webpack_require__(37);
+var Action = __webpack_require__(38);
 
 var ConverterInputArea = function (_React$Component) {
     _inherits(ConverterInputArea, _React$Component);
@@ -10172,7 +11656,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = ReactRedux.connect()(ConverterInputArea);
 
 /***/ },
-/* 97 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10186,9 +11670,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var React = __webpack_require__(9);
-var ReactDOM = __webpack_require__(51);
-var ReactRedux = __webpack_require__(29);
+var React = __webpack_require__(11);
+var ReactDOM = __webpack_require__(67);
+var ReactRedux = __webpack_require__(37);
+var Action = __webpack_require__(38);
+function createOptionItem(name, options, optionsState) {
+    return React.createElement("li", null, React.createElement("label", null, React.createElement("input", { type: "checkbox", ref: name, checked: optionsState[name] }), React.createElement("span", null, options[name].name)));
+}
 
 var ConverterOptionList = function (_React$Component) {
     _inherits(ConverterOptionList, _React$Component);
@@ -10202,25 +11690,45 @@ var ConverterOptionList = function (_React$Component) {
     _createClass(ConverterOptionList, [{
         key: "render",
         value: function render() {
-            return React.createElement("div", { "data-component": "ConverterOptionList", onChange: this._onChange.bind(this) }, React.createElement("ul", null, React.createElement("li", null, React.createElement("label", null, React.createElement("input", { type: "checkbox", ref: "toHiragana", checked: this.props.options.toHiragana.enabled }), React.createElement("span", null, this.props.options.toHiragana.name))), React.createElement("li", null, React.createElement("label", null, React.createElement("input", { type: "checkbox", ref: "toKatakana", checked: this.props.options.toKatakana.enabled }), React.createElement("span", null, this.props.options.toKatakana.name)))));
+            var _this2 = this;
+
+            return React.createElement("div", { "data-component": "ConverterOptionList", onChange: this._onChange.bind(this) }, React.createElement("ul", null, this.props.options.map(function (name) {
+                return createOptionItem(name, Action.options, _this2.props.optionsState);
+            })));
         }
     }, {
         key: "_onChange",
         value: function _onChange(e) {
-            var toHiragana = ReactDOM.findDOMNode(this.refs['toHiragana']).checked;
-            var toKatakana = ReactDOM.findDOMNode(this.refs['toKatakana']).checked;
-            // if (this.props.dispatch) {
-            // 	this.props.dispatch(Action.changeOption({
-            // 		toHiragana: {
-            // 			name: 'ひらがな',
-            // 			enabled: toHiragana,
-            // 		},
-            // 		toKatakana: {
-            // 			name: 'カタカナ',
-            // 			enabled: toKatakana,
-            // 		}
-            // 	}));
-            // }
+            var checkedState = {};
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.props.options[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var name = _step.value;
+
+                    var ref = ReactDOM.findDOMNode(this.refs[name]);
+                    checkedState[name] = ref.checked;
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            if (this.props.dispatch) {
+                this.props.dispatch(Action.changeOption(this.props.options, checkedState));
+            }
         }
     }]);
 
@@ -10229,14 +11737,15 @@ var ConverterOptionList = function (_React$Component) {
 
 function connecter(state) {
     return {
-        options: state.action.options
+        options: state.action.options,
+        optionsState: state.action.optionsState
     };
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = ReactRedux.connect(connecter)(ConverterOptionList);
 
 /***/ },
-/* 98 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10250,7 +11759,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var React = __webpack_require__(9);
+var React = __webpack_require__(11);
 
 var ConverterOutputArea = function (_React$Component) {
     _inherits(ConverterOutputArea, _React$Component);
@@ -10275,49 +11784,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = ConverterOutputArea;
 
 /***/ },
-/* 99 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 "use strict";
 
-var toHiragana_1 = __webpack_require__(119);
-var toKatakana_1 = __webpack_require__(120);
-var Action = __webpack_require__(52);
-var initialState = {
-    inputText: '',
-    outputText: '',
-    options: [],
-    optionsState: {
-        addSemivoicedMarks: false,
-        addVoicedMarks: false,
-        combinateSoundMarks: false,
-        convertIterationMarks: false,
-        convertProlongedSoundMarks: false,
-        removeUnpairedSurrogate: false,
-        removeVoicedMarks: false,
-        trim: false,
-        toBasicLetter: false,
-        toHiragana: false,
-        toKatakana: false,
-        toNarrow: false,
-        toNarrowAlphanumeric: false,
-        toNarrowJapanese: false,
-        toNarrowKatakana: false,
-        toNarrowSign: false,
-        toNarrowSymbolForJapanese: false,
-        toNumeric: false,
-        toPhoeticKana: false,
-        toWide: false,
-        toWideAlphanumeric: false,
-        toWideJapanese: false,
-        toWideKatakana: false,
-        toWideSign: false,
-        toWideSymbolForJapanese: false
-    }
-};
+var jaco_1 = __webpack_require__(183);
+var Action = __webpack_require__(38);
 function reduceAction() {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Action.initialState;
     var action = arguments[1];
 
     switch (action.type) {
@@ -10325,40 +11801,41 @@ function reduceAction() {
         case 1 /* CHANGE_OPTION */:
             var inputText = action.inputText || state.inputText;
             var options = action.options || state.options;
-            var outputText = inputText;
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
+            var optionsState = action.optionsState || state.optionsState;
+            var outputText = new jaco_1.default(inputText);
+            if (action.optionsState) {
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
 
-            try {
-                for (var _iterator = options[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var method = _step.value;
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
                 try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
+                    for (var _iterator = options[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var method = _step.value;
+
+                        if (action.optionsState[method] && outputText[method]) {
+                            outputText = outputText[method]();
+                        }
                     }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
                 } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
                     }
                 }
-            }
-
-            if (options.toHiragana.enabled) {
-                outputText = toHiragana_1.default(outputText);
-            }
-            if (options.toKatakana.enabled) {
-                outputText = toKatakana_1.default(outputText);
             }
             return {
                 inputText: inputText,
-                outputText: outputText,
-                options: options
+                outputText: outputText.toString(),
+                options: options,
+                optionsState: optionsState
             };
         default:
             {
@@ -10369,21 +11846,21 @@ function reduceAction() {
 exports.reduceAction = reduceAction;
 
 /***/ },
-/* 100 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 "use strict";
 
-var redux_1 = __webpack_require__(92);
-var Reducer = __webpack_require__(99);
+var redux_1 = __webpack_require__(126);
+var Reducer = __webpack_require__(133);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = redux_1.createStore(redux_1.combineReducers({
     action: Reducer.reduceAction
 }));
 
 /***/ },
-/* 101 */
+/* 135 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -10420,7 +11897,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ },
-/* 102 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10437,7 +11914,7 @@ module.exports = camelize;
 
 'use strict';
 
-var camelize = __webpack_require__(101);
+var camelize = __webpack_require__(135);
 
 var msPattern = /^-ms-/;
 
@@ -10465,7 +11942,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ },
-/* 103 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10482,7 +11959,7 @@ module.exports = camelizeStyleName;
  * 
  */
 
-var isTextNode = __webpack_require__(111);
+var isTextNode = __webpack_require__(145);
 
 /*eslint-disable no-bitwise */
 
@@ -10510,7 +11987,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ },
-/* 104 */
+/* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10644,7 +12121,7 @@ function createArrayFromMixed(obj) {
 module.exports = createArrayFromMixed;
 
 /***/ },
-/* 105 */
+/* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10665,8 +12142,8 @@ module.exports = createArrayFromMixed;
 
 var ExecutionEnvironment = __webpack_require__(5);
 
-var createArrayFromMixed = __webpack_require__(104);
-var getMarkupWrap = __webpack_require__(106);
+var createArrayFromMixed = __webpack_require__(138);
+var getMarkupWrap = __webpack_require__(140);
 var invariant = __webpack_require__(0);
 
 /**
@@ -10733,7 +12210,7 @@ function createNodesFromMarkup(markup, handleScript) {
 module.exports = createNodesFromMarkup;
 
 /***/ },
-/* 106 */
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10833,7 +12310,7 @@ function getMarkupWrap(nodeName) {
 module.exports = getMarkupWrap;
 
 /***/ },
-/* 107 */
+/* 141 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -10877,7 +12354,7 @@ function getUnboundedScrollPosition(scrollable) {
 module.exports = getUnboundedScrollPosition;
 
 /***/ },
-/* 108 */
+/* 142 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -10915,7 +12392,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ },
-/* 109 */
+/* 143 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10932,7 +12409,7 @@ module.exports = hyphenate;
 
 'use strict';
 
-var hyphenate = __webpack_require__(108);
+var hyphenate = __webpack_require__(142);
 
 var msPattern = /^ms-/;
 
@@ -10959,7 +12436,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ },
-/* 110 */
+/* 144 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -10990,7 +12467,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ },
-/* 111 */
+/* 145 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11007,7 +12484,7 @@ module.exports = isNode;
  * @typechecks
  */
 
-var isNode = __webpack_require__(110);
+var isNode = __webpack_require__(144);
 
 /**
  * @param {*} object The object to check.
@@ -11020,7 +12497,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ },
-/* 112 */
+/* 146 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -11055,7 +12532,7 @@ function memoizeStringOnly(callback) {
 module.exports = memoizeStringOnly;
 
 /***/ },
-/* 113 */
+/* 147 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -11110,7 +12587,7 @@ module.exports = function hoistNonReactStatics(targetComponent, sourceComponent,
 };
 
 /***/ },
-/* 114 */
+/* 148 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11164,240 +12641,2238 @@ var invariant = function invariant(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 /***/ },
-/* 115 */
+/* 149 */
 /***/ function(module, exports) {
 
 "use strict";
 "use strict";
 /**
- * ひらがな
+ * 半角英字
  *
- * [ぁ-ゖゝ-ゟ]
+ * [A-Za-z]
  *
  */
 
-exports.HIRAGANA_CHARS = "\u3041-\u3096\u309D-\u309F";
+exports.ALPHA_CHARS = 'A-Za-z';
 
 /***/ },
-/* 116 */
+/* 150 */
 /***/ function(module, exports) {
 
 "use strict";
 "use strict";
 /**
- * カタカナ
+ * 半角数字
  *
- * [ァ-ヺヽ-ヿ]
+ * [0-9]
  *
  */
 
-exports.KATAKANA_CHARS = "\u30A1-\u30FA\u30FD\u30FF";
+exports.DIGIT_CHARS = '0-9';
 
 /***/ },
-/* 117 */
+/* 151 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * 全角英字
+ *
+ * [ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ]
+ *
+ */
+
+exports.FULLWIDTH_ALPHA_CHARS = "\uFF21-\uFF3A\uFF41-\uFF5A";
+
+/***/ },
+/* 152 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * 全角数字
+ *
+ * [０１２３４５６７８９]
+ *
+ */
+
+exports.FULLWIDTH_DIGIT_CHARS = "\uFF10-\uFF19";
+
+/***/ },
+/* 153 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * 全角記号
+ *
+ * [！＂＃＄％＆＇（）＊＋，－．／：；＜＝＞？＠［＼］＾＿｀｛｜｝～]
+ *
+ */
+
+exports.FULLWIDTH_SIGN_CHARS = "\uFF01-\uFF0F\uFF1A-\uFF20\uFF3B-\uFF40\uFF5B-\uFF5E";
+
+/***/ },
+/* 154 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * ひらがな（繰り返し記号・合字なし）
+ *
+ * [ぁ-ゖ]
+ *
+ */
+
+exports.HIRAGANA_CHARS_IGNORE_ITERATION_MARKS = "\u3041-\u3096";
+
+/***/ },
+/* 155 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * カタカナ（繰り返し記号・合字なし）
+ *
+ * [ァ-ヺ]
+ *
+ */
+
+exports.KATAKANA_CHARS_IGNORE_ITERATION_MARKS = "\u30A1-\u30FA";
+
+/***/ },
+/* 156 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * 記号
+ *
+ * [!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]
+ *
+ */
+
+exports.SIGN_CHARS = " -/:-@[-`{-~";
+
+/***/ },
+/* 157 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 "use strict";
 
-var replaceFromMap_1 = __webpack_require__(31);
+var replaceFromMap_1 = __webpack_require__(8);
 /**
- * 濁点・半濁点とひらがな・かたかなを結合させる
+ * 半濁点を追加する
  *
  * @version 2.0.0
- * @since 1.2.0
+ * @since 1.1.0
  * @param str 対象の文字列
- * @param convertOnly ひらがな・かたかなと結合させずに、文字だけ結合文字に変換
  */
-function combinateSoundMarks(str) {
-    var convertOnly = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+function default_1(str) {
+  return replaceFromMap_1.default(str, {
+    'は': 'ぱ', 'ひ': 'ぴ', 'ふ': 'ぷ', 'へ': 'ぺ', 'ほ': 'ぽ',
+    'ハ': 'パ', 'ヒ': 'ピ', 'フ': 'プ', 'ヘ': 'ペ', 'ホ': 'ポ'
+  });
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 半濁点を追加する
+ *
+ * @version 2.0.0
+ * @since 1.1.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
 
-    if (!convertOnly) {
-        // 結合文字に変換
-        str = combinateSoundMarks(str, true);
-        // 濁点・半濁点を結合する
-        str = replaceFromMap_1.default(str, {
-            // 濁点
-            "\u304B\u3099": 'が', "\u304D\u3099": 'ぎ', "\u304F\u3099": 'ぐ', "\u3051\u3099": 'げ', "\u3053\u3099": 'ご',
-            "\u3055\u3099": 'ざ', "\u3057\u3099": 'じ', "\u3059\u3099": 'ず', "\u305B\u3099": 'ぜ', "\u305D\u3099": 'ぞ',
-            "\u305F\u3099": 'だ', "\u3061\u3099": 'ぢ', "\u3064\u3099": 'づ', "\u3066\u3099": 'で', "\u3068\u3099": 'ど',
-            "\u306F\u3099": 'ば', "\u3072\u3099": 'び', "\u3075\u3099": 'ぶ', "\u3078\u3099": 'べ', "\u307B\u3099": 'ぼ',
-            "\u30AB\u3099": 'ガ', "\u30AD\u3099": 'ギ', "\u30AF\u3099": 'グ', "\u30B1\u3099": 'ゲ', "\u30B3\u3099": 'ゴ',
-            "\u30B5\u3099": 'ザ', "\u30B7\u3099": 'ジ', "\u30B9\u3099": 'ズ', "\u30BB\u3099": 'ゼ', "\u30BD\u3099": 'ゾ',
-            "\u30BF\u3099": 'ダ', "\u30C1\u3099": 'ヂ', "\u30C4\u3099": 'ヅ', "\u30C6\u3099": 'デ', "\u30C8\u3099": 'ド',
-            "\u30CF\u3099": 'バ', "\u30D2\u3099": 'ビ', "\u30D5\u3099": 'ブ', "\u30D8\u3099": 'ベ', "\u30DB\u3099": 'ボ',
-            "\u30EF\u3099": 'ヷ', "\u30A4\u3099": 'ヸ', "\u30A6\u3099": 'ヴ', "\u30A8\u3099": 'ヹ', "\u30FA\u3099": 'ヲ',
-            "\u309D\u3099": 'ゞ', "\u30FD\u3099": 'ヾ',
-            // 半濁点
-            "\u306F\u309A": 'ぱ', "\u3072\u309A": 'ぴ', "\u3075\u309A": 'ぷ', "\u3078\u309A": 'ぺ', "\u307B\u309A": 'ぽ',
-            "\u30CF\u309A": 'パ', "\u30D2\u309A": 'ピ', "\u30D5\u309A": 'プ', "\u30D8\u309A": 'ペ', "\u30DB\u309A": 'ポ'
-        });
+/***/ },
+/* 158 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * 文字列のバイトサイズを返す
+ *
+ * @version 0.2.0
+ * @since 0.2.0
+ * @param str 対象の文字列
+ */
+
+function default_1(str) {
+  return encodeURIComponent(str).replace(/%../g, 'x').length;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 文字列のバイトサイズを返す
+ *
+ * @version 0.2.0
+ * @since 0.2.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 159 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var charAt_1 = __webpack_require__(74);
+/**
+ * 指定位置のUnicodeコードポイントを返す
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ */
+function default_1(str) {
+    var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+    var char = charAt_1.default(str, index);
+    if (!char) {
+        return NaN;
+    }
+    if (char.length === 1) {
+        return char.charCodeAt(0);
     } else {
-        // ひらがな・かたかなと結合させずに、文字だけ結合文字に変換
-        str = replaceFromMap_1.default(str, {
-            // 濁点
-            "\u309B": "\u3099",
-            "\uFF9E": "\u3099",
-            // 半濁点
-            "\u309C": "\u309A",
-            "\uFF9F": "\u309A"
-        });
+        var first = char.charCodeAt(0);
+        var second = char.charCodeAt(1);
+        var code = (first - 0xD800) * 0x400 + second - 0xDC00 + 0x10000;
+        return code;
     }
-    return str;
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * 濁点・半濁点とひらがな・かたかなを結合させる
+ * 指定位置のUnicodeコードポイントを返す
+ *
+ * - サロゲートペアを考慮する
  *
  * @version 2.0.0
- * @since 1.2.0
+ * @since 2.0.0
  * @param str 対象の文字列
- * @param convertOnly ひらがな・かたかなと結合させずに、文字だけ結合文字に変換
  */
-exports.default = combinateSoundMarks;
+exports.default = default_1;
 
 /***/ },
-/* 118 */
+/* 160 */
 /***/ function(module, exports) {
 
 "use strict";
 "use strict";
 /**
- * 文字列をパターンで置換する
+ * 再帰的に文字列連結をおこなう
  *
  * @version 2.0.0
  * @since 0.2.0
- * @param str  元の文字列
- * @param pattern  対象のパターン
- * @param replacement 置換する文字列
+ * @param ...args 文字列もしくはJacoインスタンス
  */
 
-function default_1(str, pattern, replacement) {
-  var reg = pattern instanceof RegExp ? pattern : new RegExp(pattern.toString());
-  return str.replace(reg, replacement.toString());
+function concat() {
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+    }
+
+    return args.map(function (str) {
+        if (Array.isArray(str)) {
+            return str.map(function (_str) {
+                return Array.isArray(_str) ? concat(_str) : _str;
+            }).join('');
+        } else {
+            return str.toString();
+        }
+    }).join('');
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * 文字列をパターンで置換する
+ * 再帰的に文字列連結をおこなう
  *
  * @version 2.0.0
  * @since 0.2.0
- * @param str  元の文字列
- * @param pattern  対象のパターン
- * @param replacement 置換する文字列
+ * @param ...args 文字列もしくはJacoインスタンス
  */
-exports.default = default_1;
+exports.default = concat;
 
 /***/ },
-/* 119 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 "use strict";
 
-var KATAKANA_CHARS_1 = __webpack_require__(116);
-var combinateSoundMarks_1 = __webpack_require__(117);
-var replaceFromMap_1 = __webpack_require__(31);
-var toWideKatakana_1 = __webpack_require__(56);
-var patternize_1 = __webpack_require__(57);
-var shift_1 = __webpack_require__(58);
+var is_1 = __webpack_require__(43);
+var substring_1 = __webpack_require__(80);
+var arrayize_1 = __webpack_require__(6);
 /**
- * ひらがなに変換する
+ * 引数に指定された文字列が末尾と合致するか
  *
- * 第一引数に true を渡した場合、濁点・半濁点は基本的に結合される
- * ヷヸヹヺは文字が存在しないため ひらがな + 結合文字でない濁点・半濁点 となる
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param search 合致対象文字列
+ * @param position 末尾の位置
+ */
+function default_1(str, search, position) {
+  var targetLength = arrayize_1.default(str).length;
+  var searchLength = arrayize_1.default(search.toString()).length;
+  if (!isFinite(position) || Math.floor(position) !== position || position > targetLength) {
+    position = targetLength;
+  }
+  var end = position;
+  var start = position - searchLength;
+  var endStr = substring_1.default(str, start, end);
+  return is_1.default(endStr, search);
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 引数に指定された文字列が末尾と合致するか
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param search 合致対象文字列
+ * @param position 末尾の位置
+ */
+exports.default = default_1;
+
+/***/ },
+/* 162 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * 該当の文字のいずれかを含んでいるかどうか
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param characters 文字セット
+ */
+
+function default_1(str, characters) {
+  var chars = characters.toString().replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)').replace(/\[/g, '\\[').replace(/\]/g, '\\]');
+  var pattern = new RegExp('[' + chars + ']', 'gm');
+  return pattern.test(str);
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 該当の文字のいずれかを含んでいるかどうか
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param characters 文字セット
+ */
+exports.default = default_1;
+
+/***/ },
+/* 163 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * 小書き文字を含むかどうか
+ *
+ * TODO: test
+ *
+ * @version 1.1.0
+ * @since 1.1.0
+ * @param str 対象の文字列
+ */
+
+function default_1(str) {
+  return (/[ぁぃぅぇぉっゃゅょゎァィゥェォヵㇰヶㇱㇲッㇳㇴㇵㇶㇷㇸㇹㇺャュョㇻㇼㇽㇾㇿヮ]/.test(str)
+  );
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 小書き文字を含むかどうか
+ *
+ * TODO: test
+ *
+ * @version 1.1.0
+ * @since 1.1.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 164 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * サロゲートペア文字列を含んでいるかどうか
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ */
+
+function default_1(str) {
+  return (/[\uD800-\uDBFF][\uDC00-\uDFFF]/.test(str)
+  );
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * サロゲートペア文字列を含んでいるかどうか
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 165 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * ペアになっていないサロゲートコードポイントを含んでいるかどうか
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ */
+
+function default_1(str) {
+  return (/[\uD800-\uDBFF](?:[^\uDC00-\uDFFF]|$)|(?:^|[^\uD800-\uDBFF])[\uDC00-\uDFFF]/.test(str)
+  );
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * ペアになっていないサロゲートコードポイントを含んでいるかどうか
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 166 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var indexOf_1 = __webpack_require__(77);
+/**
+ * 指定された文字列が最初に現れるインデックスを返す
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param search 検索文字列
+ * @param fromIndex 検索位置
+ */
+function default_1(str, search) {
+  var position = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+
+  return indexOf_1.default(str, search, position) !== -1;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 指定された文字列が最初に現れるインデックスを返す
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param search 検索文字列
+ * @param fromIndex 検索位置
+ */
+exports.default = default_1;
+
+/***/ },
+/* 167 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * 文字が空かどうか
  *
  * @version 0.2.0
- * @since 0.1.0
+ * @since 0.2.0
  * @param str 対象の文字列
- * @param isCombinate 濁点・半濁点を結合文字にするかどうか
+ */
+
+function default_1(str) {
+  return str === '';
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 文字が空かどうか
+ *
+ * @version 0.2.0
+ * @since 0.2.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 168 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * 数字だけで構成されているかどうか
+ *
+ * @version 2.0.0
+ * @since 0.5.0
+ * @param str 対象の文字列
+ * @param negative 負の数値も含めてチェックするかどうか
+ * @param floatingPoint 小数としてチェックするかどうか
+ */
+
+function default_1(str) {
+    var negative = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+    var floatingPoint = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
+    var pattern = '^';
+    if (negative) {
+        pattern += '-?';
+    }
+    if (floatingPoint) {
+        pattern += '(?:[0-9]*\\.)?';
+    }
+    pattern += '[0-9]+$';
+    return new RegExp(pattern).test(str);
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 数字だけで構成されているかどうか
+ *
+ * @version 2.0.0
+ * @since 0.5.0
+ * @param str 対象の文字列
+ * @param negative 負の数値も含めてチェックするかどうか
+ * @param floatingPoint 小数としてチェックするかどうか
+ */
+exports.default = default_1;
+
+/***/ },
+/* 169 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var HIRAGANA_CHARS_1 = __webpack_require__(40);
+var KANA_COMMON_CAHRS_1 = __webpack_require__(71);
+var isOnly_1 = __webpack_require__(44);
+/**
+ * ひらがなだけで構成されているかどうか
+ *
+ * @version 0.2.0
+ * @since 0.2.0
+ * @param str 対象の文字列
  */
 function default_1(str) {
-    var isCombinate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  return isOnly_1.default(str, HIRAGANA_CHARS_1.HIRAGANA_CHARS + KANA_COMMON_CAHRS_1.KANA_COMMON_CAHRS);
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * ひらがなだけで構成されているかどうか
+ *
+ * @version 0.2.0
+ * @since 0.2.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
 
-    // 半角カタカナを全角カタカナへ
-    str = toWideKatakana_1.default(str);
-    // ヷヸヹヺの変換
-    str = replaceFromMap_1.default(str, {
-        'ヷ': 'わ゛',
-        'ヸ': 'ゐ゛',
-        'ヹ': 'ゑ゛',
-        'ヺ': 'を゛'
-    });
-    // カタカナをひらがなへ(Unicodeの番号をずらす)
-    str = shift_1.default(str, patternize_1.default(KATAKANA_CHARS_1.KATAKANA_CHARS), -96);
-    // 濁点・半濁点を結合文字に変換
-    if (isCombinate) {
-        str = combinateSoundMarks_1.default(str);
+/***/ },
+/* 170 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var KANA_COMMON_CAHRS_1 = __webpack_require__(71);
+var KATAKANA_CHARS_1 = __webpack_require__(41);
+var isOnly_1 = __webpack_require__(44);
+/**
+ * カタカナだけで構成されているかどうか
+ *
+ * @version 0.2.0
+ * @since 0.2.0
+ * @param str 対象の文字列
+ */
+function default_1(str) {
+  return isOnly_1.default(str, KATAKANA_CHARS_1.KATAKANA_CHARS + KANA_COMMON_CAHRS_1.KANA_COMMON_CAHRS);
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * カタカナだけで構成されているかどうか
+ *
+ * @version 0.2.0
+ * @since 0.2.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 171 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var arrayize_1 = __webpack_require__(6);
+/**
+ * 指定された文字列が最後に現れるインデックスを返す
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param search 検索文字列
+ * @param fromIndex 検索位置
+ *
+ */
+function default_1(str, search) {
+  var fromIndex = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : Infinity;
+
+  return arrayize_1.default(str).lastIndexOf(search.toString(), fromIndex);
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 指定された文字列が最後に現れるインデックスを返す
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param search 検索文字列
+ * @param fromIndex 検索位置
+ *
+ */
+exports.default = default_1;
+
+/***/ },
+/* 172 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * 正規表現に対する文字列 のマッチングの際に、そのマッチ結果を純粋な配列で得る
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param regexp パターン
+ */
+
+function default_1(str, regexp) {
+  var matches = str.match(regexp);
+  return Array.prototype.concat.apply(matches || []);
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 正規表現に対する文字列 のマッチングの際に、そのマッチ結果を純粋な配列で得る
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param regexp パターン
+ */
+exports.default = default_1;
+
+/***/ },
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var substr_1 = __webpack_require__(25);
+var arrayize_1 = __webpack_require__(6);
+var pad_1 = __webpack_require__(92);
+/**
+ * 最終的な文字列が指定された長さに到達するように文字列で延長する
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param targetLength 最終的な長さ
+ * @param padString 延長する文字列
+ */
+function default_1(str, targetLength) {
+    var padString = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ' ';
+
+    var thisArray = arrayize_1.default(str);
+    var thisLength = thisArray.length;
+    if (targetLength < thisLength) {
+        str = substr_1.default(str, 0, targetLength);
+    } else {
+        var padded = pad_1.default(padString.toString(), targetLength - thisLength);
+        str += padded;
     }
     return str;
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * ひらがなに変換する
+ * 最終的な文字列が指定された長さに到達するように文字列で延長する
  *
- * 第一引数に true を渡した場合、濁点・半濁点は基本的に結合される
- * ヷヸヹヺは文字が存在しないため ひらがな + 結合文字でない濁点・半濁点 となる
+ * - サロゲートペアを考慮する
  *
- * @version 0.2.0
- * @since 0.1.0
+ * @version 2.0.0
+ * @since 2.0.0
  * @param str 対象の文字列
- * @param isCombinate 濁点・半濁点を結合文字にするかどうか
+ * @param targetLength 最終的な長さ
+ * @param padString 延長する文字列
  */
 exports.default = default_1;
 
 /***/ },
-/* 120 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 "use strict";
 
-var HIRAGANA_CHARS_1 = __webpack_require__(115);
-var replace_1 = __webpack_require__(118);
-var toWideKatakana_1 = __webpack_require__(56);
-var patternize_1 = __webpack_require__(57);
-var shift_1 = __webpack_require__(58);
+var substr_1 = __webpack_require__(25);
+var arrayize_1 = __webpack_require__(6);
+var pad_1 = __webpack_require__(92);
 /**
- * カタカナに変換する
+ * 最終的な文字列が指定された長さに到達するように文字列を先頭に追加する
  *
- * @version 0.2.0
- * @since 0.1.0
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
  * @param str 対象の文字列
- * @param toWide 半角カタカナを全角カタカナへ変換するかどうか
+ * @param targetLength 最終的な長さ
+ * @param padString 延長する文字列
  */
-function default_1(str) {
-  var toWide = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+function default_1(str, targetLength) {
+    var padString = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ' ';
 
-  // 半角カタカナを全角カタカナへ
-  if (toWide) {
-    str = toWideKatakana_1.default(str);
-  }
-  // わ゛=> ヷ (濁点3種類対応 ※全角濁点・全角結合文字濁点・半角濁点)
-  str = replace_1.default(str, /わ(?:\u309B|\u3099|\uFF9E)/g, 'ヷ');
-  // ゐ゛=> ヸ (濁点3種類対応)
-  str = replace_1.default(str, /ゐ(?:\u309B|\u3099|\uFF9E)/g, 'ヸ');
-  // ゑ゛=> ヹ (濁点3種類対応)
-  str = replace_1.default(str, /ゑ(?:\u309B|\u3099|\uFF9E)/g, 'ヹ');
-  // を゛=> ヺ (濁点3種類対応)
-  str = replace_1.default(str, /を(?:\u309B|\u3099|\uFF9E)/g, 'ヺ');
-  // ひらがなをカタカナへ(Unicodeの番号をずらす)
-  str = shift_1.default(str, patternize_1.default(HIRAGANA_CHARS_1.HIRAGANA_CHARS), 96);
+    var thisArray = arrayize_1.default(str);
+    var thisLength = thisArray.length;
+    if (targetLength < thisLength) {
+        str = substr_1.default(str, 0, targetLength);
+    } else {
+        var padded = pad_1.default(padString.toString(), targetLength - thisLength);
+        str = padded + str;
+    }
+    return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 最終的な文字列が指定された長さに到達するように文字列を先頭に追加する
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param targetLength 最終的な長さ
+ * @param padString 延長する文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 175 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * ペアになっていないサロゲートコードポイントの削除
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ */
+
+function default_1(str) {
+  str = str.replace(/[\uD800-\uDBFF]([^\uDC00-\uDFFF]|$)/g, '$1');
+  str = str.replace(/(^|[^\uD800-\uDBFF])[\uDC00-\uDFFF]/g, '$1');
   return str;
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * カタカナに変換する
+ * ペアになっていないサロゲートコードポイントの削除
  *
- * @version 0.2.0
- * @since 0.1.0
+ * @version 2.0.0
+ * @since 2.0.0
  * @param str 対象の文字列
- * @param toWide 半角カタカナを全角カタカナへ変換するかどうか
  */
 exports.default = default_1;
 
 /***/ },
-/* 121 */
+/* 176 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * 文字列を繰り返す
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param times 繰り返しの回数
+ */
+
+function default_1(str) {
+    var times = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+    var res = [];
+    times = Math.floor(Math.max(times, 0));
+    if (times === Infinity) {
+        throw new RangeError('repeat count must be less than infinity');
+    }
+    while (times--) {
+        res.push(str);
+    }
+    str = res.join('');
+    return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 文字列を繰り返す
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param times 繰り返しの回数
+ */
+exports.default = default_1;
+
+/***/ },
+/* 177 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var split_1 = __webpack_require__(45);
+var arrayize_1 = __webpack_require__(6);
+/**
+ * 正規表現にマッチしたインデックスを返す
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param pattern パターン
+ */
+function default_1(str, pattern) {
+  var before = split_1.default(str, pattern)[0] || '';
+  return arrayize_1.default(before).length;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 正規表現にマッチしたインデックスを返す
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param pattern パターン
+ */
+exports.default = default_1;
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var substr_1 = __webpack_require__(25);
+var arrayize_1 = __webpack_require__(6);
+/**
+ * 引数に指定された文字列が先頭と合致するか
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param search 合致対象文字列
+ * @param position 先頭の位置
+ */
+function default_1(str, search) {
+  var position = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+
+  var _search = search.toString();
+  return substr_1.default(str, position, arrayize_1.default(_search).length) === _search;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 引数に指定された文字列が先頭と合致するか
+ *
+ * - サロゲートペアを考慮する
+ *
+ * @version 2.0.0
+ * @since 2.0.0
+ * @param str 対象の文字列
+ * @param search 合致対象文字列
+ * @param position 先頭の位置
+ */
+exports.default = default_1;
+
+/***/ },
+/* 179 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * パターンとマッチするかどうか
+ *
+ * @version 2.0.0
+ * @since 0.2.0
+ * @param str 対象の文字列
+ * @param pattern パターン
+ */
+
+function default_1(str, pattern) {
+  return pattern instanceof RegExp ? pattern.test(str) : str === pattern.toString();
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * パターンとマッチするかどうか
+ *
+ * @version 2.0.0
+ * @since 0.2.0
+ * @param str 対象の文字列
+ * @param pattern パターン
+ */
+exports.default = default_1;
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var remove_1 = __webpack_require__(30);
+var replace_1 = __webpack_require__(14);
+var toNarrow_1 = __webpack_require__(82);
+/**
+ * 数字に変換する
+ *
+ * @version 0.5.0
+ * @since 0.5.0
+ * @param str 対象の文字列
+ * @param negative 負の値を許可してマイナスをつけるかどうか
+ * @param floatingPoint 小数を許可してドットをつけるかどうか
+ */
+function default_1(str) {
+    var negative = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var floatingPoint = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+    // 半角化
+    str = toNarrow_1.default(str);
+    // 数字・ハイフン（マイナス）・ドット意外を削除
+    str = remove_1.default(str, /[^0-9\.\-]/gm);
+    if (negative) {
+        // 最初のにくるハイフンをnに一時的に変換
+        str = replace_1.default(str, /^-/, 'n');
+    }
+    // ハイフンを全て削除
+    str = remove_1.default(str, /-/g);
+    if (negative) {
+        // ハイフンを元に戻す
+        str = replace_1.default(str, 'n', '-');
+    }
+    if (floatingPoint) {
+        // 文字列中で一番最初にくるドットを_に一時的に変換
+        str = replace_1.default(str, /\.([0-9])/, '_$1');
+    }
+    // ドットを全て削除
+    str = remove_1.default(str, /\./g);
+    if (floatingPoint) {
+        // ドットを元に戻す
+        str = replace_1.default(str, '_', '.');
+    }
+    return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 数字に変換する
+ *
+ * @version 0.5.0
+ * @since 0.5.0
+ * @param str 対象の文字列
+ * @param negative 負の値を許可してマイナスをつけるかどうか
+ * @param floatingPoint 小数を許可してドットをつけるかどうか
+ */
+exports.default = default_1;
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var convertIterationMarks_1 = __webpack_require__(75);
+var convertProlongedSoundMarks_1 = __webpack_require__(76);
+var toBasicLetter_1 = __webpack_require__(81);
+var toHiragana_1 = __webpack_require__(46);
+/**
+ * よみの文字に変換する
+ * JIS X 4061 [日本語文字列照合順番](http://goo.gl/Mw8ja) に準ずる
+ *
+ * TODO: test
+ *
+ * @version 1.1.0
+ * @since 1.1.0
+ * @param str 対象の文字列
+ */
+function default_1(str) {
+  // ひらがな化
+  str = toHiragana_1.default(str);
+  // 小書き文字を基底文字に変換
+  str = toBasicLetter_1.default(str);
+  // 長音符を置き換える
+  str = convertProlongedSoundMarks_1.default(str);
+  // 繰り返し記号を置き換える
+  str = convertIterationMarks_1.default(str);
+  return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * よみの文字に変換する
+ * JIS X 4061 [日本語文字列照合順番](http://goo.gl/Mw8ja) に準ずる
+ *
+ * TODO: test
+ *
+ * @version 1.1.0
+ * @since 1.1.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 182 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var toWideAlphanumeric_1 = __webpack_require__(88);
+var toWideJapanese_1 = __webpack_require__(89);
+var toWideSign_1 = __webpack_require__(90);
+/**
+ * 全角に変換
+ *
+ * @version 0.4.0
+ * @since 0.4.0
+ * @param str 対象の文字列
+ */
+function default_1(str) {
+  // 半角英数記号の変換
+  str = toWideAlphanumeric_1.default(str);
+  // スペースの変換
+  str = toWideSign_1.default(str);
+  // 日本語カタカナ記号の変換
+  str = toWideJapanese_1.default(str);
+  return str;
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * 全角に変換
+ *
+ * @version 0.4.0
+ * @since 0.4.0
+ * @param str 対象の文字列
+ */
+exports.default = default_1;
+
+/***/ },
+/* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var addSemivoicedMarks_1 = __webpack_require__(157);
+var addVoicedMarks_1 = __webpack_require__(73);
+var byteSize_1 = __webpack_require__(158);
+var charAt_1 = __webpack_require__(74);
+var charCodeAt_1 = __webpack_require__(159);
+var combinateSoundMarks_1 = __webpack_require__(42);
+var concat_1 = __webpack_require__(160);
+var convertIterationMarks_1 = __webpack_require__(75);
+var convertProlongedSoundMarks_1 = __webpack_require__(76);
+var endWith_1 = __webpack_require__(161);
+var has_1 = __webpack_require__(162);
+var hasSmallLetter_1 = __webpack_require__(163);
+var hasSurrogatePair_1 = __webpack_require__(164);
+var hasUnpairedSurrogate_1 = __webpack_require__(165);
+var includes_1 = __webpack_require__(166);
+var indexOf_1 = __webpack_require__(77);
+var is_1 = __webpack_require__(43);
+var isEmpty_1 = __webpack_require__(167);
+var isNumeric_1 = __webpack_require__(168);
+var isOnly_1 = __webpack_require__(44);
+var isOnlyHiragana_1 = __webpack_require__(169);
+var isOnlyKatakana_1 = __webpack_require__(170);
+var lastIndexOf_1 = __webpack_require__(171);
+var matches_1 = __webpack_require__(172);
+var padEnd_1 = __webpack_require__(173);
+var padStart_1 = __webpack_require__(174);
+var remove_1 = __webpack_require__(30);
+var removeUnpairedSurrogate_1 = __webpack_require__(175);
+var removeVoicedMarks_1 = __webpack_require__(78);
+var repeat_1 = __webpack_require__(176);
+var replace_1 = __webpack_require__(14);
+var replaceFromMap_1 = __webpack_require__(8);
+var search_1 = __webpack_require__(177);
+var slice_1 = __webpack_require__(79);
+var split_1 = __webpack_require__(45);
+var startsWith_1 = __webpack_require__(178);
+var substr_1 = __webpack_require__(25);
+var substring_1 = __webpack_require__(80);
+var test_1 = __webpack_require__(179);
+var toBasicLetter_1 = __webpack_require__(81);
+var toHiragana_1 = __webpack_require__(46);
+var toKatakana_1 = __webpack_require__(47);
+var toNarrow_1 = __webpack_require__(82);
+var toNarrowAlphanumeric_1 = __webpack_require__(83);
+var toNarrowJapanese_1 = __webpack_require__(84);
+var toNarrowKatakana_1 = __webpack_require__(85);
+var toNarrowSign_1 = __webpack_require__(86);
+var toNarrowSymbolForJapanese_1 = __webpack_require__(87);
+var toNumeric_1 = __webpack_require__(180);
+var toPhoeticKana_1 = __webpack_require__(181);
+var toWide_1 = __webpack_require__(182);
+var toWideAlphanumeric_1 = __webpack_require__(88);
+var toWideJapanese_1 = __webpack_require__(89);
+var toWideKatakana_1 = __webpack_require__(31);
+var toWideSign_1 = __webpack_require__(90);
+var toWideSymbolForJapanese_1 = __webpack_require__(91);
+var arrayize_1 = __webpack_require__(6);
+/**
+ * ## Jacoクラス
+ *
+ * 日本語やマルチバイト文字・ASCII文字を扱いやすくするためのラッパークラス
+ *
+ * 文字列クラスを継承してはいないがメソッドは同等のものが実装されている。
+ * ただし基本的にほとんどのメソッドが破壊的メソッドかつチェインナブルである。
+ *
+ * @version 2.0.0
+ * @since 0.1.0
+ */
+
+var Jaco = function () {
+    /**
+     * コンストラクタ
+     *
+     * ```javascript
+     * var a = new Jaco("あああ");
+     * ```
+     *
+     * @version 2.0.0
+     * @since 0.1.0
+     * @param str 対象の文字列
+     */
+    function Jaco(str) {
+        _classCallCheck(this, Jaco);
+
+        this.$ = "" + str;
+    }
+    /**
+     * 文字列長
+     *
+     * - サロゲートペアを考慮する
+     *
+     * @version 2.0.0
+     * @since 2.0.0
+     * @readonly
+     */
+
+
+    _createClass(Jaco, [{
+        key: "addSemivoicedMarks",
+
+        /**
+         * 半濁点を追加する
+         *
+         * @version 2.0.0
+         * @since 1.1.0
+         */
+        value: function addSemivoicedMarks() {
+            return new Jaco(addSemivoicedMarks_1.default(this.$));
+        }
+        /**
+         * 濁点を追加する
+         *
+         * @version 2.0.0
+         * @since 1.1.0
+         */
+
+    }, {
+        key: "addVoicedMarks",
+        value: function addVoicedMarks() {
+            return new Jaco(addVoicedMarks_1.default(this.$));
+        }
+        /**
+         * 後方結合
+         *
+         * @version 2.0.0
+         * @since 0.2.0
+         * @param element 結合する文字列
+         */
+
+    }, {
+        key: "append",
+        value: function append(element) {
+            return new Jaco(concat_1.default(this, element));
+        }
+        /**
+         * 文字列のバイトサイズを返す
+         *
+         * @version 0.2.0
+         * @since 0.2.0
+         */
+
+    }, {
+        key: "byteSize",
+        value: function byteSize() {
+            return byteSize_1.default(this.$);
+        }
+        /**
+         * 文字列から指定位置の文字を返す
+         *
+         * - サロゲートペアを考慮する
+         * - String.prototype.charAt とは非互換
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @param index 指定位置
+         */
+
+    }, {
+        key: "charAt",
+        value: function charAt() {
+            var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+            return new Jaco(charAt_1.default(this.$, index));
+        }
+        /**
+         * 指定位置のUnicodeコードポイントを返す
+         *
+         * - サロゲートペアを考慮する
+         * - String.prototype.charCodeAt とは非互換
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @param charCodeAt 指定位置
+         */
+
+    }, {
+        key: "charCodeAt",
+        value: function charCodeAt() {
+            var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+            return charCodeAt_1.default(this.$, index);
+        }
+        /**
+         * コピーを生成する
+         *
+         * @version 0.2.0
+         * @since 0.2.0
+         */
+
+    }, {
+        key: "clone",
+        value: function clone() {
+            return new Jaco(this.$);
+        }
+        /**
+         * 濁点・半濁点とひらがな・かたかなを結合させる
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @param convertOnly ひらがな・かたかなと結合させずに、文字だけ結合文字に変換
+         */
+
+    }, {
+        key: "combinateSoundMarks",
+        value: function combinateSoundMarks() {
+            var convertOnly = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+            return new Jaco(combinateSoundMarks_1.default(this.$, convertOnly));
+        }
+        /**
+         * 文字列連結をおこなう
+         *
+         * - String.prototype.concat とは非互換
+         *
+         * @version 2.0.0
+         * @since 0.2.0
+         * @param ...args 文字列もしくはJacoインスタンス
+         */
+
+    }, {
+        key: "concat",
+        value: function concat() {
+            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+            }
+
+            return new Jaco(concat_1.default(this.$, args));
+        }
+        /**
+         * 繰り返し記号をかなに置き換える
+         *
+         * @version 2.0.0
+         * @since 1.1.0
+         */
+
+    }, {
+        key: "convertIterationMarks",
+        value: function convertIterationMarks() {
+            return new Jaco(convertIterationMarks_1.default(this.$));
+        }
+        /**
+         * 長音符をかなに置き換える
+         *
+         * @version 2.0.0
+         * @since 1.1.0
+         */
+
+    }, {
+        key: "convertProlongedSoundMarks",
+        value: function convertProlongedSoundMarks() {
+            return new Jaco(convertProlongedSoundMarks_1.default(this.$));
+        }
+        /**
+         * 引数に指定された文字列が末尾と合致するか
+         *
+         * - サロゲートペアを考慮する
+         * - String.prototype.endWith とは非互換
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @param search 合致対象文字列
+         * @param position 末尾の位置
+         */
+
+    }, {
+        key: "endWith",
+        value: function endWith(search, position) {
+            return endWith_1.default(this.$, search, position);
+        }
+        /**
+         * 該当の文字のいずれかを含んでいるかどうか
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @param characters 文字セット
+         * @return 結果の真偽
+         */
+
+    }, {
+        key: "has",
+        value: function has(characters) {
+            return has_1.default(this.$, characters);
+        }
+        /**
+         * 小書き文字を含むかどうか
+         *
+         * TODO: test
+         *
+         * @version 1.1.0
+         * @since 1.1.0
+         * @return 小書き文字を含むかどうか
+         */
+
+    }, {
+        key: "hasSmallLetter",
+        value: function hasSmallLetter() {
+            return hasSmallLetter_1.default(this.$);
+        }
+        /**
+         * サロゲートペア文字列を含んでいるかどうか
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @return 結果の真偽
+         */
+
+    }, {
+        key: "hasSurrogatePair",
+        value: function hasSurrogatePair() {
+            return hasSurrogatePair_1.default(this.$);
+        }
+        /**
+         * ペアになっていないサロゲートコードポイントを含んでいるかどうか
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @return 結果の真偽
+         */
+
+    }, {
+        key: "hasUnpairedSurrogate",
+        value: function hasUnpairedSurrogate() {
+            return hasUnpairedSurrogate_1.default(this.$);
+        }
+        /**
+         * 引数に指定された文字列が部分合致するか
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @param search 合致対象文字列
+         * @param position 開始位置
+         * @return 合致したかどうか
+         */
+
+    }, {
+        key: "includes",
+        value: function includes(search) {
+            var position = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+            return includes_1.default(this.$, search, position);
+        }
+        /**
+         * 指定された文字列が最初に現れるインデックスを返す
+         *
+         * - サロゲートペアを考慮する
+         * - String.prototype.indexOf とは非互換
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @param search 検索文字列
+         * @param fromIndex 検索位置
+         */
+
+    }, {
+        key: "indexOf",
+        value: function indexOf(search) {
+            var fromIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+            return indexOf_1.default(this.$, search, fromIndex);
+        }
+        /**
+         * 完全マッチ
+         *
+         * @version 0.2.0
+         * @since 0.2.0
+         * @param target 比較する文字列
+         */
+
+    }, {
+        key: "is",
+        value: function is(target) {
+            return is_1.default(this.$, target);
+        }
+        /**
+         * 文字が空かどうか
+         *
+         * @version 0.2.0
+         * @since 0.2.0
+         */
+
+    }, {
+        key: "isEmpty",
+        value: function isEmpty() {
+            return isEmpty_1.default(this.$);
+        }
+        /**
+         * 数字だけで構成されているかどうか
+         *
+         * @version 2.0.0
+         * @since 0.5.0
+         * @param negative 負の数値も含めてチェックするかどうか
+         * @param floatingPoint 小数としてチェックするかどうか
+         * @return 結果の真偽
+         */
+
+    }, {
+        key: "isNumeric",
+        value: function isNumeric() {
+            var negative = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+            var floatingPoint = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+            return isNumeric_1.default(this.$, negative, floatingPoint);
+        }
+        /**
+         * 該当の文字だけで構成されているかどうか
+         *
+         * @version 2.0.0
+         * @since 0.2.0
+         * @param characters 文字セット
+         * @return 結果の真偽
+         */
+
+    }, {
+        key: "isOnly",
+        value: function isOnly(characters) {
+            return isOnly_1.default(this.$, characters);
+        }
+        /**
+         * ひらがなだけで構成されているかどうか
+         *
+         * @version 0.2.0
+         * @since 0.2.0
+         * @return 結果の真偽
+         */
+
+    }, {
+        key: "isOnlyHiragana",
+        value: function isOnlyHiragana() {
+            return isOnlyHiragana_1.default(this.$);
+        }
+        /**
+         * カタカナだけで構成されているかどうか
+         *
+         * @version 0.2.0
+         * @since 0.2.0
+         * @return 結果の真偽
+         */
+
+    }, {
+        key: "isOnlyKatakana",
+        value: function isOnlyKatakana() {
+            return isOnlyKatakana_1.default(this.$);
+        }
+        /**
+         * 指定された文字列が最後に現れるインデックスを返す
+         *
+         * - サロゲートペアを考慮する
+         * - String.prototype.lastIndexOf とは非互換
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @param search 検索文字列
+         * @param [fromIndex] 検索位置
+         *
+         */
+
+    }, {
+        key: "lastIndexOf",
+        value: function lastIndexOf(search) {
+            var fromIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Infinity;
+
+            return lastIndexOf_1.default(this.$, search, fromIndex);
+        }
+        /**
+         * 正規表現に対する文字列 のマッチングの際に、そのマッチ結果を得る
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @param regexp パターン
+         */
+
+    }, {
+        key: "match",
+        value: function match(regexp) {
+            return this.$.match(regexp);
+        }
+        /**
+         * 正規表現に対する文字列 のマッチングの際に、そのマッチ結果を純粋な配列で得る
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @param pattern パターン
+         */
+
+    }, {
+        key: "matches",
+        value: function matches(pattern) {
+            return matches_1.default(this.$, pattern);
+        }
+        /**
+         * 【未実装】Unicode 正規化形式を返す
+         *
+         * TODO: 日本語に関係する文字になるべく対応する
+         *
+         * - String.prototype.normalize とは非互換
+         *
+         * @version x.x.x
+         * @since x.x.x
+         * @param form 正規化形式の種類
+         */
+
+    }, {
+        key: "normalize",
+        value: function normalize() {
+            var form = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'NFC';
+
+            throw Error("No support method yet");
+        }
+        /**
+         * 最終的な文字列が指定された長さに到達するように文字列で延長する
+         *
+         * - サロゲートペアを考慮する
+         * - String.prototype.padEnd とは非互換
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @param targetLength 最終的な長さ
+         * @param padString 延長する文字列
+         */
+
+    }, {
+        key: "padEnd",
+        value: function padEnd(targetLength) {
+            var padString = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ' ';
+
+            return new Jaco(padEnd_1.default(this.$, targetLength, padString));
+        }
+        /**
+         * 最終的な文字列が指定された長さに到達するように文字列を先頭に追加する
+         *
+         * - サロゲートペアを考慮する
+         * - String.prototype.padStart とは非互換
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @param targetLength 最終的な長さ
+         * @param padString 延長する文字列
+         */
+
+    }, {
+        key: "padStart",
+        value: function padStart(targetLength) {
+            var padString = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ' ';
+
+            return new Jaco(padStart_1.default(this.$, targetLength, padString));
+        }
+        /**
+         * 前方結合
+         *
+         * ```javascript
+         * new Jaco("あああ").prepend("いいい").toString() // => "いいいあああ"
+         * ```
+         *
+         * @version 0.2.0
+         * @since 0.2.0
+         * @param element 結合する文字列
+         */
+
+    }, {
+        key: "prepend",
+        value: function prepend(element) {
+            return new Jaco(concat_1.default(element, this));
+        }
+        /**
+         * 文字列を取り除く
+         *
+         * @version 2.0.0
+         * @since 0.2.0
+         * @param pattern 取り除く文字列
+         */
+
+    }, {
+        key: "remove",
+        value: function remove(pattern) {
+            return new Jaco(remove_1.default(this.$, pattern));
+        }
+        /**
+         * ペアになっていないサロゲートコードポイントの削除
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         */
+
+    }, {
+        key: "removeUnpairedSurrogate",
+        value: function removeUnpairedSurrogate() {
+            return new Jaco(removeUnpairedSurrogate_1.default(this.$));
+        }
+        /**
+         * 濁点・半濁点を取り除く
+         *
+         * @version 1.1.0
+         * @since 1.1.0
+         * @param ignoreSingleMark 単体の濁点・半濁点を除去するかどうか
+         */
+
+    }, {
+        key: "removeVoicedMarks",
+        value: function removeVoicedMarks() {
+            var ignoreSingleMark = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+            return new Jaco(removeVoicedMarks_1.default(this.$, ignoreSingleMark));
+        }
+        /**
+         * 文字列を繰り返す
+         *
+         * - String.prototype.repeat とは非互換
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @param times 繰り返しの回数
+         */
+
+    }, {
+        key: "repeat",
+        value: function repeat() {
+            var times = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+            return new Jaco(repeat_1.default(this.$, times));
+        }
+        /**
+         * 文字列をパターンで置換する
+         *
+         * @version 2.0.0
+         * @since 0.2.0
+         * @param pattern  対象のパターン
+         * @param replacement 置換する文字列
+         */
+
+    }, {
+        key: "replace",
+        value: function replace(pattern, replacement) {
+            return new Jaco(replace_1.default(this.$, pattern, replacement));
+        }
+        /**
+         * キーがパターン・値が置換文字列のハッシュマップによって置換する
+         *
+         * @version 2.0.0
+         * @since 0.1.0
+         * @param  convMap キーがパターン・値が置換文字列のハッシュマップ
+         */
+
+    }, {
+        key: "replaceFromMap",
+        value: function replaceFromMap(convMap) {
+            return new Jaco(replaceFromMap_1.default(this.$, convMap));
+        }
+        /**
+         * 正規表現にマッチしたインデックスを返す
+         *
+         * - サロゲートペアを考慮する
+         * - String.prototype.search とは非互換
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @param pattern パターン
+         */
+
+    }, {
+        key: "search",
+        value: function search(pattern) {
+            return search_1.default(this.$, pattern);
+        }
+        /**
+         * 文字位置による抽出
+         *
+         * - サロゲートペアを考慮する
+         * - String.prototype.slice とは非互換
+         *
+         * @version 2.0.0
+         * @since 0.2.0
+         * @param start 開始インデックス
+         * @param end 終了インデックス 省略すると最後まで
+         */
+
+    }, {
+        key: "slice",
+        value: function slice(start, end) {
+            return new Jaco(slice_1.default(this.$, start, end));
+        }
+        /**
+         * 文字列の配列に分割する
+         *
+         * - String.prototype.split とは非互換
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @param separator 区切り文字
+         * @param limit 配列の数を指定
+         */
+
+    }, {
+        key: "split",
+        value: function split(separator, limit) {
+            return split_1.default(this.$, separator, limit);
+        }
+        /**
+         * 引数に指定された文字列が先頭と合致するか
+         *
+         * - サロゲートペアを考慮する
+         * - String.prototype.startsWith とは非互換
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @param search 合致対象文字列
+         * @param position 先頭の位置
+         */
+
+    }, {
+        key: "startsWith",
+        value: function startsWith(search) {
+            var position = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+            return startsWith_1.default(this.$, search, position);
+        }
+        /**
+         * 指定した位置から指定した数だけ文字列を抽出
+         *
+         * - サロゲートペアを考慮する
+         * - String.prototype.substr とは非互換
+         *
+         * @version 2.0.0
+         * @since 0.2.0
+         * @param start 開始インデックス
+         * @param length 指定数
+         */
+
+    }, {
+        key: "substr",
+        value: function substr(start, length) {
+            return new Jaco(substr_1.default(this.$, start, length));
+        }
+        /**
+         * 指定した位置の間の文字列を抽出
+         *
+         * - サロゲートペアを考慮する
+         * - String.prototype.substring とは非互換
+         *
+         * @version 2.0.0
+         * @since 0.2.0
+         * @param indexA インデックス
+         * @param indexB インデックス
+         */
+
+    }, {
+        key: "substring",
+        value: function substring(indexA, indexB) {
+            return new Jaco(substring_1.default(this.$, indexA, indexB));
+        }
+        /**
+         * パターンとマッチするかどうか
+         *
+         * @version 2.0.0
+         * @since 0.2.0
+         * @param pattern パターン
+         */
+
+    }, {
+        key: "test",
+        value: function test(pattern) {
+            return test_1.default(this.$, pattern);
+        }
+        /**
+         * 小書き文字を基底文字に変換する
+         *
+         * TODO: test
+         *
+         * @version 1.1.0
+         * @since 1.1.0
+         */
+
+    }, {
+        key: "toBasicLetter",
+        value: function toBasicLetter() {
+            return new Jaco(toBasicLetter_1.default(this.$));
+        }
+        /**
+         * ひらがなに変換する
+         *
+         * 第一引数に true を渡した場合、濁点・半濁点は基本的に結合される
+         * ヷヸヹヺは文字が存在しないため ひらがな + 結合文字でない濁点・半濁点 となる
+         *
+         * @version 0.2.0
+         * @since 0.1.0
+         * @param isCombinate 濁点・半濁点を結合文字にするかどうか
+         */
+
+    }, {
+        key: "toHiragana",
+        value: function toHiragana() {
+            var isCombinate = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+            return new Jaco(toHiragana_1.default(this.$, isCombinate));
+        }
+        /**
+         * カタカナに変換する
+         *
+         * @version 0.2.0
+         * @since 0.1.0
+         * @param toWide 半角カタカナを全角カタカナへ変換するかどうか
+         */
+
+    }, {
+        key: "toKatakana",
+        value: function toKatakana() {
+            var toWide = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+            return new Jaco(toKatakana_1.default(this.$, toWide));
+        }
+        /**
+         * 英字の大文字を小文字に変換する
+         *
+         * @version 0.2.0
+         * @since 0.2.0
+         * @return インスタンス自身
+         */
+
+    }, {
+        key: "toLowerCase",
+        value: function toLowerCase() {
+            return new Jaco(this.$.toLowerCase());
+        }
+        /**
+         * 半角に変換
+         *
+         * @version 2.0.0
+         * @since 0.4.0
+         */
+
+    }, {
+        key: "toNarrow",
+        value: function toNarrow() {
+            var convertJapaneseChars = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+            return new Jaco(toNarrow_1.default(this.$, convertJapaneseChars));
+        }
+        /**
+         * 英数字を半角に変換
+         *
+         * @version 2.0.0
+         * @since 1.3.0
+         */
+
+    }, {
+        key: "toNarrowAlphanumeric",
+        value: function toNarrowAlphanumeric() {
+            return new Jaco(toNarrowAlphanumeric_1.default(this.$));
+        }
+        /**
+         * カタカナと日本語で使われる記号を半角に変換
+         *
+         * @version 0.4.0
+         * @since 0.4.0
+         */
+
+    }, {
+        key: "toNarrowJapanese",
+        value: function toNarrowJapanese() {
+            return new Jaco(toNarrowJapanese_1.default(this.$));
+        }
+        /**
+         * 半角カタカナに変換する
+         *
+         * @version 0.6.0
+         * @since 0.1.0
+         * @param fromHiragana ひらがなも変換する
+         */
+
+    }, {
+        key: "toNarrowKatakana",
+        value: function toNarrowKatakana() {
+            var fromHiragana = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+            return new Jaco(toNarrowKatakana_1.default(this.$, fromHiragana));
+        }
+        /**
+         * 記号を半角に変換する
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         */
+
+    }, {
+        key: "toNarrowSign",
+        value: function toNarrowSign() {
+            return new Jaco(toNarrowSign_1.default(this.$));
+        }
+        /**
+         * 日本語で使われる記号を半角に変換
+         *
+         * @version 2.0.0
+         * @since 0.4.0
+         */
+
+    }, {
+        key: "toNarrowSymbolForJapanese",
+        value: function toNarrowSymbolForJapanese() {
+            return new Jaco(toNarrowSymbolForJapanese_1.default(this.$));
+        }
+        /**
+         * 数値に変換する
+         *
+         * @version 0.2.0
+         * @since 0.2.0
+         * @return 数値
+         */
+
+    }, {
+        key: "toNumber",
+        value: function toNumber() {
+            return parseFloat(this.$);
+        }
+        /**
+         * 数字に変換する
+         *
+         * @version 0.5.0
+         * @since 0.5.0
+         * @param negative 負の値を許可してマイナスをつけるかどうか
+         * @param floatingPoint 小数を許可してドットをつけるかどうか
+         */
+
+    }, {
+        key: "toNumeric",
+        value: function toNumeric() {
+            var negative = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+            var floatingPoint = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+            return new Jaco(toNumeric_1.default(this.$, negative, floatingPoint));
+        }
+        /**
+         * よみの文字に変換する
+         * JIS X 4061 [日本語文字列照合順番](http://goo.gl/Mw8ja) に準ずる
+         *
+         * TODO: test
+         *
+         * @version 1.1.0
+         * @since 1.1.0
+         */
+
+    }, {
+        key: "toPhoeticKana",
+        value: function toPhoeticKana() {
+            return new Jaco(toPhoeticKana_1.default(this.$));
+        }
+        /**
+         * 明示もしくは暗黙の文字列変換メソッド
+         *
+         * @version 0.1.0
+         * @since 0.1.0
+         * @return インスタンス自身が保持する文字列
+         */
+
+    }, {
+        key: "toString",
+        value: function toString() {
+            return this.$;
+        }
+        /**
+         * 英字の小文字を大文字に変換する
+         *
+         * @version 0.2.0
+         * @since 0.2.0
+         * @return インスタンス自身
+         */
+
+    }, {
+        key: "toUpperCase",
+        value: function toUpperCase() {
+            return new Jaco(this.$.toUpperCase());
+        }
+        /**
+         * 全角に変換
+         *
+         * @version 0.4.0
+         * @since 0.4.0
+         */
+
+    }, {
+        key: "toWide",
+        value: function toWide() {
+            return new Jaco(toWide_1.default(this.$));
+        }
+        /**
+         * 英数字を全角に変換
+         *
+         * @version 2.0.0
+         * @since 1.3.0
+         */
+
+    }, {
+        key: "toWideAlphanumeric",
+        value: function toWideAlphanumeric() {
+            return new Jaco(toWideAlphanumeric_1.default(this.$));
+        }
+        /**
+         * カタカナと日本語で使われる記号を全角に変換
+         *
+         * @version 0.4.0
+         * @since 0.4.0
+         */
+
+    }, {
+        key: "toWideJapanese",
+        value: function toWideJapanese() {
+            return new Jaco(toWideJapanese_1.default(this.$));
+        }
+        /**
+         * 全角カタカナに変換する
+         *
+         * @version 0.2.0
+         * @since 0.1.0
+         */
+
+    }, {
+        key: "toWideKatakana",
+        value: function toWideKatakana() {
+            return new Jaco(toWideKatakana_1.default(this.$));
+        }
+        /**
+         * 記号を全角に変換する
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         */
+
+    }, {
+        key: "toWideSign",
+        value: function toWideSign() {
+            return new Jaco(toWideSign_1.default(this.$));
+        }
+        /**
+         * 日本語で使われる記号を全角に変換
+         *
+         * @version 2.0.0
+         * @since 0.4.0
+         */
+
+    }, {
+        key: "toWideSymbolForJapanese",
+        value: function toWideSymbolForJapanese() {
+            return new Jaco(toWideSymbolForJapanese_1.default(this.$));
+        }
+        /**
+         * 先頭と末尾の空白を取り除く
+         *
+         * @version 2.0.0
+         * @since 0.2.0
+         */
+
+    }, {
+        key: "trim",
+        value: function trim() {
+            return new Jaco(this.$.trim());
+        }
+        /**
+         * 先頭の空白を取り除く
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         */
+
+    }, {
+        key: "trimLeft",
+        value: function trimLeft() {
+            return new Jaco(remove_1.default(this.$, /^\s+/));
+        }
+        /**
+         * 末尾の空白を取り除く
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         */
+
+    }, {
+        key: "trimRight",
+        value: function trimRight() {
+            return new Jaco(remove_1.default(this.$, /\s+$/));
+        }
+        /**
+         * 暗黙の値変換に呼び出されるメソッド
+         *
+         * @version 0.1.0
+         * @since 0.1.0
+         * @return インスタンス自身が保持する文字列
+         */
+
+    }, {
+        key: "valueOf",
+        value: function valueOf() {
+            return this.toString();
+        }
+        /**
+         * イテレータ
+         *
+         * 要素の型は `string` ではなく `Jaco`
+         *
+         * @version 2.0.0
+         * @since 2.0.0
+         * @return イテレータブル `<Jaco>`
+         */
+
+    }, {
+        key: Symbol.iterator,
+        value: function value() {
+            var _this = this;
+
+            var counter = 0;
+            var iterator = {
+                next: function next() {
+                    var count = counter++;
+                    var item = arrayize_1.default(_this.$)[count];
+                    var result = {
+                        value: item != null ? new Jaco(item) : undefined,
+                        done: _this.length <= count
+                    };
+                    return result;
+                }
+            };
+            return iterator;
+        }
+    }, {
+        key: "length",
+        get: function get() {
+            return arrayize_1.default(this.$).length;
+        }
+    }]);
+
+    return Jaco;
+}();
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * ## Jacoクラス
+ *
+ * 日本語やマルチバイト文字・ASCII文字を扱いやすくするためのラッパークラス
+ *
+ * 文字列クラスを継承してはいないがメソッドは同等のものが実装されている。
+ * ただし基本的にほとんどのメソッドが破壊的メソッドかつチェインナブルである。
+ *
+ * @version 2.0.0
+ * @since 0.1.0
+ */
+exports.default = Jaco;
+
+/***/ },
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11407,15 +14882,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Symbol2 = __webpack_require__(59);
+var _Symbol2 = __webpack_require__(93);
 
 var _Symbol3 = _interopRequireDefault(_Symbol2);
 
-var _getRawTag = __webpack_require__(124);
+var _getRawTag = __webpack_require__(187);
 
 var _getRawTag2 = _interopRequireDefault(_getRawTag);
 
-var _objectToString = __webpack_require__(125);
+var _objectToString = __webpack_require__(188);
 
 var _objectToString2 = _interopRequireDefault(_objectToString);
 
@@ -11446,7 +14921,7 @@ function baseGetTag(value) {
 exports.default = baseGetTag;
 
 /***/ },
-/* 122 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11462,10 +14937,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var freeGlobal = (typeof global === 'undefined' ? 'undefined' : _typeof(global)) == 'object' && global && global.Object === Object && global;
 
 exports.default = freeGlobal;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(50)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(66)))
 
 /***/ },
-/* 123 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11475,7 +14950,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _overArg = __webpack_require__(126);
+var _overArg = __webpack_require__(189);
 
 var _overArg2 = _interopRequireDefault(_overArg);
 
@@ -11487,7 +14962,7 @@ var getPrototype = (0, _overArg2.default)(Object.getPrototypeOf, Object);
 exports.default = getPrototype;
 
 /***/ },
-/* 124 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11497,7 +14972,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Symbol2 = __webpack_require__(59);
+var _Symbol2 = __webpack_require__(93);
 
 var _Symbol3 = _interopRequireDefault(_Symbol2);
 
@@ -11549,7 +15024,7 @@ function getRawTag(value) {
 exports.default = getRawTag;
 
 /***/ },
-/* 125 */
+/* 188 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -11582,7 +15057,7 @@ function objectToString(value) {
 exports.default = objectToString;
 
 /***/ },
-/* 126 */
+/* 189 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -11608,7 +15083,7 @@ function overArg(func, transform) {
 exports.default = overArg;
 
 /***/ },
-/* 127 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11620,7 +15095,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _freeGlobal = __webpack_require__(122);
+var _freeGlobal = __webpack_require__(185);
 
 var _freeGlobal2 = _interopRequireDefault(_freeGlobal);
 
@@ -11635,7 +15110,7 @@ var root = _freeGlobal2.default || freeSelf || Function('return this')();
 exports.default = root;
 
 /***/ },
-/* 128 */
+/* 191 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -11678,15 +15153,15 @@ function isObjectLike(value) {
 exports.default = isObjectLike;
 
 /***/ },
-/* 129 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-var _Symbol = __webpack_require__(61),
-    getRawTag = __webpack_require__(132),
-    objectToString = __webpack_require__(133);
+var _Symbol = __webpack_require__(95),
+    getRawTag = __webpack_require__(195),
+    objectToString = __webpack_require__(196);
 
 /** `Object#toString` result references. */
 var nullTag = '[object Null]',
@@ -11713,7 +15188,7 @@ function baseGetTag(value) {
 module.exports = baseGetTag;
 
 /***/ },
-/* 130 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11725,16 +15200,16 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var freeGlobal = (typeof global === 'undefined' ? 'undefined' : _typeof(global)) == 'object' && global && global.Object === Object && global;
 
 module.exports = freeGlobal;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(50)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(66)))
 
 /***/ },
-/* 131 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-var overArg = __webpack_require__(134);
+var overArg = __webpack_require__(197);
 
 /** Built-in value references. */
 var getPrototype = overArg(Object.getPrototypeOf, Object);
@@ -11742,13 +15217,13 @@ var getPrototype = overArg(Object.getPrototypeOf, Object);
 module.exports = getPrototype;
 
 /***/ },
-/* 132 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-var _Symbol = __webpack_require__(61);
+var _Symbol = __webpack_require__(95);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -11796,7 +15271,7 @@ function getRawTag(value) {
 module.exports = getRawTag;
 
 /***/ },
-/* 133 */
+/* 196 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -11826,7 +15301,7 @@ function objectToString(value) {
 module.exports = objectToString;
 
 /***/ },
-/* 134 */
+/* 197 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -11849,7 +15324,7 @@ function overArg(func, transform) {
 module.exports = overArg;
 
 /***/ },
-/* 135 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11857,7 +15332,7 @@ module.exports = overArg;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var freeGlobal = __webpack_require__(130);
+var freeGlobal = __webpack_require__(193);
 
 /** Detect free variable `self`. */
 var freeSelf = (typeof self === 'undefined' ? 'undefined' : _typeof(self)) == 'object' && self && self.Object === Object && self;
@@ -11868,7 +15343,7 @@ var root = freeGlobal || freeSelf || Function('return this')();
 module.exports = root;
 
 /***/ },
-/* 136 */
+/* 199 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -11907,15 +15382,15 @@ function isObjectLike(value) {
 module.exports = isObjectLike;
 
 /***/ },
-/* 137 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-var baseGetTag = __webpack_require__(129),
-    getPrototype = __webpack_require__(131),
-    isObjectLike = __webpack_require__(136);
+var baseGetTag = __webpack_require__(192),
+    getPrototype = __webpack_require__(194),
+    isObjectLike = __webpack_require__(199);
 
 /** `Object#toString` result references. */
 var objectTag = '[object Object]';
@@ -11976,7 +15451,7 @@ function isPlainObject(value) {
 module.exports = isPlainObject;
 
 /***/ },
-/* 138 */
+/* 201 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -12055,7 +15530,7 @@ var ARIADOMPropertyConfig = {
 module.exports = ARIADOMPropertyConfig;
 
 /***/ },
-/* 139 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12073,7 +15548,7 @@ module.exports = ARIADOMPropertyConfig;
 
 var ReactDOMComponentTree = __webpack_require__(4);
 
-var focusNode = __webpack_require__(54);
+var focusNode = __webpack_require__(69);
 
 var AutoFocusUtils = {
   focusDOMComponent: function focusDOMComponent() {
@@ -12084,7 +15559,7 @@ var AutoFocusUtils = {
 module.exports = AutoFocusUtils;
 
 /***/ },
-/* 140 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12102,11 +15577,11 @@ module.exports = AutoFocusUtils;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var EventPropagators = __webpack_require__(21);
+var EventPropagators = __webpack_require__(27);
 var ExecutionEnvironment = __webpack_require__(5);
-var FallbackCompositionState = __webpack_require__(146);
-var SyntheticCompositionEvent = __webpack_require__(183);
-var SyntheticInputEvent = __webpack_require__(186);
+var FallbackCompositionState = __webpack_require__(209);
+var SyntheticCompositionEvent = __webpack_require__(246);
+var SyntheticInputEvent = __webpack_require__(249);
 
 var END_KEYCODES = [9, 13, 27, 32]; // Tab, Return, Esc, Space
 var START_KEYCODE = 229;
@@ -12476,7 +15951,7 @@ var BeforeInputEventPlugin = {
 module.exports = BeforeInputEventPlugin;
 
 /***/ },
-/* 141 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12492,14 +15967,14 @@ module.exports = BeforeInputEventPlugin;
 
 'use strict';
 
-var CSSProperty = __webpack_require__(63);
+var CSSProperty = __webpack_require__(97);
 var ExecutionEnvironment = __webpack_require__(5);
-var ReactInstrumentation = __webpack_require__(7);
+var ReactInstrumentation = __webpack_require__(9);
 
-var camelizeStyleName = __webpack_require__(102);
-var dangerousStyleValue = __webpack_require__(192);
-var hyphenateStyleName = __webpack_require__(109);
-var memoizeStringOnly = __webpack_require__(112);
+var camelizeStyleName = __webpack_require__(136);
+var dangerousStyleValue = __webpack_require__(255);
+var hyphenateStyleName = __webpack_require__(143);
+var memoizeStringOnly = __webpack_require__(146);
 var warning = __webpack_require__(1);
 
 var processStyleName = memoizeStringOnly(function (styleName) {
@@ -12690,7 +16165,7 @@ var CSSPropertyOperations = {
 module.exports = CSSPropertyOperations;
 
 /***/ },
-/* 142 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12706,16 +16181,16 @@ module.exports = CSSPropertyOperations;
 
 'use strict';
 
-var EventPluginHub = __webpack_require__(20);
-var EventPropagators = __webpack_require__(21);
+var EventPluginHub = __webpack_require__(26);
+var EventPropagators = __webpack_require__(27);
 var ExecutionEnvironment = __webpack_require__(5);
 var ReactDOMComponentTree = __webpack_require__(4);
-var ReactUpdates = __webpack_require__(8);
-var SyntheticEvent = __webpack_require__(10);
+var ReactUpdates = __webpack_require__(10);
+var SyntheticEvent = __webpack_require__(12);
 
-var getEventTarget = __webpack_require__(44);
-var isEventSupported = __webpack_require__(45);
-var isTextInputElement = __webpack_require__(80);
+var getEventTarget = __webpack_require__(60);
+var isEventSupported = __webpack_require__(61);
+var isTextInputElement = __webpack_require__(114);
 
 var eventTypes = {
   change: {
@@ -13016,7 +16491,7 @@ var ChangeEventPlugin = {
 module.exports = ChangeEventPlugin;
 
 /***/ },
-/* 143 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13034,11 +16509,11 @@ module.exports = ChangeEventPlugin;
 
 var _prodInvariant = __webpack_require__(2);
 
-var DOMLazyTree = __webpack_require__(13);
+var DOMLazyTree = __webpack_require__(18);
 var ExecutionEnvironment = __webpack_require__(5);
 
-var createNodesFromMarkup = __webpack_require__(105);
-var emptyFunction = __webpack_require__(6);
+var createNodesFromMarkup = __webpack_require__(139);
+var emptyFunction = __webpack_require__(7);
 var invariant = __webpack_require__(0);
 
 var Danger = {
@@ -13069,7 +16544,7 @@ var Danger = {
 module.exports = Danger;
 
 /***/ },
-/* 144 */
+/* 207 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -13100,7 +16575,7 @@ var DefaultEventPluginOrder = ['ResponderEventPlugin', 'SimpleEventPlugin', 'Tap
 module.exports = DefaultEventPluginOrder;
 
 /***/ },
-/* 145 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13116,9 +16591,9 @@ module.exports = DefaultEventPluginOrder;
 
 'use strict';
 
-var EventPropagators = __webpack_require__(21);
+var EventPropagators = __webpack_require__(27);
 var ReactDOMComponentTree = __webpack_require__(4);
-var SyntheticMouseEvent = __webpack_require__(25);
+var SyntheticMouseEvent = __webpack_require__(33);
 
 var eventTypes = {
   mouseEnter: {
@@ -13205,7 +16680,7 @@ var EnterLeaveEventPlugin = {
 module.exports = EnterLeaveEventPlugin;
 
 /***/ },
-/* 146 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13223,9 +16698,9 @@ module.exports = EnterLeaveEventPlugin;
 
 var _assign = __webpack_require__(3);
 
-var PooledClass = __webpack_require__(12);
+var PooledClass = __webpack_require__(15);
 
-var getTextContentAccessor = __webpack_require__(78);
+var getTextContentAccessor = __webpack_require__(112);
 
 /**
  * This helper class stores information about text content of a target node,
@@ -13305,7 +16780,7 @@ PooledClass.addPoolingTo(FallbackCompositionState);
 module.exports = FallbackCompositionState;
 
 /***/ },
-/* 147 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13321,7 +16796,7 @@ module.exports = FallbackCompositionState;
 
 'use strict';
 
-var DOMProperty = __webpack_require__(14);
+var DOMProperty = __webpack_require__(19);
 
 var MUST_USE_PROPERTY = DOMProperty.injection.MUST_USE_PROPERTY;
 var HAS_BOOLEAN_VALUE = DOMProperty.injection.HAS_BOOLEAN_VALUE;
@@ -13522,7 +16997,7 @@ var HTMLDOMPropertyConfig = {
 module.exports = HTMLDOMPropertyConfig;
 
 /***/ },
-/* 148 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13538,12 +17013,12 @@ module.exports = HTMLDOMPropertyConfig;
 
 'use strict';
 
-var ReactReconciler = __webpack_require__(15);
+var ReactReconciler = __webpack_require__(20);
 
-var instantiateReactComponent = __webpack_require__(79);
-var KeyEscapeUtils = __webpack_require__(36);
-var shouldUpdateReactComponent = __webpack_require__(46);
-var traverseAllChildren = __webpack_require__(82);
+var instantiateReactComponent = __webpack_require__(113);
+var KeyEscapeUtils = __webpack_require__(52);
+var shouldUpdateReactComponent = __webpack_require__(62);
+var traverseAllChildren = __webpack_require__(116);
 var warning = __webpack_require__(1);
 
 var ReactComponentTreeHook;
@@ -13554,7 +17029,7 @@ if (typeof process !== 'undefined' && {"NODE_ENV":"production"} && "production" 
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(85);
+  ReactComponentTreeHook = __webpack_require__(119);
 }
 
 function instantiateChild(childInstances, child, name, selfDebugID) {
@@ -13679,10 +17154,10 @@ var ReactChildReconciler = {
 };
 
 module.exports = ReactChildReconciler;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(62)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(96)))
 
 /***/ },
-/* 149 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13698,8 +17173,8 @@ module.exports = ReactChildReconciler;
 
 'use strict';
 
-var DOMChildrenOperations = __webpack_require__(32);
-var ReactDOMIDOperations = __webpack_require__(156);
+var DOMChildrenOperations = __webpack_require__(48);
+var ReactDOMIDOperations = __webpack_require__(219);
 
 /**
  * Abstracts away all functionality of the reconciler that requires knowledge of
@@ -13717,7 +17192,7 @@ var ReactComponentBrowserEnvironment = {
 module.exports = ReactComponentBrowserEnvironment;
 
 /***/ },
-/* 150 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13738,23 +17213,23 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var _prodInvariant = __webpack_require__(2),
     _assign = __webpack_require__(3);
 
-var React = __webpack_require__(16);
-var ReactComponentEnvironment = __webpack_require__(38);
-var ReactCurrentOwner = __webpack_require__(11);
-var ReactErrorUtils = __webpack_require__(39);
-var ReactInstanceMap = __webpack_require__(22);
-var ReactInstrumentation = __webpack_require__(7);
-var ReactNodeTypes = __webpack_require__(73);
-var ReactReconciler = __webpack_require__(15);
+var React = __webpack_require__(21);
+var ReactComponentEnvironment = __webpack_require__(54);
+var ReactCurrentOwner = __webpack_require__(13);
+var ReactErrorUtils = __webpack_require__(55);
+var ReactInstanceMap = __webpack_require__(28);
+var ReactInstrumentation = __webpack_require__(9);
+var ReactNodeTypes = __webpack_require__(107);
+var ReactReconciler = __webpack_require__(20);
 
 if (false) {
   var checkReactTypeSpec = require('./checkReactTypeSpec');
 }
 
-var emptyObject = __webpack_require__(19);
+var emptyObject = __webpack_require__(24);
 var invariant = __webpack_require__(0);
-var shallowEqual = __webpack_require__(30);
-var shouldUpdateReactComponent = __webpack_require__(46);
+var shallowEqual = __webpack_require__(39);
+var shouldUpdateReactComponent = __webpack_require__(62);
 var warning = __webpack_require__(1);
 
 var CompositeTypes = {
@@ -14626,7 +18101,7 @@ var ReactCompositeComponent = {
 module.exports = ReactCompositeComponent;
 
 /***/ },
-/* 151 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14645,15 +18120,15 @@ module.exports = ReactCompositeComponent;
 'use strict';
 
 var ReactDOMComponentTree = __webpack_require__(4);
-var ReactDefaultInjection = __webpack_require__(164);
-var ReactMount = __webpack_require__(72);
-var ReactReconciler = __webpack_require__(15);
-var ReactUpdates = __webpack_require__(8);
-var ReactVersion = __webpack_require__(177);
+var ReactDefaultInjection = __webpack_require__(227);
+var ReactMount = __webpack_require__(106);
+var ReactReconciler = __webpack_require__(20);
+var ReactUpdates = __webpack_require__(10);
+var ReactVersion = __webpack_require__(240);
 
-var findDOMNode = __webpack_require__(193);
-var getHostComponentFromComposite = __webpack_require__(77);
-var renderSubtreeIntoContainer = __webpack_require__(201);
+var findDOMNode = __webpack_require__(256);
+var getHostComponentFromComposite = __webpack_require__(111);
+var renderSubtreeIntoContainer = __webpack_require__(264);
 var warning = __webpack_require__(1);
 
 ReactDefaultInjection.inject();
@@ -14742,7 +18217,7 @@ if (false) {
 module.exports = ReactDOM;
 
 /***/ },
-/* 152 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14765,31 +18240,31 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var _prodInvariant = __webpack_require__(2),
     _assign = __webpack_require__(3);
 
-var AutoFocusUtils = __webpack_require__(139);
-var CSSPropertyOperations = __webpack_require__(141);
-var DOMLazyTree = __webpack_require__(13);
-var DOMNamespaces = __webpack_require__(33);
-var DOMProperty = __webpack_require__(14);
-var DOMPropertyOperations = __webpack_require__(65);
-var EventPluginHub = __webpack_require__(20);
-var EventPluginRegistry = __webpack_require__(34);
-var ReactBrowserEventEmitter = __webpack_require__(24);
-var ReactDOMComponentFlags = __webpack_require__(66);
+var AutoFocusUtils = __webpack_require__(202);
+var CSSPropertyOperations = __webpack_require__(204);
+var DOMLazyTree = __webpack_require__(18);
+var DOMNamespaces = __webpack_require__(49);
+var DOMProperty = __webpack_require__(19);
+var DOMPropertyOperations = __webpack_require__(99);
+var EventPluginHub = __webpack_require__(26);
+var EventPluginRegistry = __webpack_require__(50);
+var ReactBrowserEventEmitter = __webpack_require__(32);
+var ReactDOMComponentFlags = __webpack_require__(100);
 var ReactDOMComponentTree = __webpack_require__(4);
-var ReactDOMInput = __webpack_require__(157);
-var ReactDOMOption = __webpack_require__(158);
-var ReactDOMSelect = __webpack_require__(67);
-var ReactDOMTextarea = __webpack_require__(161);
-var ReactInstrumentation = __webpack_require__(7);
-var ReactMultiChild = __webpack_require__(170);
-var ReactServerRenderingTransaction = __webpack_require__(175);
+var ReactDOMInput = __webpack_require__(220);
+var ReactDOMOption = __webpack_require__(221);
+var ReactDOMSelect = __webpack_require__(101);
+var ReactDOMTextarea = __webpack_require__(224);
+var ReactInstrumentation = __webpack_require__(9);
+var ReactMultiChild = __webpack_require__(233);
+var ReactServerRenderingTransaction = __webpack_require__(238);
 
-var emptyFunction = __webpack_require__(6);
-var escapeTextContentForBrowser = __webpack_require__(27);
+var emptyFunction = __webpack_require__(7);
+var escapeTextContentForBrowser = __webpack_require__(35);
 var invariant = __webpack_require__(0);
-var isEventSupported = __webpack_require__(45);
-var shallowEqual = __webpack_require__(30);
-var validateDOMNesting = __webpack_require__(47);
+var isEventSupported = __webpack_require__(61);
+var shallowEqual = __webpack_require__(39);
+var validateDOMNesting = __webpack_require__(63);
 var warning = __webpack_require__(1);
 
 var Flags = ReactDOMComponentFlags;
@@ -15744,7 +19219,7 @@ _assign(ReactDOMComponent.prototype, ReactDOMComponent.Mixin, ReactMultiChild.Mi
 module.exports = ReactDOMComponent;
 
 /***/ },
-/* 153 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15760,7 +19235,7 @@ module.exports = ReactDOMComponent;
 
 'use strict';
 
-var validateDOMNesting = __webpack_require__(47);
+var validateDOMNesting = __webpack_require__(63);
 
 var DOC_NODE_TYPE = 9;
 
@@ -15782,7 +19257,7 @@ function ReactDOMContainerInfo(topLevelWrapper, node) {
 module.exports = ReactDOMContainerInfo;
 
 /***/ },
-/* 154 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15800,7 +19275,7 @@ module.exports = ReactDOMContainerInfo;
 
 var _assign = __webpack_require__(3);
 
-var DOMLazyTree = __webpack_require__(13);
+var DOMLazyTree = __webpack_require__(18);
 var ReactDOMComponentTree = __webpack_require__(4);
 
 var ReactDOMEmptyComponent = function ReactDOMEmptyComponent(instantiate) {
@@ -15847,7 +19322,7 @@ _assign(ReactDOMEmptyComponent.prototype, {
 module.exports = ReactDOMEmptyComponent;
 
 /***/ },
-/* 155 */
+/* 218 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -15871,7 +19346,7 @@ var ReactDOMFeatureFlags = {
 module.exports = ReactDOMFeatureFlags;
 
 /***/ },
-/* 156 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15887,7 +19362,7 @@ module.exports = ReactDOMFeatureFlags;
 
 'use strict';
 
-var DOMChildrenOperations = __webpack_require__(32);
+var DOMChildrenOperations = __webpack_require__(48);
 var ReactDOMComponentTree = __webpack_require__(4);
 
 /**
@@ -15910,7 +19385,7 @@ var ReactDOMIDOperations = {
 module.exports = ReactDOMIDOperations;
 
 /***/ },
-/* 157 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15929,10 +19404,10 @@ module.exports = ReactDOMIDOperations;
 var _prodInvariant = __webpack_require__(2),
     _assign = __webpack_require__(3);
 
-var DOMPropertyOperations = __webpack_require__(65);
-var LinkedValueUtils = __webpack_require__(37);
+var DOMPropertyOperations = __webpack_require__(99);
+var LinkedValueUtils = __webpack_require__(53);
 var ReactDOMComponentTree = __webpack_require__(4);
-var ReactUpdates = __webpack_require__(8);
+var ReactUpdates = __webpack_require__(10);
 
 var invariant = __webpack_require__(0);
 var warning = __webpack_require__(1);
@@ -16183,7 +19658,7 @@ function _handleChange(event) {
 module.exports = ReactDOMInput;
 
 /***/ },
-/* 158 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16201,9 +19676,9 @@ module.exports = ReactDOMInput;
 
 var _assign = __webpack_require__(3);
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(21);
 var ReactDOMComponentTree = __webpack_require__(4);
-var ReactDOMSelect = __webpack_require__(67);
+var ReactDOMSelect = __webpack_require__(101);
 
 var warning = __webpack_require__(1);
 var didWarnInvalidOptionChildren = false;
@@ -16311,7 +19786,7 @@ var ReactDOMOption = {
 module.exports = ReactDOMOption;
 
 /***/ },
-/* 159 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16329,8 +19804,8 @@ module.exports = ReactDOMOption;
 
 var ExecutionEnvironment = __webpack_require__(5);
 
-var getNodeForCharacterOffset = __webpack_require__(198);
-var getTextContentAccessor = __webpack_require__(78);
+var getNodeForCharacterOffset = __webpack_require__(261);
+var getTextContentAccessor = __webpack_require__(112);
 
 /**
  * While `isCollapsed` is available on the Selection object and `collapsed`
@@ -16528,7 +20003,7 @@ var ReactDOMSelection = {
 module.exports = ReactDOMSelection;
 
 /***/ },
-/* 160 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16547,13 +20022,13 @@ module.exports = ReactDOMSelection;
 var _prodInvariant = __webpack_require__(2),
     _assign = __webpack_require__(3);
 
-var DOMChildrenOperations = __webpack_require__(32);
-var DOMLazyTree = __webpack_require__(13);
+var DOMChildrenOperations = __webpack_require__(48);
+var DOMLazyTree = __webpack_require__(18);
 var ReactDOMComponentTree = __webpack_require__(4);
 
-var escapeTextContentForBrowser = __webpack_require__(27);
+var escapeTextContentForBrowser = __webpack_require__(35);
 var invariant = __webpack_require__(0);
-var validateDOMNesting = __webpack_require__(47);
+var validateDOMNesting = __webpack_require__(63);
 
 /**
  * Text nodes violate a couple assumptions that React makes about components:
@@ -16697,7 +20172,7 @@ _assign(ReactDOMTextComponent.prototype, {
 module.exports = ReactDOMTextComponent;
 
 /***/ },
-/* 161 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16716,9 +20191,9 @@ module.exports = ReactDOMTextComponent;
 var _prodInvariant = __webpack_require__(2),
     _assign = __webpack_require__(3);
 
-var LinkedValueUtils = __webpack_require__(37);
+var LinkedValueUtils = __webpack_require__(53);
 var ReactDOMComponentTree = __webpack_require__(4);
-var ReactUpdates = __webpack_require__(8);
+var ReactUpdates = __webpack_require__(10);
 
 var invariant = __webpack_require__(0);
 var warning = __webpack_require__(1);
@@ -16856,7 +20331,7 @@ function _handleChange(event) {
 module.exports = ReactDOMTextarea;
 
 /***/ },
-/* 162 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16997,7 +20472,7 @@ module.exports = {
 };
 
 /***/ },
-/* 163 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17015,10 +20490,10 @@ module.exports = {
 
 var _assign = __webpack_require__(3);
 
-var ReactUpdates = __webpack_require__(8);
-var Transaction = __webpack_require__(26);
+var ReactUpdates = __webpack_require__(10);
+var Transaction = __webpack_require__(34);
 
-var emptyFunction = __webpack_require__(6);
+var emptyFunction = __webpack_require__(7);
 
 var RESET_BATCHED_UPDATES = {
   initialize: emptyFunction,
@@ -17070,7 +20545,7 @@ var ReactDefaultBatchingStrategy = {
 module.exports = ReactDefaultBatchingStrategy;
 
 /***/ },
-/* 164 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17086,25 +20561,25 @@ module.exports = ReactDefaultBatchingStrategy;
 
 'use strict';
 
-var ARIADOMPropertyConfig = __webpack_require__(138);
-var BeforeInputEventPlugin = __webpack_require__(140);
-var ChangeEventPlugin = __webpack_require__(142);
-var DefaultEventPluginOrder = __webpack_require__(144);
-var EnterLeaveEventPlugin = __webpack_require__(145);
-var HTMLDOMPropertyConfig = __webpack_require__(147);
-var ReactComponentBrowserEnvironment = __webpack_require__(149);
-var ReactDOMComponent = __webpack_require__(152);
+var ARIADOMPropertyConfig = __webpack_require__(201);
+var BeforeInputEventPlugin = __webpack_require__(203);
+var ChangeEventPlugin = __webpack_require__(205);
+var DefaultEventPluginOrder = __webpack_require__(207);
+var EnterLeaveEventPlugin = __webpack_require__(208);
+var HTMLDOMPropertyConfig = __webpack_require__(210);
+var ReactComponentBrowserEnvironment = __webpack_require__(212);
+var ReactDOMComponent = __webpack_require__(215);
 var ReactDOMComponentTree = __webpack_require__(4);
-var ReactDOMEmptyComponent = __webpack_require__(154);
-var ReactDOMTreeTraversal = __webpack_require__(162);
-var ReactDOMTextComponent = __webpack_require__(160);
-var ReactDefaultBatchingStrategy = __webpack_require__(163);
-var ReactEventListener = __webpack_require__(167);
-var ReactInjection = __webpack_require__(168);
-var ReactReconcileTransaction = __webpack_require__(173);
-var SVGDOMPropertyConfig = __webpack_require__(178);
-var SelectEventPlugin = __webpack_require__(179);
-var SimpleEventPlugin = __webpack_require__(180);
+var ReactDOMEmptyComponent = __webpack_require__(217);
+var ReactDOMTreeTraversal = __webpack_require__(225);
+var ReactDOMTextComponent = __webpack_require__(223);
+var ReactDefaultBatchingStrategy = __webpack_require__(226);
+var ReactEventListener = __webpack_require__(230);
+var ReactInjection = __webpack_require__(231);
+var ReactReconcileTransaction = __webpack_require__(236);
+var SVGDOMPropertyConfig = __webpack_require__(241);
+var SelectEventPlugin = __webpack_require__(242);
+var SimpleEventPlugin = __webpack_require__(243);
 
 var alreadyInjected = false;
 
@@ -17161,7 +20636,7 @@ module.exports = {
 };
 
 /***/ },
-/* 165 */
+/* 228 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -17186,7 +20661,7 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ },
-/* 166 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17202,7 +20677,7 @@ module.exports = REACT_ELEMENT_TYPE;
 
 'use strict';
 
-var EventPluginHub = __webpack_require__(20);
+var EventPluginHub = __webpack_require__(26);
 
 function runEventQueueInBatch(events) {
   EventPluginHub.enqueueEvents(events);
@@ -17224,7 +20699,7 @@ var ReactEventEmitterMixin = {
 module.exports = ReactEventEmitterMixin;
 
 /***/ },
-/* 167 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17242,14 +20717,14 @@ module.exports = ReactEventEmitterMixin;
 
 var _assign = __webpack_require__(3);
 
-var EventListener = __webpack_require__(53);
+var EventListener = __webpack_require__(68);
 var ExecutionEnvironment = __webpack_require__(5);
-var PooledClass = __webpack_require__(12);
+var PooledClass = __webpack_require__(15);
 var ReactDOMComponentTree = __webpack_require__(4);
-var ReactUpdates = __webpack_require__(8);
+var ReactUpdates = __webpack_require__(10);
 
-var getEventTarget = __webpack_require__(44);
-var getUnboundedScrollPosition = __webpack_require__(107);
+var getEventTarget = __webpack_require__(60);
+var getUnboundedScrollPosition = __webpack_require__(141);
 
 /**
  * Find the deepest React component completely containing the root of the
@@ -17384,7 +20859,7 @@ var ReactEventListener = {
 module.exports = ReactEventListener;
 
 /***/ },
-/* 168 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17400,14 +20875,14 @@ module.exports = ReactEventListener;
 
 'use strict';
 
-var DOMProperty = __webpack_require__(14);
-var EventPluginHub = __webpack_require__(20);
-var EventPluginUtils = __webpack_require__(35);
-var ReactComponentEnvironment = __webpack_require__(38);
-var ReactEmptyComponent = __webpack_require__(68);
-var ReactBrowserEventEmitter = __webpack_require__(24);
-var ReactHostComponent = __webpack_require__(70);
-var ReactUpdates = __webpack_require__(8);
+var DOMProperty = __webpack_require__(19);
+var EventPluginHub = __webpack_require__(26);
+var EventPluginUtils = __webpack_require__(51);
+var ReactComponentEnvironment = __webpack_require__(54);
+var ReactEmptyComponent = __webpack_require__(102);
+var ReactBrowserEventEmitter = __webpack_require__(32);
+var ReactHostComponent = __webpack_require__(104);
+var ReactUpdates = __webpack_require__(10);
 
 var ReactInjection = {
   Component: ReactComponentEnvironment.injection,
@@ -17423,7 +20898,7 @@ var ReactInjection = {
 module.exports = ReactInjection;
 
 /***/ },
-/* 169 */
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17439,7 +20914,7 @@ module.exports = ReactInjection;
 
 'use strict';
 
-var adler32 = __webpack_require__(191);
+var adler32 = __webpack_require__(254);
 
 var TAG_END = /\/?>/;
 var COMMENT_START = /^<\!\-\-/;
@@ -17478,7 +20953,7 @@ var ReactMarkupChecksum = {
 module.exports = ReactMarkupChecksum;
 
 /***/ },
-/* 170 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17496,16 +20971,16 @@ module.exports = ReactMarkupChecksum;
 
 var _prodInvariant = __webpack_require__(2);
 
-var ReactComponentEnvironment = __webpack_require__(38);
-var ReactInstanceMap = __webpack_require__(22);
-var ReactInstrumentation = __webpack_require__(7);
+var ReactComponentEnvironment = __webpack_require__(54);
+var ReactInstanceMap = __webpack_require__(28);
+var ReactInstrumentation = __webpack_require__(9);
 
-var ReactCurrentOwner = __webpack_require__(11);
-var ReactReconciler = __webpack_require__(15);
-var ReactChildReconciler = __webpack_require__(148);
+var ReactCurrentOwner = __webpack_require__(13);
+var ReactReconciler = __webpack_require__(20);
+var ReactChildReconciler = __webpack_require__(211);
 
-var emptyFunction = __webpack_require__(6);
-var flattenChildren = __webpack_require__(194);
+var emptyFunction = __webpack_require__(7);
+var flattenChildren = __webpack_require__(257);
 var invariant = __webpack_require__(0);
 
 /**
@@ -17933,7 +21408,7 @@ var ReactMultiChild = {
 module.exports = ReactMultiChild;
 
 /***/ },
-/* 171 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18032,7 +21507,7 @@ var ReactOwner = {
 module.exports = ReactOwner;
 
 /***/ },
-/* 172 */
+/* 235 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -18054,7 +21529,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ },
-/* 173 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18072,13 +21547,13 @@ module.exports = ReactPropTypesSecret;
 
 var _assign = __webpack_require__(3);
 
-var CallbackQueue = __webpack_require__(64);
-var PooledClass = __webpack_require__(12);
-var ReactBrowserEventEmitter = __webpack_require__(24);
-var ReactInputSelection = __webpack_require__(71);
-var ReactInstrumentation = __webpack_require__(7);
-var Transaction = __webpack_require__(26);
-var ReactUpdateQueue = __webpack_require__(40);
+var CallbackQueue = __webpack_require__(98);
+var PooledClass = __webpack_require__(15);
+var ReactBrowserEventEmitter = __webpack_require__(32);
+var ReactInputSelection = __webpack_require__(105);
+var ReactInstrumentation = __webpack_require__(9);
+var Transaction = __webpack_require__(34);
+var ReactUpdateQueue = __webpack_require__(56);
 
 /**
  * Ensures that, when possible, the selection range (currently selected text
@@ -18237,7 +21712,7 @@ PooledClass.addPoolingTo(ReactReconcileTransaction);
 module.exports = ReactReconcileTransaction;
 
 /***/ },
-/* 174 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18256,7 +21731,7 @@ module.exports = ReactReconcileTransaction;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var ReactOwner = __webpack_require__(171);
+var ReactOwner = __webpack_require__(234);
 
 var ReactRef = {};
 
@@ -18333,7 +21808,7 @@ ReactRef.detachRefs = function (instance, element) {
 module.exports = ReactRef;
 
 /***/ },
-/* 175 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18351,10 +21826,10 @@ module.exports = ReactRef;
 
 var _assign = __webpack_require__(3);
 
-var PooledClass = __webpack_require__(12);
-var Transaction = __webpack_require__(26);
-var ReactInstrumentation = __webpack_require__(7);
-var ReactServerUpdateQueue = __webpack_require__(176);
+var PooledClass = __webpack_require__(15);
+var Transaction = __webpack_require__(34);
+var ReactInstrumentation = __webpack_require__(9);
+var ReactServerUpdateQueue = __webpack_require__(239);
 
 /**
  * Executed within the scope of the `Transaction` instance. Consider these as
@@ -18428,7 +21903,7 @@ PooledClass.addPoolingTo(ReactServerRenderingTransaction);
 module.exports = ReactServerRenderingTransaction;
 
 /***/ },
-/* 176 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18451,7 +21926,7 @@ function _classCallCheck(instance, Constructor) {
   }
 }
 
-var ReactUpdateQueue = __webpack_require__(40);
+var ReactUpdateQueue = __webpack_require__(56);
 
 var warning = __webpack_require__(1);
 
@@ -18571,7 +22046,7 @@ var ReactServerUpdateQueue = function () {
 module.exports = ReactServerUpdateQueue;
 
 /***/ },
-/* 177 */
+/* 240 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -18590,7 +22065,7 @@ module.exports = ReactServerUpdateQueue;
 module.exports = '15.4.1';
 
 /***/ },
-/* 178 */
+/* 241 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -18897,7 +22372,7 @@ Object.keys(ATTRS).forEach(function (key) {
 module.exports = SVGDOMPropertyConfig;
 
 /***/ },
-/* 179 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18913,15 +22388,15 @@ module.exports = SVGDOMPropertyConfig;
 
 'use strict';
 
-var EventPropagators = __webpack_require__(21);
+var EventPropagators = __webpack_require__(27);
 var ExecutionEnvironment = __webpack_require__(5);
 var ReactDOMComponentTree = __webpack_require__(4);
-var ReactInputSelection = __webpack_require__(71);
-var SyntheticEvent = __webpack_require__(10);
+var ReactInputSelection = __webpack_require__(105);
+var SyntheticEvent = __webpack_require__(12);
 
-var getActiveElement = __webpack_require__(55);
-var isTextInputElement = __webpack_require__(80);
-var shallowEqual = __webpack_require__(30);
+var getActiveElement = __webpack_require__(70);
+var isTextInputElement = __webpack_require__(114);
+var shallowEqual = __webpack_require__(39);
 
 var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
 
@@ -19093,7 +22568,7 @@ var SelectEventPlugin = {
 module.exports = SelectEventPlugin;
 
 /***/ },
-/* 180 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19112,23 +22587,23 @@ module.exports = SelectEventPlugin;
 
 var _prodInvariant = __webpack_require__(2);
 
-var EventListener = __webpack_require__(53);
-var EventPropagators = __webpack_require__(21);
+var EventListener = __webpack_require__(68);
+var EventPropagators = __webpack_require__(27);
 var ReactDOMComponentTree = __webpack_require__(4);
-var SyntheticAnimationEvent = __webpack_require__(181);
-var SyntheticClipboardEvent = __webpack_require__(182);
-var SyntheticEvent = __webpack_require__(10);
-var SyntheticFocusEvent = __webpack_require__(185);
-var SyntheticKeyboardEvent = __webpack_require__(187);
-var SyntheticMouseEvent = __webpack_require__(25);
-var SyntheticDragEvent = __webpack_require__(184);
-var SyntheticTouchEvent = __webpack_require__(188);
-var SyntheticTransitionEvent = __webpack_require__(189);
-var SyntheticUIEvent = __webpack_require__(23);
-var SyntheticWheelEvent = __webpack_require__(190);
+var SyntheticAnimationEvent = __webpack_require__(244);
+var SyntheticClipboardEvent = __webpack_require__(245);
+var SyntheticEvent = __webpack_require__(12);
+var SyntheticFocusEvent = __webpack_require__(248);
+var SyntheticKeyboardEvent = __webpack_require__(250);
+var SyntheticMouseEvent = __webpack_require__(33);
+var SyntheticDragEvent = __webpack_require__(247);
+var SyntheticTouchEvent = __webpack_require__(251);
+var SyntheticTransitionEvent = __webpack_require__(252);
+var SyntheticUIEvent = __webpack_require__(29);
+var SyntheticWheelEvent = __webpack_require__(253);
 
-var emptyFunction = __webpack_require__(6);
-var getEventCharCode = __webpack_require__(42);
+var emptyFunction = __webpack_require__(7);
+var getEventCharCode = __webpack_require__(58);
 var invariant = __webpack_require__(0);
 
 /**
@@ -19326,7 +22801,7 @@ var SimpleEventPlugin = {
 module.exports = SimpleEventPlugin;
 
 /***/ },
-/* 181 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19342,7 +22817,7 @@ module.exports = SimpleEventPlugin;
 
 'use strict';
 
-var SyntheticEvent = __webpack_require__(10);
+var SyntheticEvent = __webpack_require__(12);
 
 /**
  * @interface Event
@@ -19370,7 +22845,7 @@ SyntheticEvent.augmentClass(SyntheticAnimationEvent, AnimationEventInterface);
 module.exports = SyntheticAnimationEvent;
 
 /***/ },
-/* 182 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19386,7 +22861,7 @@ module.exports = SyntheticAnimationEvent;
 
 'use strict';
 
-var SyntheticEvent = __webpack_require__(10);
+var SyntheticEvent = __webpack_require__(12);
 
 /**
  * @interface Event
@@ -19413,7 +22888,7 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 /***/ },
-/* 183 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19429,7 +22904,7 @@ module.exports = SyntheticClipboardEvent;
 
 'use strict';
 
-var SyntheticEvent = __webpack_require__(10);
+var SyntheticEvent = __webpack_require__(12);
 
 /**
  * @interface Event
@@ -19454,7 +22929,7 @@ SyntheticEvent.augmentClass(SyntheticCompositionEvent, CompositionEventInterface
 module.exports = SyntheticCompositionEvent;
 
 /***/ },
-/* 184 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19470,7 +22945,7 @@ module.exports = SyntheticCompositionEvent;
 
 'use strict';
 
-var SyntheticMouseEvent = __webpack_require__(25);
+var SyntheticMouseEvent = __webpack_require__(33);
 
 /**
  * @interface DragEvent
@@ -19495,7 +22970,7 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 module.exports = SyntheticDragEvent;
 
 /***/ },
-/* 185 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19511,7 +22986,7 @@ module.exports = SyntheticDragEvent;
 
 'use strict';
 
-var SyntheticUIEvent = __webpack_require__(23);
+var SyntheticUIEvent = __webpack_require__(29);
 
 /**
  * @interface FocusEvent
@@ -19536,7 +23011,7 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 module.exports = SyntheticFocusEvent;
 
 /***/ },
-/* 186 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19552,7 +23027,7 @@ module.exports = SyntheticFocusEvent;
 
 'use strict';
 
-var SyntheticEvent = __webpack_require__(10);
+var SyntheticEvent = __webpack_require__(12);
 
 /**
  * @interface Event
@@ -19578,7 +23053,7 @@ SyntheticEvent.augmentClass(SyntheticInputEvent, InputEventInterface);
 module.exports = SyntheticInputEvent;
 
 /***/ },
-/* 187 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19594,11 +23069,11 @@ module.exports = SyntheticInputEvent;
 
 'use strict';
 
-var SyntheticUIEvent = __webpack_require__(23);
+var SyntheticUIEvent = __webpack_require__(29);
 
-var getEventCharCode = __webpack_require__(42);
-var getEventKey = __webpack_require__(195);
-var getEventModifierState = __webpack_require__(43);
+var getEventCharCode = __webpack_require__(58);
+var getEventKey = __webpack_require__(258);
+var getEventModifierState = __webpack_require__(59);
 
 /**
  * @interface KeyboardEvent
@@ -19667,7 +23142,7 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 module.exports = SyntheticKeyboardEvent;
 
 /***/ },
-/* 188 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19683,9 +23158,9 @@ module.exports = SyntheticKeyboardEvent;
 
 'use strict';
 
-var SyntheticUIEvent = __webpack_require__(23);
+var SyntheticUIEvent = __webpack_require__(29);
 
-var getEventModifierState = __webpack_require__(43);
+var getEventModifierState = __webpack_require__(59);
 
 /**
  * @interface TouchEvent
@@ -19717,7 +23192,7 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 module.exports = SyntheticTouchEvent;
 
 /***/ },
-/* 189 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19733,7 +23208,7 @@ module.exports = SyntheticTouchEvent;
 
 'use strict';
 
-var SyntheticEvent = __webpack_require__(10);
+var SyntheticEvent = __webpack_require__(12);
 
 /**
  * @interface Event
@@ -19761,7 +23236,7 @@ SyntheticEvent.augmentClass(SyntheticTransitionEvent, TransitionEventInterface);
 module.exports = SyntheticTransitionEvent;
 
 /***/ },
-/* 190 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19777,7 +23252,7 @@ module.exports = SyntheticTransitionEvent;
 
 'use strict';
 
-var SyntheticMouseEvent = __webpack_require__(25);
+var SyntheticMouseEvent = __webpack_require__(33);
 
 /**
  * @interface WheelEvent
@@ -19820,7 +23295,7 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 module.exports = SyntheticWheelEvent;
 
 /***/ },
-/* 191 */
+/* 254 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -19869,7 +23344,7 @@ function adler32(data) {
 module.exports = adler32;
 
 /***/ },
-/* 192 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19885,7 +23360,7 @@ module.exports = adler32;
 
 'use strict';
 
-var CSSProperty = __webpack_require__(63);
+var CSSProperty = __webpack_require__(97);
 var warning = __webpack_require__(1);
 
 var isUnitlessNumber = CSSProperty.isUnitlessNumber;
@@ -19953,7 +23428,7 @@ function dangerousStyleValue(name, value, component) {
 module.exports = dangerousStyleValue;
 
 /***/ },
-/* 193 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19971,11 +23446,11 @@ module.exports = dangerousStyleValue;
 
 var _prodInvariant = __webpack_require__(2);
 
-var ReactCurrentOwner = __webpack_require__(11);
+var ReactCurrentOwner = __webpack_require__(13);
 var ReactDOMComponentTree = __webpack_require__(4);
-var ReactInstanceMap = __webpack_require__(22);
+var ReactInstanceMap = __webpack_require__(28);
 
-var getHostComponentFromComposite = __webpack_require__(77);
+var getHostComponentFromComposite = __webpack_require__(111);
 var invariant = __webpack_require__(0);
 var warning = __webpack_require__(1);
 
@@ -20018,7 +23493,7 @@ function findDOMNode(componentOrElement) {
 module.exports = findDOMNode;
 
 /***/ },
-/* 194 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20037,8 +23512,8 @@ module.exports = findDOMNode;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var KeyEscapeUtils = __webpack_require__(36);
-var traverseAllChildren = __webpack_require__(82);
+var KeyEscapeUtils = __webpack_require__(52);
+var traverseAllChildren = __webpack_require__(116);
 var warning = __webpack_require__(1);
 
 var ReactComponentTreeHook;
@@ -20049,7 +23524,7 @@ if (typeof process !== 'undefined' && {"NODE_ENV":"production"} && "production" 
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(85);
+  ReactComponentTreeHook = __webpack_require__(119);
 }
 
 /**
@@ -20099,10 +23574,10 @@ function flattenChildren(children, selfDebugID) {
 }
 
 module.exports = flattenChildren;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(62)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(96)))
 
 /***/ },
-/* 195 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20118,7 +23593,7 @@ module.exports = flattenChildren;
 
 'use strict';
 
-var getEventCharCode = __webpack_require__(42);
+var getEventCharCode = __webpack_require__(58);
 
 /**
  * Normalization of deprecated HTML5 `key` values
@@ -20209,7 +23684,7 @@ function getEventKey(nativeEvent) {
 module.exports = getEventKey;
 
 /***/ },
-/* 196 */
+/* 259 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -20255,7 +23730,7 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ },
-/* 197 */
+/* 260 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -20281,7 +23756,7 @@ function getNextDebugID() {
 module.exports = getNextDebugID;
 
 /***/ },
-/* 198 */
+/* 261 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -20360,7 +23835,7 @@ function getNodeForCharacterOffset(root, offset) {
 module.exports = getNodeForCharacterOffset;
 
 /***/ },
-/* 199 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20466,7 +23941,7 @@ function getVendorPrefixedEventName(eventName) {
 module.exports = getVendorPrefixedEventName;
 
 /***/ },
-/* 200 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20482,7 +23957,7 @@ module.exports = getVendorPrefixedEventName;
 
 'use strict';
 
-var escapeTextContentForBrowser = __webpack_require__(27);
+var escapeTextContentForBrowser = __webpack_require__(35);
 
 /**
  * Escapes attribute value to prevent scripting attacks.
@@ -20497,7 +23972,7 @@ function quoteAttributeValueForBrowser(value) {
 module.exports = quoteAttributeValueForBrowser;
 
 /***/ },
-/* 201 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20513,12 +23988,12 @@ module.exports = quoteAttributeValueForBrowser;
 
 'use strict';
 
-var ReactMount = __webpack_require__(72);
+var ReactMount = __webpack_require__(106);
 
 module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ },
-/* 202 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20529,13 +24004,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 exports.__esModule = true;
 exports["default"] = undefined;
 
-var _react = __webpack_require__(9);
+var _react = __webpack_require__(11);
 
-var _storeShape = __webpack_require__(83);
+var _storeShape = __webpack_require__(117);
 
 var _storeShape2 = _interopRequireDefault(_storeShape);
 
-var _warning = __webpack_require__(84);
+var _warning = __webpack_require__(118);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -20616,7 +24091,7 @@ Provider.childContextTypes = {
 };
 
 /***/ },
-/* 203 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20638,33 +24113,33 @@ var _extends = Object.assign || function (target) {
 
 exports["default"] = connect;
 
-var _react = __webpack_require__(9);
+var _react = __webpack_require__(11);
 
-var _storeShape = __webpack_require__(83);
+var _storeShape = __webpack_require__(117);
 
 var _storeShape2 = _interopRequireDefault(_storeShape);
 
-var _shallowEqual = __webpack_require__(204);
+var _shallowEqual = __webpack_require__(267);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
-var _wrapActionCreators = __webpack_require__(205);
+var _wrapActionCreators = __webpack_require__(268);
 
 var _wrapActionCreators2 = _interopRequireDefault(_wrapActionCreators);
 
-var _warning = __webpack_require__(84);
+var _warning = __webpack_require__(118);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _isPlainObject = __webpack_require__(137);
+var _isPlainObject = __webpack_require__(200);
 
 var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
-var _hoistNonReactStatics = __webpack_require__(113);
+var _hoistNonReactStatics = __webpack_require__(147);
 
 var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 
-var _invariant = __webpack_require__(114);
+var _invariant = __webpack_require__(148);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -21040,7 +24515,7 @@ function connect(mapStateToProps, mapDispatchToProps, mergeProps) {
 }
 
 /***/ },
-/* 204 */
+/* 267 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -21072,7 +24547,7 @@ function shallowEqual(objA, objB) {
 }
 
 /***/ },
-/* 205 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21081,7 +24556,7 @@ function shallowEqual(objA, objB) {
 exports.__esModule = true;
 exports["default"] = wrapActionCreators;
 
-var _redux = __webpack_require__(92);
+var _redux = __webpack_require__(126);
 
 function wrapActionCreators(actionCreators) {
   return function (dispatch) {
@@ -21090,7 +24565,7 @@ function wrapActionCreators(actionCreators) {
 }
 
 /***/ },
-/* 206 */
+/* 269 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -21154,7 +24629,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ },
-/* 207 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21171,7 +24646,7 @@ module.exports = KeyEscapeUtils;
 
 'use strict';
 
-var _prodInvariant = __webpack_require__(18);
+var _prodInvariant = __webpack_require__(23);
 
 var invariant = __webpack_require__(0);
 
@@ -21283,7 +24758,7 @@ var PooledClass = {
 module.exports = PooledClass;
 
 /***/ },
-/* 208 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21299,11 +24774,11 @@ module.exports = PooledClass;
 
 'use strict';
 
-var PooledClass = __webpack_require__(207);
-var ReactElement = __webpack_require__(17);
+var PooledClass = __webpack_require__(270);
+var ReactElement = __webpack_require__(22);
 
-var emptyFunction = __webpack_require__(6);
-var traverseAllChildren = __webpack_require__(216);
+var emptyFunction = __webpack_require__(7);
+var traverseAllChildren = __webpack_require__(279);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -21478,7 +24953,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 /***/ },
-/* 209 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21496,15 +24971,15 @@ module.exports = ReactChildren;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _prodInvariant = __webpack_require__(18),
+var _prodInvariant = __webpack_require__(23),
     _assign = __webpack_require__(3);
 
-var ReactComponent = __webpack_require__(48);
-var ReactElement = __webpack_require__(17);
-var ReactPropTypeLocationNames = __webpack_require__(87);
-var ReactNoopUpdateQueue = __webpack_require__(49);
+var ReactComponent = __webpack_require__(64);
+var ReactElement = __webpack_require__(22);
+var ReactPropTypeLocationNames = __webpack_require__(121);
+var ReactNoopUpdateQueue = __webpack_require__(65);
 
-var emptyObject = __webpack_require__(19);
+var emptyObject = __webpack_require__(24);
 var invariant = __webpack_require__(0);
 var warning = __webpack_require__(1);
 
@@ -22201,7 +25676,7 @@ var ReactClass = {
 module.exports = ReactClass;
 
 /***/ },
-/* 210 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22217,7 +25692,7 @@ module.exports = ReactClass;
 
 'use strict';
 
-var ReactElement = __webpack_require__(17);
+var ReactElement = __webpack_require__(22);
 
 /**
  * Create a factory that creates HTML tag elements.
@@ -22376,7 +25851,7 @@ var ReactDOMFactories = {
 module.exports = ReactDOMFactories;
 
 /***/ },
-/* 211 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22394,12 +25869,12 @@ module.exports = ReactDOMFactories;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var ReactElement = __webpack_require__(17);
-var ReactPropTypeLocationNames = __webpack_require__(87);
-var ReactPropTypesSecret = __webpack_require__(212);
+var ReactElement = __webpack_require__(22);
+var ReactPropTypeLocationNames = __webpack_require__(121);
+var ReactPropTypesSecret = __webpack_require__(275);
 
-var emptyFunction = __webpack_require__(6);
-var getIteratorFn = __webpack_require__(89);
+var emptyFunction = __webpack_require__(7);
+var getIteratorFn = __webpack_require__(123);
 var warning = __webpack_require__(1);
 
 /**
@@ -22817,7 +26292,7 @@ function getClassName(propValue) {
 module.exports = ReactPropTypes;
 
 /***/ },
-/* 212 */
+/* 275 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -22839,7 +26314,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ },
-/* 213 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22857,10 +26332,10 @@ module.exports = ReactPropTypesSecret;
 
 var _assign = __webpack_require__(3);
 
-var ReactComponent = __webpack_require__(48);
-var ReactNoopUpdateQueue = __webpack_require__(49);
+var ReactComponent = __webpack_require__(64);
+var ReactNoopUpdateQueue = __webpack_require__(65);
 
-var emptyObject = __webpack_require__(19);
+var emptyObject = __webpack_require__(24);
 
 /**
  * Base class helpers for the updating state of a component.
@@ -22886,7 +26361,7 @@ ReactPureComponent.prototype.isPureReactComponent = true;
 module.exports = ReactPureComponent;
 
 /***/ },
-/* 214 */
+/* 277 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -22905,7 +26380,7 @@ module.exports = ReactPureComponent;
 module.exports = '15.4.1';
 
 /***/ },
-/* 215 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22920,9 +26395,9 @@ module.exports = '15.4.1';
  */
 'use strict';
 
-var _prodInvariant = __webpack_require__(18);
+var _prodInvariant = __webpack_require__(23);
 
-var ReactElement = __webpack_require__(17);
+var ReactElement = __webpack_require__(22);
 
 var invariant = __webpack_require__(0);
 
@@ -22948,7 +26423,7 @@ function onlyChild(children) {
 module.exports = onlyChild;
 
 /***/ },
-/* 216 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22966,14 +26441,14 @@ module.exports = onlyChild;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _prodInvariant = __webpack_require__(18);
+var _prodInvariant = __webpack_require__(23);
 
-var ReactCurrentOwner = __webpack_require__(11);
-var REACT_ELEMENT_TYPE = __webpack_require__(86);
+var ReactCurrentOwner = __webpack_require__(13);
+var REACT_ELEMENT_TYPE = __webpack_require__(120);
 
-var getIteratorFn = __webpack_require__(89);
+var getIteratorFn = __webpack_require__(123);
 var invariant = __webpack_require__(0);
-var KeyEscapeUtils = __webpack_require__(206);
+var KeyEscapeUtils = __webpack_require__(269);
 var warning = __webpack_require__(1);
 
 var SEPARATOR = '.';
@@ -23131,7 +26606,7 @@ function traverseAllChildren(children, callback, traverseContext) {
 module.exports = traverseAllChildren;
 
 /***/ },
-/* 217 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23142,7 +26617,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = applyMiddleware;
 
-var _compose = __webpack_require__(90);
+var _compose = __webpack_require__(124);
 
 var _compose2 = _interopRequireDefault(_compose);
 
@@ -23204,7 +26679,7 @@ function applyMiddleware() {
 }
 
 /***/ },
-/* 218 */
+/* 281 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -23266,7 +26741,7 @@ function bindActionCreators(actionCreators, dispatch) {
 }
 
 /***/ },
-/* 219 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23277,13 +26752,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = combineReducers;
 
-var _createStore = __webpack_require__(91);
+var _createStore = __webpack_require__(125);
 
-var _isPlainObject = __webpack_require__(60);
+var _isPlainObject = __webpack_require__(94);
 
 var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
-var _warning = __webpack_require__(93);
+var _warning = __webpack_require__(127);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -23416,16 +26891,16 @@ function combineReducers(reducers) {
 }
 
 /***/ },
-/* 220 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-module.exports = __webpack_require__(221);
+module.exports = __webpack_require__(284);
 
 /***/ },
-/* 221 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23435,7 +26910,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _ponyfill = __webpack_require__(222);
+var _ponyfill = __webpack_require__(285);
 
 var _ponyfill2 = _interopRequireDefault(_ponyfill);
 
@@ -23459,10 +26934,10 @@ if (typeof self !== 'undefined') {
 
 var result = (0, _ponyfill2['default'])(root);
 exports['default'] = result;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(50), __webpack_require__(223)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(66), __webpack_require__(286)(module)))
 
 /***/ },
-/* 222 */
+/* 285 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -23491,7 +26966,7 @@ function symbolObservablePonyfill(root) {
 };
 
 /***/ },
-/* 223 */
+/* 286 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -23523,15 +26998,15 @@ module.exports = function (module) {
 };
 
 /***/ },
-/* 224 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 "use strict";
 
-var React = __webpack_require__(9);
-var ReactDOM = __webpack_require__(51);
-var App_1 = __webpack_require__(94);
+var React = __webpack_require__(11);
+var ReactDOM = __webpack_require__(67);
+var App_1 = __webpack_require__(128);
 ReactDOM.render(React.createElement(App_1.default, null), document.body);
 
 /***/ }

@@ -37,11 +37,11 @@ exports.options = {
         description: '',
     },
     toHiragana: {
-        name: '',
+        name: 'ひらがなに変換',
         description: '',
     },
     toKatakana: {
-        name: '',
+        name: 'かたかなに変換',
         description: '',
     },
     toNarrow: {
@@ -101,6 +101,64 @@ exports.options = {
         description: '',
     },
 };
+exports.initialState = {
+    inputText: '',
+    outputText: '',
+    options: [
+        'addSemivoicedMarks',
+        'addVoicedMarks',
+        'combinateSoundMarks',
+        'convertIterationMarks',
+        'convertProlongedSoundMarks',
+        'removeUnpairedSurrogate',
+        'removeVoicedMarks',
+        'trim',
+        'toBasicLetter',
+        'toHiragana',
+        'toKatakana',
+        'toNarrow',
+        'toNarrowAlphanumeric',
+        'toNarrowJapanese',
+        'toNarrowKatakana',
+        'toNarrowSign',
+        'toNarrowSymbolForJapanese',
+        'toNumeric',
+        'toPhoeticKana',
+        'toWide',
+        'toWideAlphanumeric',
+        'toWideJapanese',
+        'toWideKatakana',
+        'toWideSign',
+        'toWideSymbolForJapanese',
+    ],
+    optionsState: {
+        addSemivoicedMarks: false,
+        addVoicedMarks: false,
+        combinateSoundMarks: false,
+        convertIterationMarks: false,
+        convertProlongedSoundMarks: false,
+        removeUnpairedSurrogate: false,
+        removeVoicedMarks: false,
+        trim: false,
+        toBasicLetter: false,
+        toHiragana: false,
+        toKatakana: false,
+        toNarrow: false,
+        toNarrowAlphanumeric: false,
+        toNarrowJapanese: false,
+        toNarrowKatakana: false,
+        toNarrowSign: false,
+        toNarrowSymbolForJapanese: false,
+        toNumeric: false,
+        toPhoeticKana: false,
+        toWide: false,
+        toWideAlphanumeric: false,
+        toWideJapanese: false,
+        toWideKatakana: false,
+        toWideSign: false,
+        toWideSymbolForJapanese: false,
+    }
+};
 function convert(text) {
     return {
         type: 0 /* CONVERT */,
@@ -108,10 +166,11 @@ function convert(text) {
     };
 }
 exports.convert = convert;
-function changeOption(options) {
+function changeOption(optionsList, optionsState) {
     return {
         type: 1 /* CHANGE_OPTION */,
-        options,
+        options: optionsList,
+        optionsState,
     };
 }
 exports.changeOption = changeOption;

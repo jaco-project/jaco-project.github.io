@@ -7,39 +7,35 @@ import * as Action from '../Action';
 import * as Reducer from '../Reducer';
 
 interface IConverterOptionListProp {
-	options: Action.IOptions;
+	options: Action.IOptionNameList;
+	optionsState: Action.IOptionsState;
 	dispatch?: Redux.Dispatch<Action.IState>;
 }
 
 interface IConverterOptionListState {
 }
 
+function createOptionItem (name: Action.IOptionName, options: Action.IOptions, optionsState: Action.IOptionsState) {
+	return <li><label><input type="checkbox" ref={ name } checked={ optionsState[name] } /><span>{ options[name].name }</span></label></li>;
+}
+
 class ConverterOptionList extends React.Component<IConverterOptionListProp, IConverterOptionListState> {
 
 	public render (): JSX.Element {
-		return <div data-component="ConverterOptionList" onChange={this._onChange.bind(this)}>
-			<ul>
-				<li><label><input type="checkbox" ref="toHiragana" checked={ this.props.options.toHiragana!.enabled } /><span>{ this.props.options.toHiragana!.name }</span></label></li>
-				<li><label><input type="checkbox" ref="toKatakana" checked={ this.props.options.toKatakana!.enabled } /><span>{ this.props.options.toKatakana!.name }</span></label></li>
-			</ul>
+		return <div data-component="ConverterOptionList" onChange={ this._onChange.bind(this) }>
+			<ul>{ this.props.options.map(name => createOptionItem(name, Action.options, this.props.optionsState)) }</ul>
 		</div>;
 	}
 
 	private _onChange (e: React.FormEvent<HTMLTextAreaElement>) {
-		const toHiragana = (ReactDOM.findDOMNode(this.refs['toHiragana']) as HTMLInputElement).checked;
-		const toKatakana = (ReactDOM.findDOMNode(this.refs['toKatakana']) as HTMLInputElement).checked;
-		// if (this.props.dispatch) {
-		// 	this.props.dispatch(Action.changeOption({
-		// 		toHiragana: {
-		// 			name: 'ひらがな',
-		// 			enabled: toHiragana,
-		// 		},
-		// 		toKatakana: {
-		// 			name: 'カタカナ',
-		// 			enabled: toKatakana,
-		// 		}
-		// 	}));
-		// }
+		const checkedState: { [N in keyof Action.IOptionsState]?: boolean } = {};
+		for (const name of this.props.options) {
+			const ref = ReactDOM.findDOMNode(this.refs[name]) as HTMLInputElement;
+			checkedState[name] = ref.checked;
+		}
+		if (this.props.dispatch) {
+			this.props.dispatch(Action.changeOption(this.props.options, checkedState as Action.IOptionsState));
+		}
 	}
 
 }
@@ -47,6 +43,7 @@ class ConverterOptionList extends React.Component<IConverterOptionListProp, ICon
 function connecter (state: Reducer.IRecuderState): IConverterOptionListProp {
 	return {
 		options: state.action.options,
+		optionsState: state.action.optionsState,
 	};
 }
 
