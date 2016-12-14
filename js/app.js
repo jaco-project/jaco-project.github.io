@@ -11803,34 +11803,33 @@ function reduceAction() {
             var options = action.options || state.options;
             var optionsState = action.optionsState || state.optionsState;
             var outputText = new jaco_1.default(inputText);
-            if (action.optionsState) {
-                var _iteratorNormalCompletion = true;
-                var _didIteratorError = false;
-                var _iteratorError = undefined;
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
 
-                try {
-                    for (var _iterator = options[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                        var method = _step.value;
+            try {
+                for (var _iterator = options[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var method = _step.value;
 
-                        if (action.optionsState[method] && outputText[method]) {
-                            outputText = outputText[method]();
-                        }
+                    if (optionsState[method] && outputText[method]) {
+                        outputText = outputText[method]();
                     }
-                } catch (err) {
-                    _didIteratorError = true;
-                    _iteratorError = err;
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
                 } finally {
-                    try {
-                        if (!_iteratorNormalCompletion && _iterator.return) {
-                            _iterator.return();
-                        }
-                    } finally {
-                        if (_didIteratorError) {
-                            throw _iteratorError;
-                        }
+                    if (_didIteratorError) {
+                        throw _iteratorError;
                     }
                 }
             }
+
             return {
                 inputText: inputText,
                 outputText: outputText.toString(),

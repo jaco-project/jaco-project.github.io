@@ -14,11 +14,9 @@ export function reduceAction (state: Action.IState = Action.initialState, action
 			const options = action.options || state.options;
 			const optionsState = action.optionsState || state.optionsState;
 			let outputText = new Jaco(inputText);
-			if (action.optionsState) {
-				for (const method of options) {
-					if (action.optionsState[method] && outputText[method]) {
-						outputText = outputText[method]();
-					}
+			for (const method of options) {
+				if (optionsState[method] && outputText[method]) {
+					outputText = outputText[method]();
 				}
 			}
 			return {

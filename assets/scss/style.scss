@@ -1,7 +1,12 @@
 @charset 'utf-8';
 
-@import '../../node_modules/normalize.css/normalize';
-@import 'mixins';
+$font-main: 'Sawarabi Mincho', serif;
 
-@import 'base';
-@import 'components/Main';
+body {
+	font-family: $font-main;
+}
+
+input,
+textarea {
+	font-family: $font-main;
+}

@@ -157,7 +157,7 @@ exports.initialState = {
         toWideKatakana: false,
         toWideSign: false,
         toWideSymbolForJapanese: false,
-    }
+    },
 };
 function convert(text) {
     return {

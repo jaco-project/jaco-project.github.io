@@ -9,11 +9,9 @@ function reduceAction(state = Action.initialState, action) {
             const options = action.options || state.options;
             const optionsState = action.optionsState || state.optionsState;
             let outputText = new jaco_1.default(inputText);
-            if (action.optionsState) {
-                for (const method of options) {
-                    if (action.optionsState[method] && outputText[method]) {
-                        outputText = outputText[method]();
-                    }
+            for (const method of options) {
+                if (optionsState[method] && outputText[method]) {
+                    outputText = outputText[method]();
                 }
             }
             return {
